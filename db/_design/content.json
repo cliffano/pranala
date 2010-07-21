@@ -1,0 +1,8 @@
+{
+    "_id": "_design/content",
+    "views": {
+        "by_url": {
+            "map": "function(doc) { if(doc.url) { emit(doc.url, doc._id); } }"
+        }
+    }
+}

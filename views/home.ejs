@@ -1,0 +1,11 @@
+<div class="content pane">
+  <form action="#" method="get" onsubmit="encode($('#url').val()); return false;">
+    <input id="url" type="text" size="48" maxlength="2000" value="http://" onclick="if (this.value === 'http://') { this.value = ''; }"/>
+    <input class="button" type="submit" value="Pendekkan"/>
+  </form>
+  <br style="clear: both;"/>
+  <div id="indicator" class="hidden">
+    <img src="/b/images/loading.gif" height="19" width="220" alt="Kurcacinya sedang sibuk bekerja..."/>
+  </div>
+  <div id="result" class="text hidden"></div>
+</div>
