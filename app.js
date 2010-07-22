@@ -29,6 +29,7 @@ texts['title_hubungi'] = 'Hubungi kami';
 texts['title_home'] = 'Pendekkan pranalanya';
 texts['title_carakerja'] = 'Cara kerja';
 texts['title_kegunaan'] = 'Kegunaan';
+texts['title_poster'] = 'Poster';
 texts['title_takada'] = 'Pranala tidak ditemukan';
 texts['error_blacklisted'] = 'Lho gan, sepertinya pranalanya sudah dipendekkan ya?';
 texts['error_inexistent'] = 'Maaf gan, tolong sediakan pranalanya dahulu';
@@ -95,24 +96,5 @@ app.get('/:code', function(req, res, params) {
     };
     pranala.decode(params.code, callback);
 });
-
-/*
-process.on('exit', function () {
-    sys.log('Intercepting exit call');
-    pranala.persist();
-});
-process.on('uncaughtException', function (error) {
-    sys.log('Intercepting uncaught exception, error ' + error);
-    pranala.persist();
-});
-process.on('SIGINT', function () {
-    sys.log('Detecting SIGINT');
-    pranala.persist();
-});
-process.on('SIGKILL', function () {
-    sys.log('Detecting SIGKILL');
-    pranala.persist();
-});
-*/
 
 app.listen(3000);

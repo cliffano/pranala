@@ -13,6 +13,7 @@ init:
 
 clean:
 	rm -rf $(BUILD_BASE)
+	rm /var/www/data/pranala-seq
 
 db-create = curl -X PUT $(1); \
 	curl -X PUT --data-binary @db/_design/content.json $(1)/_design/content
@@ -31,11 +32,18 @@ lint:
 
 coverage:
 
-test:
-
-test-all:
+test-vows:
 	mkdir -p $(BUILD_TEST)
-	vows test/*
+	vows test/vows/*
+
+test-selenium:
+	ruby test/selenium/pranala.rb
+
+start-selenium:
+	java -jar test/selenium/selenium-server.jar
+	
+start-pranala-dev:
+	./pranala-dev.sh
 
 package:
 	mkdir -p $(BUILD_PACKAGE)
