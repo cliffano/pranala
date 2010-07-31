@@ -47,10 +47,10 @@ app.get('/', function(req, res) {
         }
     });
 });
-app.get('/b/:page', function(req, res, params) {
-    res.render(params.page + '.ejs', {
+app.get('/b/:page', function(req, res) {
+    res.render(req.params.page + '.ejs', {
         locals: {
-            title: texts['title_' + params.page]
+            title: texts['title_' + req.params.page]
         }
     });
 });
@@ -60,8 +60,8 @@ app.get('/e', function(req, res) {
     result.message = texts['error_invalid'];
     res.send(JSON.stringify(result), 200);
 });
-app.get('/e/:url', function(req, res, params) {
-    var _url = url.sanitise(decodeURIComponent(params.url));
+app.get('/e/:url', function(req, res) {
+    var _url = url.sanitise(decodeURIComponent(req.params.url));
     var error = url.validate(_url);
     if (error === null) {
         var self = this;
@@ -80,7 +80,7 @@ app.get('/e/:url', function(req, res, params) {
         res.send(JSON.stringify(result), 200);
     }
 });
-app.get('/:code', function(req, res, params) {
+app.get('/:code', function(req, res) {
     var self = this;
     var callback = function(doc) {
         if (doc === null) {
@@ -90,11 +90,11 @@ app.get('/:code', function(req, res, params) {
 		        }
 		    });
         } else {
-            sys.puts('Decoded code ' + params.code + ' to url ' + doc.url);
+            sys.puts('Decoded code ' + req.params.code + ' to url ' + doc.url);
             res.redirect(doc.url);
         }
     };
-    pranala.decode(params.code, callback);
+    pranala.decode(req.params.code, callback);
 });
 
 app.listen(3000);
