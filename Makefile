@@ -36,20 +36,14 @@ test-vows:
 	mkdir -p $(BUILD_TEST)
 	vows test/vows/*
 
-test-selenium:
-	ruby test/selenium/pranala.rb
-
-start-selenium:
-	java -jar test/selenium/selenium-server.jar
-	
-start-pranala-dev:
+start-app-dev:
 	./pranala-dev.sh
 
 package:
 	mkdir -p $(BUILD_PACKAGE)
-	zip -r $(BUILD_PACKAGE)/$(APP_FULLNAME).zip *
-	tar -cvf $(BUILD_PACKAGE)/$(APP_FULLNAME).tar *
+	tar --exclude test --exclude .svn -cvf $(BUILD_PACKAGE)/$(APP_FULLNAME).tar *
 	gzip $(BUILD_PACKAGE)/$(APP_FULLNAME).tar
 	
 deploy:
-	scp -P 2218 -r . ayame:/var/www/prn.la/www
+	scp -P 2218 $(BUILD_PACKAGE)/$(APP_FULLNAME).tar.gz ayame:/var/www/prn.la/www
+	ssh -p 2218 ayame 'cd /var/www/prn.la/www; gunzip *.tar.gz; tar -xvf *.tar; rm *.tar;' 

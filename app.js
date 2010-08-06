@@ -40,6 +40,7 @@ var dbName = 'pranala';
 var sequenceFile = '/var/www/data/pranala-seq';
 var pranala = new Pranala(dbHost, dbName, sequenceFile);
 
+// home page
 app.get('/', function(req, res) {
     res.render('home.ejs', {
         locals: {
@@ -47,6 +48,8 @@ app.get('/', function(req, res) {
         }
     });
 });
+
+// brochure pages
 app.get('/b/:page', function(req, res) {
     res.render(req.params.page + '.ejs', {
         locals: {
@@ -54,12 +57,16 @@ app.get('/b/:page', function(req, res) {
         }
     });
 });
+
+// encode with empty URL, return invalid error
 app.get('/e', function(req, res) {
     var result = new Object();
     result.status = 'fail';
     result.message = texts['error_invalid'];
     res.send(JSON.stringify(result), 200);
 });
+
+// encode URL, return JSON result
 app.get('/e/:url', function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.params.url));
     var error = url.validate(_url);
@@ -80,6 +87,25 @@ app.get('/e/:url', function(req, res) {
         res.send(JSON.stringify(result), 200);
     }
 });
+
+// encode URL, return the encoded URL as text only on success, return empty string on failure
+// used by external client like echofon & tweetie
+app.get('/f/:url', function(req, res) {
+    var _url = url.sanitise(decodeURIComponent(req.params.url));
+    var error = url.validate(_url);
+    if (error === null) {
+        var self = this;
+        var callback = function(doc) {
+            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
+            res.send('http://prn.la/' + doc._id, 200);
+        };
+        pranala.encode(_url, callback);
+    } else {
+        res.send('', 200);
+    }
+});
+
+// decode a short URL
 app.get('/:code', function(req, res) {
     var self = this;
     var callback = function(doc) {
