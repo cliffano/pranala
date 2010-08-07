@@ -7,13 +7,15 @@ BUILD_PACKAGE = $(BUILD_BASE)/package
 BUILD_TEST = $(BUILD_BASE)/test
 DB_APP = localhost:5984/$(APP_NAME)
 DB_TEST = localhost:5984/$(APP_NAME)_test
+DEPLOY_HOST = ayame
+DEPLOY_PORT = 2218
+DEPLOY_DIR = /var/www/prn.la/www
 
 init:
 	echo "B0b shall build."
 
 clean:
 	rm -rf $(BUILD_BASE)
-	rm /var/www/data/pranala-seq
 
 db-create = curl -X PUT $(1); \
 	curl -X PUT --data-binary @db/_design/content.json $(1)/_design/content
@@ -45,5 +47,6 @@ package:
 	gzip $(BUILD_PACKAGE)/$(APP_FULLNAME).tar
 	
 deploy:
-	scp -P 2218 $(BUILD_PACKAGE)/$(APP_FULLNAME).tar.gz ayame:/var/www/prn.la/www
-	ssh -p 2218 ayame 'cd /var/www/prn.la/www; gunzip *.tar.gz; tar -xvf *.tar; rm *.tar;' 
+	ssh -p $(DEPLOY_PORT) $(DEPLOY_HOST) 'cd $(DEPLOY_DIR); rm -rf *;'
+	scp -P $(DEPLOY_PORT) $(BUILD_PACKAGE)/$(APP_FULLNAME).tar.gz $(DEPLOY_HOST):$(DEPLOY_DIR)
+	ssh -p $(DEPLOY_PORT) $(DEPLOY_HOST) 'cd $(DEPLOY_DIR); gunzip *.tar.gz; tar -xvf *.tar; ./pranala-restart.sh;' 

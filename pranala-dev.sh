@@ -1,3 +1,3 @@
 #! /bin/sh
 
-EXPRESS_ENV=development node app.js
+EXPRESS_ENV=development node pranala-app.js
