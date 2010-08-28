@@ -1,0 +1,54 @@
+<div class="content pane">
+  <div class="text">
+    <div class="title">
+      <h3>API</h3>
+    </div>
+    <p>
+      <strong>/v1/pendekkan</strong>
+    </p>
+    <p>
+      Contoh: <%= appHost %>/v1/pendekkan?panjang=http%3A%2F%2Fberitakita.co.id%2Fterkini%2Findonesia-akhirnya-juara-piala-dunia-2058&format=json
+    </p>
+    <p>
+      Parameter
+      <ul>
+        <li><strong>panjang</strong> - pranala panjang yang akan dipendekkan</li>
+        <li><strong>format</strong> - format respons, misalnya: <strong>json</strong>, <strong>teks</strong></li>
+      </ul>
+    </p>
+    <p>
+      Respons
+      <ul>
+        <li>
+          json<br/>
+          <strong>Sukses</strong><br/>
+          <div class="marquee answer">
+            <pre>{
+  "status":"sukses",
+  "pendek":"<%= appHost %>/g0L"
+}</pre>
+          </div>
+          <strong>Gagal</strong><br/>
+          <div class="marquee warning">
+            <pre>{
+  "status":"gagal",
+  "pesan":"Maaf gan, pranalanya tidak valid."
+}</pre>
+          </div>
+        </li>
+        <li>
+          teks<br/>
+          <strong>Sukses</strong><br/>
+          <div class="marquee answer">
+            <pre><%= appHost %>/g0L</pre>
+          </div>
+          <strong>Gagal</strong><br/>
+          <div class="marquee warning">
+            <pre></pre>
+          </div>
+          Respons teks kosong.
+        </li>
+      </ul>
+    </p>
+  </div>
+</div>

@@ -1,7 +1,18 @@
-google.load('jquery', '1.4.2');
+$(document).ready(function () {
+    init();
+});
+
+var init = function() {
+	if ($('#shorten')) {
+	    var value = $('#url').val();
+	    if (value && value !== 'http://') {
+		    $('#shorten').click();
+	    }
+	}
+}
 
 var encode = function(url) {
-  var targetUrl = '/e/' + encodeURIComponent(url);
+  var targetUrl = '/v1/pendekkan?panjang=' + encodeURIComponent(url);
   $('#indicator').show();
   $.ajax({
     type: 'GET',
@@ -11,17 +22,15 @@ var encode = function(url) {
       var result = JSON.parse(data);
       $('#indicator').hide();
       var text;
-      if (result.status === 'success') {
-        text = 'Pranala pendeknya &raquo; <input id="answer" class="success" onclick="this.select(); copy(this);" type="text" readonly="true" value="http://prn.la/' + result.doc._id + '"/> <a href="http://prn.la/' + result.doc._id + '">Kunjungi</a>';
+      if (result.status === 'sukses') {
+        text = 'Pranala pendeknya &raquo; <input id="answer" class="success" onclick="this.select(); copy(this);" type="text" readonly="true" value="' + result.pendek + '"/> <a href="' + result.pendek + '">Kunjungi</a>';
       } else {
-        text = '<div class="signal error">!</div> ' + result.message;
+        text = '<div class="signal error">!</div> ' + result.pesan;
       }
       $('#result').html(text);
     },
-    error: function(request, status, error) {
-      // TODO: do something
-      alert('err' + status + error);
-      $('#result').append(message);
+    error: function(request, status, message) {
+      $('#result').append('<div class="signal error">!</div> Maaf gan, bautnya ada yang lepas. ' + status + ': ' + message);
     }
   });
 }
