@@ -36,6 +36,7 @@ texts['title_takada'] = 'Pranala tidak ditemukan';
 texts['error_blacklisted'] = 'Lho gan, sepertinya pranalanya sudah dipendekkan ya?';
 texts['error_inexistent'] = 'Maaf gan, tolong sediakan pranalanya dahulu.';
 texts['error_invalid'] = 'Maaf gan, pranalanya tidak valid.';
+texts['error_notshortened'] = 'Pranala pendek yang disediakan tidak dapat ditemukan di sistem kami.';
 
 var appHost = process.env['PRANALA_APPHOST'];
 var dbHost = 'http://localhost:5984';
@@ -89,6 +90,43 @@ app.get('/v1/pendekkan', function(req, res) {
                 res.send(JSON.stringify(result), 200);
             };
             pranala.encode(_url, callback);
+        } else {
+            var result = new Object();
+            result.status = 'gagal';
+            result.pesan = texts['error_' + error];
+            res.send(JSON.stringify(result), 200);
+        }
+    }
+});
+
+app.get('/v1/panjangkan', function(req, res) {
+    var _url = url.sanitise(decodeURIComponent(req.query.pendek));
+    var error = url.validateShort(_url, appHost);
+    var regex = new RegExp(appHost + '/', 'g');
+    if (req.query.format === 'teks') {
+	    if (error === null) {
+	        var self = this;
+	        var code = _url.replace(regex, '');
+	        var callback = function(doc) {
+	            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
+	            res.send(doc.url, 200);
+	        };
+	        pranala.decode(code, callback);
+	    } else {
+	        res.send('', 200);
+	    }
+    } else {
+        if (error === null) {
+            var self = this;
+            var code = _url.replace(regex, '');
+            var callback = function(doc) {
+                var result = new Object();
+                result.status = 'sukses';
+                result.panjang = doc.url;
+	            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
+                res.send(JSON.stringify(result), 200);
+            };
+            pranala.decode(code, callback);
         } else {
             var result = new Object();
             result.status = 'gagal';

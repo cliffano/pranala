@@ -51,6 +51,21 @@ vows.describe('URL').addBatch({
 	            assert.equal(url.validate('http://prn.la'), 'blacklisted');
 	            assert.equal(url.validate('http://()'), 'invalid');
             }
+        },
+		'validate': {
+            'returns correct error codes for shortened URL': function() {
+	            var appHost = 'http://prwn.la:1';
+	            assert.isNull(url.validateShort('http://prwn.la:1/09', appHost));
+	            assert.isNull(url.validateShort('http://prwn.la:1/az', appHost));
+	            assert.isNull(url.validateShort('http://prwn.la:1/AZ', appHost));
+	            assert.equal(url.validateShort('http://prwn.la:1', appHost), 'notshortened');
+	            assert.equal(url.validateShort('http://prwn.la:1/', appHost), 'notshortened');
+	            assert.equal(url.validateShort('http://prwn.la:1/-', appHost), 'notshortened');
+	            assert.equal(url.validateShort('prwn.la:1', appHost), 'notshortened');
+	            assert.equal(url.validateShort(null, appHost), 'notshortened');
+	            assert.equal(url.validateShort('', appHost), 'notshortened');
+	            assert.equal(url.validateShort('http://nba.com', appHost), 'notshortened');
+            }
         }
     }
 }).run();

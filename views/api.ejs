@@ -7,7 +7,10 @@
       <strong>/v1/pendekkan</strong>
     </p>
     <p>
-      Contoh: <%= appHost %>/v1/pendekkan?panjang=http%3A%2F%2Fberitakita.co.id%2Fterkini%2Findonesia-akhirnya-juara-piala-dunia-2058&format=json
+      Contoh
+      <ul>
+        <li><%= appHost %>/v1/pendekkan?panjang=http%3A%2F%2Fberitakita.co.id%2Fterkini%2Findonesia-akhirnya-juara-piala-dunia-2058&format=json</li>
+      </ul>
     </p>
     <p>
       Parameter
@@ -41,6 +44,56 @@
           <strong>Sukses</strong><br/>
           <div class="marquee answer">
             <pre><%= appHost %>/g0L</pre>
+          </div>
+          <strong>Gagal</strong><br/>
+          <div class="marquee warning">
+            <pre></pre>
+          </div>
+          Respons teks kosong.
+        </li>
+      </ul>
+    </p>
+    <p>
+      <strong>/v1/panjangkan</strong>
+    </p>
+    <p>
+      Contoh
+      <ul>
+        <li><%= appHost %>/v1/panjangkan?pendek=http%3A%2F%2Fprn.la%2Fg0L&format=json</li>
+      </ul>
+    </p>
+    <p>
+      Parameter
+      <ul>
+        <li><strong>pendek</strong> - pranala pendek yang akan dipanjangkan</li>
+        <li><strong>format</strong> - format respons, misalnya: <strong>json</strong>, <strong>teks</strong></li>
+      </ul>
+    </p>
+    <p>
+      Respons
+      <ul>
+        <li>
+          json<br/>
+          <strong>Sukses</strong><br/>
+          <div class="marquee answer">
+            <pre>{
+  "status":"sukses",
+  "panjang":"http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058"
+}</pre>
+          </div>
+          <strong>Gagal</strong><br/>
+          <div class="marquee warning">
+            <pre>{
+  "status":"gagal",
+  "pesan":"Pranala pendek yang disediakan tidak dapat ditemukan di sistem kami."
+}</pre>
+          </div>
+        </li>
+        <li>
+          teks<br/>
+          <strong>Sukses</strong><br/>
+          <div class="marquee answer">
+            <pre>http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058</pre>
           </div>
           <strong>Gagal</strong><br/>
           <div class="marquee warning">
