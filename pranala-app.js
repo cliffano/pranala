@@ -33,10 +33,11 @@ texts['title_alat'] = 'Alat';
 texts['title_api'] = 'API';
 texts['title_poster'] = 'Poster';
 texts['title_takada'] = 'Pranala tidak ditemukan';
+texts['title_pvt'] = 'Pre-verification Tests';
 texts['error_blacklisted'] = 'Lho gan, sepertinya pranalanya sudah dipendekkan ya?';
 texts['error_inexistent'] = 'Maaf gan, tolong sediakan pranalanya dahulu.';
 texts['error_invalid'] = 'Maaf gan, pranalanya tidak valid.';
-texts['error_notshortened'] = 'Pranala pendek yang disediakan tidak dapat ditemukan di sistem kami.';
+texts['error_notshortened'] = 'Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami.';
 
 var appHost = process.env['PRANALA_APPHOST'];
 var dbHost = 'http://localhost:5984';
@@ -65,6 +66,7 @@ app.get('/b/:page', function(req, res) {
     });
 });
 
+// shorten API
 app.get('/v1/pendekkan', function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.panjang));
     var error = url.validate(_url);
@@ -99,6 +101,7 @@ app.get('/v1/pendekkan', function(req, res) {
     }
 });
 
+// expand API
 app.get('/v1/panjangkan', function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.pendek));
     var error = url.validateShort(_url, appHost);
@@ -136,7 +139,7 @@ app.get('/v1/panjangkan', function(req, res) {
     }
 });
 
-// decode a short URL
+// decode a short URL, then redirect to long URL
 app.get('/:code', function(req, res) {
     var self = this;
     var callback = function(doc) {
@@ -152,6 +155,17 @@ app.get('/:code', function(req, res) {
         }
     };
     pranala.decode(req.params.code, callback);
+});
+
+// pre-verification test
+app.get('/t/pvt', function(req, res) {
+    res.render('pvt.ejs', {
+	    layout: false,
+        locals: {
+            title: texts['title_pvt'],
+            appHost: appHost
+        }
+    });
 });
 
 app.listen(3000);
