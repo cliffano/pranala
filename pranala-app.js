@@ -32,8 +32,8 @@ texts['title_kegunaan'] = 'Kegunaan';
 texts['title_alat'] = 'Alat';
 texts['title_api'] = 'API';
 texts['title_poster'] = 'Poster';
+texts['title_mobile'] = 'Mobile';
 texts['title_takada'] = 'Pranala tidak ditemukan';
-texts['title_pvt'] = 'Pre-verification Tests';
 texts['error_blacklisted'] = 'Lho gan, sepertinya pranalanya sudah dipendekkan ya?';
 texts['error_inexistent'] = 'Maaf gan, tolong sediakan pranalanya dahulu.';
 texts['error_invalid'] = 'Maaf gan, pranalanya tidak valid.';
@@ -67,12 +67,11 @@ app.get('/b/:page', function(req, res) {
 });
 
 // shorten API
-app.get('/v1/pendekkan', function(req, res) {
+app.get('/v0/pendekkan', function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.panjang));
     var error = url.validate(_url);
     if (req.query.format === 'teks') {
 	    if (error === null) {
-	        var self = this;
 	        var callback = function(doc) {
 	            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
 	            res.send(appHost + '/' + doc._id, 200);
@@ -83,7 +82,6 @@ app.get('/v1/pendekkan', function(req, res) {
 	    }
     } else {
         if (error === null) {
-            var self = this;
             var callback = function(doc) {
                 var result = new Object();
                 result.status = 'sukses';
@@ -102,13 +100,12 @@ app.get('/v1/pendekkan', function(req, res) {
 });
 
 // expand API
-app.get('/v1/panjangkan', function(req, res) {
+app.get('/v0/panjangkan', function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.pendek));
     var error = url.validateShort(_url, appHost);
     var regex = new RegExp(appHost + '/', 'g');
     if (req.query.format === 'teks') {
 	    if (error === null) {
-	        var self = this;
 	        var code = _url.replace(regex, '');
 	        var callback = function(doc) {
 	            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
@@ -120,7 +117,6 @@ app.get('/v1/panjangkan', function(req, res) {
 	    }
     } else {
         if (error === null) {
-            var self = this;
             var code = _url.replace(regex, '');
             var callback = function(doc) {
                 var result = new Object();
@@ -139,9 +135,58 @@ app.get('/v1/panjangkan', function(req, res) {
     }
 });
 
+// mobile page
+app.get('/m', function(req, res) {
+	var url = '';
+	var shortenedUrl = '';
+    res.render('mobile.ejs', {
+	    layout: false,
+        locals: {
+            title: texts['title_mobile'],
+            url: '',
+            shortenedUrl: ''
+        }
+    });
+});
+app.post('/m', function(req, res) {
+    var url = req.body.url;
+    if (url) {
+	    var callback = function(doc) {
+	        sys.puts('Encoded url ' + url + ' to code ' + doc._id);
+		    res.render('mobile.ejs', {
+			    layout: false,
+		        locals: {
+		            title: texts['title_mobile'],
+		            url: url,
+		            shortenedUrl: appHost + '/' + doc._id
+		        }
+		    });
+	    };
+	    pranala.encode(url, callback);
+	} else {
+	    res.render('mobile.ejs', {
+		    layout: false,
+	        locals: {
+	            title: texts['title_mobile'],
+	            url: '',
+	            shortenedUrl: ''
+	        }
+	    });		
+	}
+});
+
+// pre-verification test
+app.get('/t/pvt', function(req, res) {
+    res.render('pvt.ejs', {
+	    layout: false,
+        locals: {
+            appHost: appHost
+        }
+    });
+});
+
 // decode a short URL, then redirect to long URL
 app.get('/:code', function(req, res) {
-    var self = this;
     var callback = function(doc) {
         if (doc === null) {
 		    res.render('takada.ejs', {
@@ -155,17 +200,6 @@ app.get('/:code', function(req, res) {
         }
     };
     pranala.decode(req.params.code, callback);
-});
-
-// pre-verification test
-app.get('/t/pvt', function(req, res) {
-    res.render('pvt.ejs', {
-	    layout: false,
-        locals: {
-            title: texts['title_pvt'],
-            appHost: appHost
-        }
-    });
 });
 
 app.listen(3000);

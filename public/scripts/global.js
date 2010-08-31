@@ -12,7 +12,7 @@ var init = function() {
 }
 
 var encode = function(url) {
-  var targetUrl = '/v1/pendekkan?panjang=' + encodeURIComponent(url);
+  var targetUrl = '/v0/pendekkan?panjang=' + encodeURIComponent(url);
   $('#indicator').show();
   $.ajax({
     type: 'GET',
