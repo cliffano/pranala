@@ -32,7 +32,7 @@ texts['title_kegunaan'] = 'Kegunaan';
 texts['title_alat'] = 'Alat';
 texts['title_api'] = 'API';
 texts['title_poster'] = 'Poster';
-texts['title_mobile'] = 'Mobile';
+texts['title_m'] = 'Mobile';
 texts['title_takada'] = 'Pranala tidak ditemukan';
 texts['error_blacklisted'] = 'Lho gan, sepertinya pranalanya sudah dipendekkan ya?';
 texts['error_inexistent'] = 'Maaf gan, tolong sediakan pranalanya dahulu.';
@@ -135,14 +135,29 @@ app.get('/v0/panjangkan', function(req, res) {
     }
 });
 
+// twitter iphone
+app.get('/x', function(req, res) {
+    var _url = url.sanitise(decodeURIComponent(req.query.panjang));
+    var error = url.validate(_url);
+    if (error === null) {
+        var callback = function(doc) {
+            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
+            res.send(appHost + '/' + doc._id, 200);
+        };
+        pranala.encode(_url, callback);
+    } else {
+        res.send('', 200);
+    }
+});
+
 // mobile page
 app.get('/m', function(req, res) {
 	var url = '';
 	var shortenedUrl = '';
-    res.render('mobile.ejs', {
+    res.render('m.ejs', {
 	    layout: false,
         locals: {
-            title: texts['title_mobile'],
+            title: texts['title_m'],
             url: '',
             shortenedUrl: ''
         }
@@ -153,10 +168,10 @@ app.post('/m', function(req, res) {
     if (url) {
 	    var callback = function(doc) {
 	        sys.puts('Encoded url ' + url + ' to code ' + doc._id);
-		    res.render('mobile.ejs', {
+		    res.render('m.ejs', {
 			    layout: false,
 		        locals: {
-		            title: texts['title_mobile'],
+		            title: texts['title_m'],
 		            url: url,
 		            shortenedUrl: appHost + '/' + doc._id
 		        }
@@ -164,10 +179,10 @@ app.post('/m', function(req, res) {
 	    };
 	    pranala.encode(url, callback);
 	} else {
-	    res.render('mobile.ejs', {
+	    res.render('m.ejs', {
 		    layout: false,
 	        locals: {
-	            title: texts['title_mobile'],
+	            title: texts['title_m'],
 	            url: '',
 	            shortenedUrl: ''
 	        }

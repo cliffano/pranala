@@ -52,6 +52,9 @@ h2, h3 {
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+h4 {
+    margin: 0;
+}
 div#bd {
     background-color: #e4e4e4;
     padding: 20px 20px 40px 20px;
