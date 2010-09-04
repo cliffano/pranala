@@ -42,6 +42,17 @@ app.configure(function() {
     app.use('/', connect.methodOverride());
     app.use('/b/images', connect.staticProvider(__dirname + '/public/images'));
     app.use(assetManager(assetManagerGroups));
+	app.error(function(error, req, res, next) {
+	    if (error instanceof NotFound) {
+		    res.render('404.ejs', {
+		        locals: {
+		            title: texts['title_404']
+		        }
+		    });
+	    } else {
+	        // TODO
+	    }
+	});
 });
 app.configure('development', function() {
     app.set('reload views', 1000);
@@ -238,6 +249,20 @@ app.get('/:code', function(req, res) {
         }
     };
     pranala.decode(req.params.code, callback);
+});
+
+// error
+function NotFound(message) {
+    this.name = 'NotFound';
+    Error.call(this, message);
+    Error.captureStackTrace(this, arguments.callee);
+}
+sys.inherits(NotFound, Error);
+app.get('/500', function(req, res) {
+    throw new Error('Ngantuk, jadi error deh.');
+});
+app.get('/*', function(req, res) {
+    throw new NotFound;
 });
 
 app.listen(3000);
