@@ -1,8 +1,38 @@
-var connect = require('connect');
-var express = require('express');
-var Pranala = require('./lib/pranala').Pranala;
-var sys = require('sys');
-var url = require('./lib/pranala/url');
+var assetManager = require('connect-assetmanager'),
+    assetHandler = require('connect-assetmanager-handlers'),
+    connect = require('connect'),
+    express = require('express'),
+    Pranala = require('./lib/pranala').Pranala,
+    sys = require('sys'),
+    url = require('./lib/pranala/url');
+
+var assetManagerGroups = {
+    'js': {
+        'route': /\/b\/scripts\/pranala\.js/,
+        'path': './public/scripts/',
+        'dataType': 'javascript',
+        'files': ['jquery-min-1.4.2.js', 'json2.js', 'clipboard.js', 'global.js']
+    }, 'css': {
+        'route': /\/b\/styles\/pranala\.css/,
+        'path': './public/styles/',
+        'dataType': 'css',
+        'files': ['grids-min-2.8.1.css', 'global.css'],
+        'preManipulate': {
+            'MSIE': [
+                assetHandler.yuiCssOptimize,
+                assetHandler.fixVendorPrefixes,
+                assetHandler.fixGradients,
+                assetHandler.stripDataUrlsPrefix
+            ],
+            '^': [
+                assetHandler.yuiCssOptimize,
+                assetHandler.fixVendorPrefixes,
+                assetHandler.fixGradients,
+                assetHandler.replaceImageRefToBase64(root)
+            ]
+        }
+    }
+};
 
 var app = express.createServer();
 
@@ -11,8 +41,7 @@ app.configure(function() {
     app.use('/', connect.bodyDecoder());
     app.use('/', connect.methodOverride());
     app.use('/b/images', connect.staticProvider(__dirname + '/public/images'));
-    app.use('/b/scripts', connect.staticProvider(__dirname + '/public/scripts'));
-    app.use('/b/styles', connect.staticProvider(__dirname + '/public/styles'));
+    app.use(assetManager(assetManagerGroups));
 });
 app.configure('development', function() {
     app.set('reload views', 1000);
