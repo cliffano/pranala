@@ -1,17 +1,17 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>PRN.LA [masih beta] - <%= title %></title>
+  <title>Prnla [masih beta] - <%= title %></title>
 </head>
 <body>
   <div>
-	<img src="/b/images/logo.gif" alt="Logo PRN.LA"/><strong>PRN.LA</strong>
+	<img src="/b/images/logo.png" height="20px" width="20px" alt="Logo Prnla"/><strong>Prnla</strong>
   </div>
     <form action="/m" method="post">
       <input id="url" name="url" type="text" size="20" maxlength="2000" value="<%= url %>"/>
 	  <input class="button" type="submit" value="Pendekkan"/>
     </form>
-    <%= shortenedUrl %>
+    <a href="<%= shortenedUrl %>"><%= shortenedUrl %></a>
   </div>
   <div>
 	<p><a href="/b/hubungi">Hubungi</a></p>

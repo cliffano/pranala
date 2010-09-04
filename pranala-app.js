@@ -135,19 +135,37 @@ app.get('/v0/panjangkan', function(req, res) {
     }
 });
 
-// twitter iphone
+// main form, twitter iphone
 app.get('/x', function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.panjang));
     var error = url.validate(_url);
-    if (error === null) {
-        var callback = function(doc) {
-            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
-            res.send(appHost + '/' + doc._id, 200);
-        };
-        pranala.encode(_url, callback);
-    } else {
-        res.send('', 200);
-    }
+    if (req.query.format === 'teks') {
+	    if (error === null) {
+	        var callback = function(doc) {
+	            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
+	            res.send(appHost + '/' + doc._id, 200);
+	        };
+	        pranala.encode(_url, callback);
+	    } else {
+	        res.send('', 200);
+	    }
+	} else {
+        if (error === null) {
+            var callback = function(doc) {
+                var result = new Object();
+                result.status = 'sukses';
+                result.pendek = appHost + '/' + doc._id;
+                sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
+                res.send(JSON.stringify(result), 200);
+            };
+            pranala.encode(_url, callback);
+        } else {
+            var result = new Object();
+            result.status = 'gagal';
+            result.pesan = texts['error_' + error];
+            res.send(JSON.stringify(result), 200);
+        }		
+	}
 });
 
 // mobile page
@@ -191,7 +209,7 @@ app.post('/m', function(req, res) {
 });
 
 // pre-verification test
-app.get('/t/pvt', function(req, res) {
+app.get('/u/pvt', function(req, res) {
     res.render('pvt.ejs', {
 	    layout: false,
         locals: {

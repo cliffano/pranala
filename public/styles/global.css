@@ -1,3 +1,7 @@
+body {
+    background-color: #fbfbfb;
+    color: #1e1e1f;
+}
 div#doc {
     color: #333333;
     font-family: arial, verdana, helvetica, sans-serif;
@@ -8,7 +12,7 @@ div#doc {
     margin-top: 50px;
 }
 div#nav {
-    padding: 5px 20px 5px 20px;
+    padding: 5px;
     text-align: right;
 }
 div#nav ul, div#nav li {
@@ -17,26 +21,29 @@ div#nav ul, div#nav li {
     margin-left: 10px;
 }
 div#hd {
-    background-color: #e4e4e4;
     padding: 20px 20px 0 20px;
 }
 div#hd a {
     text-decoration: none;
 }
+div#hd a:hover {
+    text-decoration: underline;
+}
 div#logo {
     float: left;
     height: 40px;
     padding: 0 10px 0 10px;
+    text-transform: uppercase;
     width: 130px;
 }
 h1 {
-    background-image: url('../images/logo.gif');
+    background-image: url('../images/logo.png');
     background-repeat: no-repeat;
-    color: #888888;
-    font-size: 13px;
+	color: #1e1e1f;
+    font-size: 15px;
     font-weight: bold;
-    letter-spacing: 1px;
-    padding-left: 30px;
+    margin: 6px;
+    padding-left: 25px;
 }
 div#slogan {
     float: left;
@@ -46,18 +53,28 @@ div#slogan {
     width: 400px;
 }
 h2, h3 {
-    color: #888888;
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 h4 {
+    font-size: 11px;
+    margin: 0;
+    text-transform: uppercase;
+}
+h5 {
+    font-size: 13px;
     margin: 0;
 }
 div#bd {
-    background-color: #e4e4e4;
+    background-color: #ffffff;
+    border: 1px #dfdfdf solid;
     padding: 20px 20px 40px 20px;
+}
+div#bd a {
+    color: #484848;
+    text-decoration: underline;
 }
 div.content {
     padding: 20px 20px 40px 20px;
@@ -71,40 +88,39 @@ div.title {
     text-align: right;
 }
 input#url {
-    border: 1px solid #cccccc;
-    color: #666666;
+    border: 1px solid #b3b3b3;
+    color: #1e1e1f;
     font-size: 15px;
     height: 20px;
     padding: 5px;
 }
 input.button {
-    background-color: #e4e4e4;
-    border: 1px solid #cccccc;
-    color: #777777;
+    background-color: #F0F0F0;
+    border: 1px solid #b3b3b3;
+    color: #505050;
     margin-left: 1px;
     font-size: 11px;
     font-weight: bold;
     height: 30px;
-    text-transform: uppercase;
 }
 div.text {
-    background-color: #fafafa;
-    color: #888888;
+    background-color: #ededea;
+    color: #7a7a7b;
     display: block;
-    font-size: 15px;
+    font-size: 13px;
     padding: 15px;
 }
 input#answer {
     background-color: #cafe9c;
     border: 1px solid #cccccc;
-    color: #666666;
+    color: #1e1e1f;
     font-size: 15px;
     height: 20px;
     padding: 5px;
 }
 div.signal {
-    border: 1px solid #cccccc;
-    color: #666666;
+    border: 1px solid #b3b3b3;
+    color: #1e1e1f;
     float: left;
     font-size: 15px;
     height: 20px;
@@ -125,13 +141,21 @@ div.answer {
     background-color: #cafe9c;
 }
 div#ft {
-    color: #777777;
     padding: 5px 20px 5px 20px;
     text-align: right;
 }
 div.pane {
-    background-color: #efefef;
-    border-left: 1px dotted #aaaaaa;
+    background-color: #f5f5f1;
+}
+span.brand {
+    color: #1e1e1f;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+span.term {
+	font-style: italic;
+	font-weight: bold;
 }
 .bordered {
     border: 1px dotted #aaaaaa;
@@ -143,5 +167,13 @@ div.pane {
     display: block;
 }
 a {
-    color: #777777;
+    color: #808080;
+    text-decoration: none;
+}
+a:hover {
+    color: #484848;
+    text-decoration: underline;
+}
+p {
+	margin-bottom: 25px;
 }
