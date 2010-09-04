@@ -66,21 +66,19 @@ app.get('/b/:page', function(req, res) {
     });
 });
 
+// main form, twitter iphone
+app.get('/x', function(req, res) {
+    v0Shorten(req, res);
+});
+
 // shorten API
 app.get('/v0/pendekkan', function(req, res) {
+    v0Shorten(req, res);
+});
+var v0Shorten = function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.panjang));
     var error = url.validate(_url);
-    if (req.query.format === 'teks') {
-	    if (error === null) {
-	        var callback = function(doc) {
-	            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
-	            res.send(appHost + '/' + doc._id, 200);
-	        };
-	        pranala.encode(_url, callback);
-	    } else {
-	        res.send('', 200);
-	    }
-    } else {
+    if (req.query.format === 'json') {
         if (error === null) {
             var callback = function(doc) {
                 var result = new Object();
@@ -96,26 +94,26 @@ app.get('/v0/pendekkan', function(req, res) {
             result.pesan = texts['error_' + error];
             res.send(JSON.stringify(result), 200);
         }
+
+    } else {
+	    if (error === null) {
+	        var callback = function(doc) {
+	            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
+	            res.send(appHost + '/' + doc._id, 200);
+	        };
+	        pranala.encode(_url, callback);
+	    } else {
+	        res.send('', 200);
+	    }
     }
-});
+}
 
 // expand API
 app.get('/v0/panjangkan', function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.pendek));
     var error = url.validateShort(_url, appHost);
     var regex = new RegExp(appHost + '/', 'g');
-    if (req.query.format === 'teks') {
-	    if (error === null) {
-	        var code = _url.replace(regex, '');
-	        var callback = function(doc) {
-	            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
-	            res.send(doc.url, 200);
-	        };
-	        pranala.decode(code, callback);
-	    } else {
-	        res.send('', 200);
-	    }
-    } else {
+    if (req.query.format === 'json') {
         if (error === null) {
             var code = _url.replace(regex, '');
             var callback = function(doc) {
@@ -132,40 +130,18 @@ app.get('/v0/panjangkan', function(req, res) {
             result.pesan = texts['error_' + error];
             res.send(JSON.stringify(result), 200);
         }
-    }
-});
-
-// main form, twitter iphone
-app.get('/x', function(req, res) {
-    var _url = url.sanitise(decodeURIComponent(req.query.panjang));
-    var error = url.validate(_url);
-    if (req.query.format === 'teks') {
+    } else {
 	    if (error === null) {
+	        var code = _url.replace(regex, '');
 	        var callback = function(doc) {
-	            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
-	            res.send(appHost + '/' + doc._id, 200);
+	            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
+	            res.send(doc.url, 200);
 	        };
-	        pranala.encode(_url, callback);
+	        pranala.decode(code, callback);
 	    } else {
 	        res.send('', 200);
 	    }
-	} else {
-        if (error === null) {
-            var callback = function(doc) {
-                var result = new Object();
-                result.status = 'sukses';
-                result.pendek = appHost + '/' + doc._id;
-                sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
-                res.send(JSON.stringify(result), 200);
-            };
-            pranala.encode(_url, callback);
-        } else {
-            var result = new Object();
-            result.status = 'gagal';
-            result.pesan = texts['error_' + error];
-            res.send(JSON.stringify(result), 200);
-        }		
-	}
+    }
 });
 
 // mobile page
