@@ -158,7 +158,7 @@ span.term {
 	font-weight: bold;
 }
 .bordered {
-    border: 1px dotted #aaaaaa;
+    border: 1px solid #dfdfdf;
 }
 .hidden {
     display: none;
