@@ -46,11 +46,19 @@ app.configure(function() {
 	    if (error instanceof NotFound) {
 		    res.render('404.ejs', {
 		        locals: {
-		            title: texts['title_404']
+		            title: texts['title_404'],
+		            message: texts['title_404']
 		        }
 		    });
 	    } else {
-	        // TODO
+		    // TODO: use log4js with error log level
+		    sys.log(error.message);
+		    res.render('500.ejs', {
+		        locals: {
+		            title: texts['title_500'],
+		            message: texts['title_500']
+		        }
+		    });
 	    }
 	});
 });
@@ -65,6 +73,7 @@ app.configure('production', function() {
 // TODO move texts to a Connect module
 var texts = new Object();
 texts['title_404'] = 'Laman tidak ditemukan';
+texts['title_500'] = 'Kesalahan bukan pada pesawat televisi anda. Harap dicoba sesaat lagi.';
 texts['title_hubungi'] = 'Hubungi kami';
 texts['title_home'] = 'Pendekkan pranalanya';
 texts['title_carakerja'] = 'Cara kerja';
