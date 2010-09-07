@@ -1,8 +1,21 @@
 {
     "_id": "_design/content",
     "views": {
-        "by_url": {
-            "map": "function(doc) { if(doc.url) { emit(doc.url, doc._id); } }"
+	    "url": {
+	        "map": "function(doc) { if(doc.type === 'url') { emit(doc.url, doc); } }"
+	    },
+	    "code": {
+	        "map": "function(doc) { if(doc.type === 'url') { emit(doc._id, doc); } }"
+	    },
+	    "stat": {
+	        "map": "function(doc) { if(doc.type === 'stat') { emit(doc.url, doc); } }"
+	    },
+        "url_code": {
+            "map": "function(doc) { if(doc.type === 'url') { emit(doc.url, doc._id); } }"
+        },
+		"stat_url": {
+            "map": "function(doc) { if(doc.type === 'stat') { emit(doc.url, 1); } }",
+            "reduce": "function(url, count) { return sum(count); }"
         }
     }
 }

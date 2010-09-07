@@ -11,7 +11,7 @@ vows.describe('Data').addBatch({
         topic: new Data(dbHost, dbName, true),
         'create new document': {
             topic: function(data) {
-	            data.saveDoc('1A', 'http://somelongdomain.org/path1/path2?q=what', '10', this.callback, null);
+	            data.saveUrlDoc('1A', 'http://somelongdomain.org/path1/path2?q=what', '10', this.callback, null);
 	        },
             'has correct properties': function(result, error) {
 		        assert.equal(result._id, '1A');
@@ -21,7 +21,7 @@ vows.describe('Data').addBatch({
         },
         'get inexistent document': {
             topic: function(data) {
-	            data.getDoc('1X1Y1Z', null, this.callback);
+	            data.getUrlDoc('1X1Y1Z', null, this.callback);
 	        },
             'has correct properties': function(result, error) {
                 assert.equal(result.error, 'not_found');

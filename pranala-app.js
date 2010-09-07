@@ -116,7 +116,7 @@ app.get('/v0/pendekkan', function(req, res) {
     v0Shorten(req, res);
 });
 var v0Shorten = function(req, res) {
-    var _url = url.sanitise(decodeURIComponent(req.query.panjang));
+    var _url = url.sanitise(decodeURIComponent(req.query.panjang || req.query.prn));
     var error = url.validate(_url);
     if (req.query.format === 'json') {
         if (error === null) {
@@ -156,7 +156,7 @@ app.get('/v0/panjangkan', function(req, res) {
     if (req.query.format === 'json') {
         if (error === null) {
             var code = _url.replace(regex, '');
-            var callback = function(doc) {
+            var callback = function(doc, error) {
                 var result = new Object();
                 result.status = 'sukses';
                 result.panjang = doc.url;
@@ -173,7 +173,7 @@ app.get('/v0/panjangkan', function(req, res) {
     } else {
 	    if (error === null) {
 	        var code = _url.replace(regex, '');
-	        var callback = function(doc) {
+	        var callback = function(doc, error) {
 	            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
 	            res.send(doc.url, 200);
 	        };
@@ -236,6 +236,7 @@ app.get('/u/pvt', function(req, res) {
 
 // decode a short URL, then redirect to long URL
 app.get('/:code', function(req, res) {
+	sys.log(sys.inspect(req));
     var callback = function(doc) {
         if (doc === null) {
 		    res.render('takada.ejs', {
@@ -244,8 +245,12 @@ app.get('/:code', function(req, res) {
 		        }
 		    });
         } else {
-            sys.puts('Decoded code ' + req.params.code + ' to url ' + doc.url);
-            res.redirect(doc.url);
+	        var url = doc.url;
+            sys.puts('Decoded code ' + req.params.code + ' to url ' + url);
+            var callback = function(doc) {
+	            res.redirect(url);
+            }
+            pranala.stat(req.params.code, url, 'pancanaka', req.headers.referer, callback);
         }
     };
     pranala.decode(req.params.code, callback);

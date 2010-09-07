@@ -5,6 +5,7 @@ BUILD_BASE = build
 BUILD_LINT = $(BUILD_BASE)/lint
 BUILD_PACKAGE = $(BUILD_BASE)/package
 BUILD_TEST = $(BUILD_BASE)/test
+DATA_DIR = /var/www/data
 DB_APP = localhost:5984/$(APP_NAME)
 DB_TEST = localhost:5984/$(APP_NAME)_test
 DEPLOY_HOST = ayame
@@ -16,20 +17,23 @@ init:
 
 clean:
 	rm -rf $(BUILD_BASE)
-
+	rm $(DATA_DIR)/$(APP_NAME)-seq
+	$(call db-delete, $(DB_APP))
+	$(call db-delete, $(DB_TEST))
+	
 db-create = curl -X PUT $(1); \
-	curl -X PUT --data-binary @db/_design/content.json $(1)/_design/content
-
+	curl -X PUT --data-binary @db/_design/content.json $(1)/_design/content; \
+	curl -X PUT --data-binary @db/4CA2.json $(1)/4CA2; \
+	curl -X PUT --data-binary @db/4CA3.json $(1)/4CA3
+	
 db-delete = curl -X DELETE $(1)
 
 db-app:
-	$(call db-delete, $(DB_APP))
 	$(call db-create, $(DB_APP))
-	
+		
 db-test:
-	$(call db-delete, $(DB_TEST))
 	$(call db-create, $(DB_TEST))
-	
+		
 lint:
 
 coverage:
