@@ -236,7 +236,6 @@ app.get('/u/pvt', function(req, res) {
 
 // decode a short URL, then redirect to long URL
 app.get('/:code', function(req, res) {
-	sys.log(sys.inspect(req));
     var callback = function(doc) {
         if (doc === null) {
 		    res.render('takada.ejs', {
@@ -245,8 +244,6 @@ app.get('/:code', function(req, res) {
 		        }
 		    });
         } else {
-	sys.log('Tanggal string: ' + doc.date);
-		sys.log('Tanggal date : ' + new Date(doc.date));
 	        var url = doc.url;
             sys.puts('Decoded code ' + req.params.code + ' to url ' + url);
             var callback = function(doc) {
