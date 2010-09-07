@@ -11,7 +11,7 @@ vows.describe('Data').addBatch({
         topic: new Data(dbHost, dbName, true),
         'create new document': {
             topic: function(data) {
-	            data.saveUrlDoc('1A', 'http://somelongdomain.org/path1/path2?q=what', '10', this.callback, null);
+	            data.saveUrlDoc('1A', 'http://somelongdomain.org/path1/path2?q=what', '10', new Date(), this.callback, null);
 	        },
             'has correct properties': function(result, error) {
 		        assert.equal(result._id, '1A');

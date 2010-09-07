@@ -245,6 +245,8 @@ app.get('/:code', function(req, res) {
 		        }
 		    });
         } else {
+	sys.log('Tanggal string: ' + doc.date);
+		sys.log('Tanggal date : ' + new Date(doc.date));
 	        var url = doc.url;
             sys.puts('Decoded code ' + req.params.code + ' to url ' + url);
             var callback = function(doc) {
