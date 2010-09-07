@@ -156,12 +156,19 @@ app.get('/v0/panjangkan', function(req, res) {
     if (req.query.format === 'json') {
         if (error === null) {
             var code = _url.replace(regex, '');
-            var callback = function(doc, error) {
-                var result = new Object();
-                result.status = 'sukses';
-                result.panjang = doc.url;
-	            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
-                res.send(JSON.stringify(result), 200);
+            var callback = function(doc) {
+	            if (doc === null) {
+		            var result = new Object();
+		            result.status = 'gagal';
+		            result.pesan = texts['error_notshortened'];
+		            res.send(JSON.stringify(result), 200);
+		        } else {
+	                var result = new Object();
+	                result.status = 'sukses';
+	                result.panjang = doc.url;
+		            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
+	                res.send(JSON.stringify(result), 200);
+	            }
             };
             pranala.decode(code, callback);
         } else {
@@ -174,8 +181,12 @@ app.get('/v0/panjangkan', function(req, res) {
 	    if (error === null) {
 	        var code = _url.replace(regex, '');
 	        var callback = function(doc, error) {
-	            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
-	            res.send(doc.url, 200);
+	            if (doc === null) {
+		            res.send('', 200);
+		        } else {
+	                sys.puts('Decoded code ' + code + ' to url ' + doc.url);
+	                res.send(doc.url, 200);
+                }
 	        };
 	        pranala.decode(code, callback);
 	    } else {
