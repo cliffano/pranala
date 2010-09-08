@@ -1,5 +1,6 @@
 var assetManager = require('connect-assetmanager'),
     assetHandler = require('connect-assetmanager-handlers'),
+    conf = require('./conf/conf').conf,
     connect = require('connect'),
     express = require('express'),
 	log4js = require('log4js'),
@@ -9,7 +10,9 @@ var assetManager = require('connect-assetmanager'),
 
 // TODO: extract config to conf json
 var logger = log4js.getLogger('app'),
-    appHost = process.env['PRANALA_APPHOST'],
+    env = process.env['PRANALA_ENV'],
+    appConf = conf.env[env],
+    appHost = appConf.appHost,
     dbHost = 'http://localhost:5984',
     dbName = 'pranala',
     sequenceFile = '/var/www/data/pranala-seq',
@@ -73,13 +76,13 @@ app.configure(function() {
 	});
 	log4js.addAppender(log4js.fileAppender(logFile), 'app');
 });
-app.configure('development', function() {
+app.configure('dev', function() {
     app.set('reload views', 1000);
     app.use('/', connect.errorHandler({ dumpExceptions: true, showStack: true }));
 	log4js.addAppender(log4js.consoleAppender());
     logger.setLevel('DEBUG');
 });
-app.configure('production', function() {
+app.configure('prd', function() {
     app.use('/', connect.errorHandler()); 
     logger.setLevel('INFO');
 });
@@ -297,7 +300,7 @@ app.get('/*', function(req, res) {
     throw new NotFound;
 });
 
-logger.info('Starting application');
+logger.info('Starting application in ' + env + ' environment');
 app.listen(3000);
 
 exports.logger = logger;
