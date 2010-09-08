@@ -2,9 +2,19 @@ var assetManager = require('connect-assetmanager'),
     assetHandler = require('connect-assetmanager-handlers'),
     connect = require('connect'),
     express = require('express'),
+	log4js = require('log4js'),
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
     url = require('./lib/pranala/url');
+
+// TODO: extract config to conf json
+var logger = log4js.getLogger('app'),
+    appHost = process.env['PRANALA_APPHOST'],
+    dbHost = 'http://localhost:5984',
+    dbName = 'pranala',
+    sequenceFile = '/var/www/data/pranala-seq',
+    logFile = '/var/www/logs/pranala.log',
+    pranala = new Pranala(dbHost, dbName, sequenceFile);
 
 var assetManagerGroups = {
     'js': {
@@ -36,6 +46,7 @@ var assetManagerGroups = {
 
 var app = express.createServer();
 
+logger.info('Configuring application');
 app.configure(function() {
     app.set('views', __dirname + '/views');
     app.use('/', connect.bodyDecoder());
@@ -51,8 +62,7 @@ app.configure(function() {
 		        }
 		    });
 	    } else {
-		    // TODO: use log4js with error log level
-		    sys.log(error.message);
+		    logger.error(error.message);
 		    res.render('500.ejs', {
 		        locals: {
 		            title: texts['title_500'],
@@ -61,13 +71,17 @@ app.configure(function() {
 		    });
 	    }
 	});
+	log4js.addAppender(log4js.fileAppender(logFile), 'app');
 });
 app.configure('development', function() {
     app.set('reload views', 1000);
-    app.use('/', connect.errorHandler({ dumpExceptions: true, showStack: true })); 
+    app.use('/', connect.errorHandler({ dumpExceptions: true, showStack: true }));
+	log4js.addAppender(log4js.consoleAppender());
+    logger.setLevel('DEBUG');
 });
 app.configure('production', function() {
     app.use('/', connect.errorHandler()); 
+    logger.setLevel('INFO');
 });
 
 // TODO move texts to a Connect module
@@ -87,12 +101,6 @@ texts['error_blacklisted'] = 'Lho gan, sepertinya pranalanya sudah dipendekkan y
 texts['error_inexistent'] = 'Maaf gan, tolong sediakan pranalanya dahulu.';
 texts['error_invalid'] = 'Maaf gan, pranalanya tidak valid.';
 texts['error_notshortened'] = 'Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami.';
-
-var appHost = process.env['PRANALA_APPHOST'];
-var dbHost = 'http://localhost:5984';
-var dbName = 'pranala';
-var sequenceFile = '/var/www/data/pranala-seq';
-var pranala = new Pranala(dbHost, dbName, sequenceFile);
 
 // home page
 app.get('/', function(req, res) {
@@ -133,7 +141,7 @@ var v0Shorten = function(req, res) {
                 var result = new Object();
                 result.status = 'sukses';
                 result.pendek = appHost + '/' + doc._id;
-                sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
+                logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
                 res.send(JSON.stringify(result), 200);
             };
             pranala.encode(_url, callback);
@@ -147,7 +155,7 @@ var v0Shorten = function(req, res) {
     } else {
 	    if (error === null) {
 	        var callback = function(doc) {
-	            sys.puts('Encoded url ' + _url + ' to code ' + doc._id);
+	            logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
 	            res.send(appHost + '/' + doc._id, 200);
 	        };
 	        pranala.encode(_url, callback);
@@ -175,7 +183,7 @@ app.get('/v0/panjangkan', function(req, res) {
 	                var result = new Object();
 	                result.status = 'sukses';
 	                result.panjang = doc.url;
-		            sys.puts('Decoded code ' + code + ' to url ' + doc.url);
+		            logger.debug('Decoded code ' + code + ' to url ' + doc.url);
 	                res.send(JSON.stringify(result), 200);
 	            }
             };
@@ -193,7 +201,7 @@ app.get('/v0/panjangkan', function(req, res) {
 	            if (doc === null) {
 		            res.send('', 200);
 		        } else {
-	                sys.puts('Decoded code ' + code + ' to url ' + doc.url);
+	                logger.debug('Decoded code ' + code + ' to url ' + doc.url);
 	                res.send(doc.url, 200);
                 }
 	        };
@@ -221,7 +229,7 @@ app.post('/m', function(req, res) {
     var url = req.body.url;
     if (url) {
 	    var callback = function(doc) {
-	        sys.puts('Encoded url ' + url + ' to code ' + doc._id);
+	        logger.debug('Encoded url ' + url + ' to code ' + doc._id);
 		    res.render('m.ejs', {
 			    layout: false,
 		        locals: {
@@ -265,7 +273,7 @@ app.get('/:code', function(req, res) {
 		    });
         } else {
 	        var url = doc.url;
-            sys.puts('Decoded code ' + req.params.code + ' to url ' + url);
+            logger.debug('Decoded code ' + req.params.code + ' to url ' + url);
             var callback = function(doc) {
 	            res.redirect(url);
             }
@@ -289,4 +297,7 @@ app.get('/*', function(req, res) {
     throw new NotFound;
 });
 
+logger.info('Starting application');
 app.listen(3000);
+
+exports.logger = logger;
