@@ -45,7 +45,7 @@ coverage:
 
 test: clean db-test
 	mkdir -p $(BUILD_TEST)
-	vows test/vows/*
+	PRANALA_ENV=dev vows test/vows/*
 
 start-dev: clean db-app
 	./ghibli.sh start dev

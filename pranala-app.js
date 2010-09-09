@@ -23,7 +23,7 @@ var logger = log4js.getLogger('app'),
     texts = texts.texts;
 		
 log4js.addAppender(log4js.fileAppender(logFile), 'app');
-logger.setLevel('DEBUG');
+logger.setLevel(logLevel);
 
 var app = express.createServer();
 		
