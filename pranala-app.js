@@ -6,6 +6,7 @@ var assetManager = require('connect-assetmanager'),
 	  log4js = require('log4js'),
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
+    texts = require('./conf/texts');
     url = require('./lib/pranala/url');
 
 var logger = log4js.getLogger('app'),
@@ -18,7 +19,8 @@ var logger = log4js.getLogger('app'),
     sequenceFile = appConf.sequenceFile,
     logFile = appConf.logFile,
     logLevel = appConf.logLevel,
-    pranala = new Pranala(dbUrl, dbName, sequenceFile);
+    pranala = new Pranala(dbUrl, dbName, sequenceFile),
+    texts = texts.texts;
 		
 log4js.addAppender(log4js.fileAppender(logFile), 'app');
 logger.setLevel('DEBUG');
@@ -79,24 +81,6 @@ app.configure('dev', function() {
 app.configure('prd', function() {
     app.use('/', connect.errorHandler());
 });
-
-// TODO move texts to a Connect module
-var texts = new Object();
-texts['title_404'] = 'Laman tidak ditemukan';
-texts['title_500'] = 'Kesalahan bukan pada pesawat televisi anda. Harap dicoba sesaat lagi.';
-texts['title_hubungi'] = 'Hubungi kami';
-texts['title_home'] = 'Pendekkan pranalanya';
-texts['title_carakerja'] = 'Cara kerja';
-texts['title_kegunaan'] = 'Kegunaan';
-texts['title_alat'] = 'Alat';
-texts['title_api'] = 'API';
-texts['title_kontribusi'] = 'Kontribusi';
-texts['title_m'] = 'Mobile';
-texts['title_takada'] = 'Pranala tidak ditemukan';
-texts['error_blacklisted'] = 'Lho gan, sepertinya pranalanya sudah dipendekkan ya?';
-texts['error_inexistent'] = 'Maaf gan, tolong sediakan pranalanya dahulu.';
-texts['error_invalid'] = 'Maaf gan, pranalanya tidak valid.';
-texts['error_notshortened'] = 'Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami.';
 
 logger.info('Setting up routers');
 

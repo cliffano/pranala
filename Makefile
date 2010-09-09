@@ -43,22 +43,24 @@ lint:
 
 coverage:
 
-test-vows:
+test: clean db-test
 	mkdir -p $(BUILD_TEST)
 	vows test/vows/*
 
-start-dev:
+start-dev: clean db-app
 	./ghibli.sh start dev
 
 stop:
 	./ghibli.sh stop
 
-package:
+package: clean
 	mkdir -p $(BUILD_PACKAGE)
 	tar --exclude test --exclude .svn -cvf $(BUILD_PACKAGE)/$(APP_FULLNAME).tar *
 	gzip $(BUILD_PACKAGE)/$(APP_FULLNAME).tar
 	
-deploy:
+deploy: clean package
 	ssh -p $(DEPLOY_PORT) $(DEPLOY_HOST) 'cd $(DEPLOY_DIR); rm -rf *;'
 	scp -P $(DEPLOY_PORT) $(BUILD_PACKAGE)/$(APP_FULLNAME).tar.gz $(DEPLOY_HOST):$(DEPLOY_DIR)
-	ssh -p $(DEPLOY_PORT) $(DEPLOY_HOST) 'cd $(DEPLOY_DIR); gunzip *.tar.gz; tar -xvf *.tar; rm *.tar; ./ghibli.sh stop; ./ghibli.sh start prd;' 
+	ssh -p $(DEPLOY_PORT) $(DEPLOY_HOST) 'cd $(DEPLOY_DIR); gunzip *.tar.gz; tar -xvf *.tar; rm *.tar; ./ghibli.sh stop; ./ghibli.sh start prd;'
+	
+.PHONY: init clean db-app db-test lint coverage test start-dev stop package deploy 
