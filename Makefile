@@ -20,6 +20,7 @@ clean:
 	rm -rf $(BUILD_BASE)
 	rm -f $(DATA_DIR)/$(APP_NAME)-seq
 	rm -f $(LOGS_DIR)/$(APP_NAME).log
+	rm -f nohup.*
 	$(call db-delete, $(DB_APP))
 	$(call db-delete, $(DB_TEST))
 	
