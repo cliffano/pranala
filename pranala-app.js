@@ -19,7 +19,13 @@ var logger = log4js.getLogger('app'),
     logFile = appConf.logFile,
     logLevel = appConf.logLevel,
     pranala = new Pranala(dbUrl, dbName, sequenceFile);
+		
+log4js.addAppender(log4js.fileAppender(logFile), 'app');
+logger.setLevel('DEBUG');
 
+var app = express.createServer();
+		
+logger.info('Configuring application');
 var assetManagerGroups = {
     'js': {
         'route': /\/b\/scripts\/pranala\.js/,
@@ -33,27 +39,14 @@ var assetManagerGroups = {
         'files': ['grids-min-2.8.1.css', 'global.css'],
         'preManipulate': {
             'MSIE': [
-                assetHandler.yuiCssOptimize,
-                assetHandler.fixVendorPrefixes,
-                assetHandler.fixGradients,
-                assetHandler.stripDataUrlsPrefix
+                assetHandler.yuiCssOptimize
             ],
             '^': [
-                assetHandler.yuiCssOptimize,
-                assetHandler.fixVendorPrefixes,
-                assetHandler.fixGradients,
-                assetHandler.replaceImageRefToBase64(root)
+                assetHandler.yuiCssOptimize
             ]
         }
     }
 };
-
-log4js.addAppender(log4js.fileAppender(logFile), 'app');
-logger.setLevel('DEBUG');
-
-var app = express.createServer();
-
-logger.info('Configuring application');
 app.configure(function() {
     app.set('views', __dirname + '/views');
     app.use('/', connect.bodyDecoder());

@@ -47,8 +47,11 @@ test-vows:
 	mkdir -p $(BUILD_TEST)
 	vows test/vows/*
 
-start-app-dev:
-	./pranala-dev.sh
+start-dev:
+	./ghibli.sh start dev
+
+stop:
+	./ghibli.sh stop
 
 package:
 	mkdir -p $(BUILD_PACKAGE)
