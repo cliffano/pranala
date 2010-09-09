@@ -8,16 +8,17 @@ var assetManager = require('connect-assetmanager'),
     sys = require('sys'),
     url = require('./lib/pranala/url');
 
-// TODO: extract config to conf json
 var logger = log4js.getLogger('app'),
     env = process.env['PRANALA_ENV'],
     appConf = conf.env[env],
-    appHost = appConf.appHost,
-    dbHost = 'http://localhost:5984',
-    dbName = 'pranala',
-    sequenceFile = '/var/www/data/pranala-seq',
-    logFile = '/var/www/logs/pranala.log',
-    pranala = new Pranala(dbHost, dbName, sequenceFile);
+    appUrl = appConf.appUrl,
+    appPort = appConf.appPort,
+    dbUrl = appConf.dbUrl,
+    dbName = appConf.dbName,
+    sequenceFile = appConf.sequenceFile,
+    logFile = appConf.logFile,
+    logLevel = appConf.logLevel,
+    pranala = new Pranala(dbUrl, dbName, sequenceFile);
 
 var assetManagerGroups = {
     'js': {
@@ -47,6 +48,9 @@ var assetManagerGroups = {
     }
 };
 
+log4js.addAppender(log4js.fileAppender(logFile), 'app');
+logger.setLevel('DEBUG');
+
 var app = express.createServer();
 
 logger.info('Configuring application');
@@ -74,17 +78,13 @@ app.configure(function() {
 		    });
 	    }
 	});
-	log4js.addAppender(log4js.fileAppender(logFile), 'app');
 });
 app.configure('dev', function() {
     app.set('reload views', 1000);
     app.use('/', connect.errorHandler({ dumpExceptions: true, showStack: true }));
-	log4js.addAppender(log4js.consoleAppender());
-    logger.setLevel('DEBUG');
 });
 app.configure('prd', function() {
-    app.use('/', connect.errorHandler()); 
-    logger.setLevel('INFO');
+    app.use('/', connect.errorHandler());
 });
 
 // TODO move texts to a Connect module
@@ -105,6 +105,8 @@ texts['error_inexistent'] = 'Maaf gan, tolong sediakan pranalanya dahulu.';
 texts['error_invalid'] = 'Maaf gan, pranalanya tidak valid.';
 texts['error_notshortened'] = 'Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami.';
 
+logger.info('Setting up routers');
+
 // home page
 app.get('/', function(req, res) {
 	var url = req.query.pranala || 'http://';
@@ -121,7 +123,7 @@ app.get('/b/:page', function(req, res) {
     res.render(req.params.page + '.ejs', {
         locals: {
             title: texts['title_' + req.params.page],
-            appHost: appHost
+            appUrl: appUrl
         }
     });
 });
@@ -143,7 +145,7 @@ var v0Shorten = function(req, res) {
             var callback = function(doc) {
                 var result = new Object();
                 result.status = 'sukses';
-                result.pendek = appHost + '/' + doc._id;
+                result.pendek = appUrl + '/' + doc._id;
                 logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
                 res.send(JSON.stringify(result), 200);
             };
@@ -159,7 +161,7 @@ var v0Shorten = function(req, res) {
 	    if (error === null) {
 	        var callback = function(doc) {
 	            logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
-	            res.send(appHost + '/' + doc._id, 200);
+	            res.send(appUrl + '/' + doc._id, 200);
 	        };
 	        pranala.encode(_url, callback);
 	    } else {
@@ -171,8 +173,8 @@ var v0Shorten = function(req, res) {
 // expand API
 app.get('/v0/panjangkan', function(req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.pendek));
-    var error = url.validateShort(_url, appHost);
-    var regex = new RegExp(appHost + '/', 'g');
+    var error = url.validateShort(_url, appUrl);
+    var regex = new RegExp(appUrl + '/', 'g');
     if (req.query.format === 'json') {
         if (error === null) {
             var code = _url.replace(regex, '');
@@ -238,7 +240,7 @@ app.post('/m', function(req, res) {
 		        locals: {
 		            title: texts['title_m'],
 		            url: url,
-		            shortenedUrl: appHost + '/' + doc._id
+		            shortenedUrl: appUrl + '/' + doc._id
 		        }
 		    });
 	    };
@@ -260,7 +262,7 @@ app.get('/u/pvt', function(req, res) {
     res.render('pvt.ejs', {
 	    layout: false,
         locals: {
-            appHost: appHost
+            appUrl: appUrl
         }
     });
 });
@@ -286,7 +288,7 @@ app.get('/:code', function(req, res) {
     pranala.decode(req.params.code, callback);
 });
 
-// error
+// error handling
 function NotFound(message) {
     this.name = 'NotFound';
     Error.call(this, message);
@@ -300,7 +302,7 @@ app.get('/*', function(req, res) {
     throw new NotFound;
 });
 
-logger.info('Starting application in ' + env + ' environment');
-app.listen(3000);
+logger.info('Starting application in ' + env + ' environment on port ' + appPort);
+app.listen(appPort);
 
 exports.logger = logger;

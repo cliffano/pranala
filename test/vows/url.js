@@ -54,17 +54,17 @@ vows.describe('URL').addBatch({
         },
 		'validate': {
             'returns correct error codes for shortened URL': function() {
-	            var appHost = 'http://prwn.la:1';
-	            assert.isNull(url.validateShort('http://prwn.la:1/09', appHost));
-	            assert.isNull(url.validateShort('http://prwn.la:1/az', appHost));
-	            assert.isNull(url.validateShort('http://prwn.la:1/AZ', appHost));
-	            assert.equal(url.validateShort('http://prwn.la:1', appHost), 'notshortened');
-	            assert.equal(url.validateShort('http://prwn.la:1/', appHost), 'notshortened');
-	            assert.equal(url.validateShort('http://prwn.la:1/-', appHost), 'notshortened');
-	            assert.equal(url.validateShort('prwn.la:1', appHost), 'notshortened');
-	            assert.equal(url.validateShort(null, appHost), 'notshortened');
-	            assert.equal(url.validateShort('', appHost), 'notshortened');
-	            assert.equal(url.validateShort('http://nba.com', appHost), 'notshortened');
+	            var appUrl = 'http://prwn.la:1';
+	            assert.isNull(url.validateShort('http://prwn.la:1/09', appUrl));
+	            assert.isNull(url.validateShort('http://prwn.la:1/az', appUrl));
+	            assert.isNull(url.validateShort('http://prwn.la:1/AZ', appUrl));
+	            assert.equal(url.validateShort('http://prwn.la:1', appUrl), 'notshortened');
+	            assert.equal(url.validateShort('http://prwn.la:1/', appUrl), 'notshortened');
+	            assert.equal(url.validateShort('http://prwn.la:1/-', appUrl), 'notshortened');
+	            assert.equal(url.validateShort('prwn.la:1', appUrl), 'notshortened');
+	            assert.equal(url.validateShort(null, appUrl), 'notshortened');
+	            assert.equal(url.validateShort('', appUrl), 'notshortened');
+	            assert.equal(url.validateShort('http://nba.com', appUrl), 'notshortened');
             }
         }
     }

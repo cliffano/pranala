@@ -3,12 +3,12 @@ var path = require('path');
 var Data = require('../../lib/pranala/data').Data;
 var vows = require('vows');
 
-var dbHost = 'http://localhost:5984';
+var dbUrl = 'http://localhost:5984';
 var dbName = 'pranala_test';
 
 vows.describe('Data').addBatch({
     'Data': {
-        topic: new Data(dbHost, dbName, true),
+        topic: new Data(dbUrl, dbName, true),
         'create new document': {
             topic: function(data) {
 	            data.saveUrlDoc('1A', 'http://somelongdomain.org/path1/path2?q=what', '10', new Date(), this.callback, null);

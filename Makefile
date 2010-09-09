@@ -11,13 +11,15 @@ DB_TEST = localhost:5984/$(APP_NAME)_test
 DEPLOY_HOST = ayame
 DEPLOY_PORT = 2218
 DEPLOY_DIR = /var/www/prn.la/www
+LOGS_DIR = /var/www/logs
 
 init:
 	echo "B0b shall build."
 
 clean:
 	rm -rf $(BUILD_BASE)
-	rm $(DATA_DIR)/$(APP_NAME)-seq
+	rm -f $(DATA_DIR)/$(APP_NAME)-seq
+	rm -f $(LOGS_DIR)/$(APP_NAME).log
 	$(call db-delete, $(DB_APP))
 	$(call db-delete, $(DB_TEST))
 	
@@ -35,6 +37,8 @@ db-test:
 	$(call db-create, $(DB_TEST))
 		
 lint:
+	mkdir -p $(BUILD_LINT)
+	nodelint.js pranala-app.js lib/pranala.js lib/pranala/base62.js lib/pranala/data.js lib/pranala/sequence.js lib/pranala/url.js --reporter conf/lintreporter.js | tee $(BUILD_LINT)/jslint.xml
 
 coverage:
 
