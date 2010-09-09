@@ -130,7 +130,7 @@ var v0Shorten = function(req, res) {
         } else {
             var result = new Object();
             result.status = 'gagal';
-            result.pesan = texts['error_' + error];
+            result.pesan = error;
             res.send(JSON.stringify(result), 200);
         }
 
@@ -159,7 +159,7 @@ app.get('/v0/panjangkan', function(req, res) {
 	            if (doc === null) {
 		            var result = new Object();
 		            result.status = 'gagal';
-		            result.pesan = texts['error_notshortened'];
+		            result.pesan = 'TIDAK_DITEMUKAN';
 		            res.send(JSON.stringify(result), 200);
 		        } else {
 	                var result = new Object();
@@ -173,7 +173,7 @@ app.get('/v0/panjangkan', function(req, res) {
         } else {
             var result = new Object();
             result.status = 'gagal';
-            result.pesan = texts['error_' + error];
+            result.pesan = error;
             res.send(JSON.stringify(result), 200);
         }
     } else {
