@@ -27,7 +27,10 @@ clean:
 db-create = curl -X PUT $(1); \
 	curl -X PUT --data-binary @db/_design/content.json $(1)/_design/content; \
 	curl -X PUT --data-binary @db/22.json $(1)/22; \
-	curl -X PUT --data-binary @db/23.json $(1)/23
+	curl -X PUT --data-binary @db/23.json $(1)/23; \
+	curl -X PUT --data-binary @db/5158d26a2f6a4747515983fd8a008dd8.json $(1)/5158d26a2f6a4747515983fd8a008dd8; \
+	curl -X PUT --data-binary @db/5158d26a2f6a4747515983fd8a00912e.json $(1)/5158d26a2f6a4747515983fd8a00912e; \
+	curl -X PUT --data-binary @db/5158d26a2f6a4747515983fd8a0093d2.json $(1)/5158d26a2f6a4747515983fd8a0093d2
 	
 db-delete = curl -X DELETE $(1)
 

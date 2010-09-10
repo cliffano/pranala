@@ -95,6 +95,19 @@ app.get('/', function(req, res) {
     });
 });
 
+// statistic page
+app.get('/s/populer', function(req, res) {
+	var callback = function(docs) {
+	    res.render('populer.ejs', {
+	        locals: {
+	            title: texts['title_populer'],
+	            docs: docs
+	        }
+	    });
+	}
+    pranala.popular(callback);
+});
+
 // brochure pages
 app.get('/b/:page', function(req, res) {
     res.render(req.params.page + '.ejs', {
