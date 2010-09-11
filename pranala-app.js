@@ -272,7 +272,8 @@ app.get('/:code', function(req, res) {
             var callback = function(doc) {
 	            res.redirect(url);
             }
-            pranala.stat(req.params.code, url, 'pancanaka', req.headers.referer, callback);
+            // x-real-ip is configured in nginx.conf
+            pranala.stat(req.params.code, url, 'gatotkaca', req.headers['x-real-ip'], req.headers.referer, req.headers['user-agent'], callback);
         }
     };
     pranala.decode(req.params.code, callback);
