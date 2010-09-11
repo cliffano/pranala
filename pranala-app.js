@@ -128,7 +128,7 @@ app.get('/v0/pendekkan', function(req, res) {
     v0Shorten(req, res);
 });
 var v0Shorten = function(req, res) {
-    var _url = url.sanitise(decodeURIComponent(req.query.panjang || req.query.prn));
+    var _url = url.sanitise(decodeURIComponent(req.query.panjang || req.query.prn || ''));
     var error = url.validate(_url);
     if (req.query.format === 'json') {
         if (error === null) {
