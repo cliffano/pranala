@@ -11,7 +11,7 @@
 	    <% for (var i = 0, max = 20, len = docs.length; i < max && i < len; ++i) { %>
 		  <tr>
 	        <td class="count"><%= docs[i].value %></td>
-	        <td class="url"><a href="<%= docs[i].key %>" rel="nofollow"><%= docs[i].key %></a></td>
+	        <td class="url"><a href="<%= docs[i].key %>" target="_blank" rel="nofollow"><%= docs[i].key %></a></td>
 	      </tr>
 	    <% } %>
       </table>
