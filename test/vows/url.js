@@ -17,6 +17,7 @@ vows.describe('URL').addBatch({
             'returns true for valid URLs': function() {
 	            assert.isTrue(url.isValid('http://prn.la'));
 	            assert.isTrue(url.isValid('https://prn.la'));
+	            assert.isTrue(url.isValid('https://203.12.12.255'));
 	            assert.isTrue(url.isValid('http://prn.la/a/b/c'));
 		        assert.isTrue(url.isValid('http://prn.la/a?src=http%3A%2F%2Fb%2Fc'));
                 assert.isTrue(url.isValid('http://prn.la:8080/index.php?p=1&q=2&r=3'));            
@@ -33,6 +34,7 @@ vows.describe('URL').addBatch({
 	            assert.isFalse(url.isValid(null));
 	            assert.isFalse(url.isValid(undefined));
 	            assert.isFalse(url.isValid('ftp://prn.la'));
+		        assert.isFalse(url.isValid('http://abcdef'));
 	            assert.isFalse(url.isValid('httpx://prn.la'));
 	            assert.isFalse(url.isValid('prn.la'));
 	            assert.isFalse(url.isValid("http://about:blank"));
