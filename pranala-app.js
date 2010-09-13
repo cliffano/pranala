@@ -20,7 +20,8 @@ var logger = log4js.getLogger('app'),
     logFile = appConf.logFile,
     logLevel = appConf.logLevel,
     pranala = new Pranala(dbUrl, dbName, sequenceFile),
-    texts = texts.texts;
+    texts = texts.texts,
+    uniqueId = (new Date()).getTime();
 		
 log4js.addAppender(log4js.fileAppender(logFile), 'app');
 logger.setLevel(logLevel);
@@ -59,6 +60,7 @@ app.configure(function() {
 	    if (error instanceof NotFound) {
 		    res.render('404.ejs', {
 		        locals: {
+			        uniqueId: uniqueId,
 		            title: texts['title_404'],
 		            message: texts['title_404']
 		        }
@@ -67,6 +69,7 @@ app.configure(function() {
 		    logger.error(error.message);
 		    res.render('500.ejs', {
 		        locals: {
+			        uniqueId: uniqueId,
 		            title: texts['title_500'],
 		            message: texts['title_500']
 		        }
@@ -89,6 +92,7 @@ app.get('/', function(req, res) {
 	var url = req.query.pranala || 'http://';
     res.render('home.ejs', {
         locals: {
+	        uniqueId: uniqueId,
             title: texts['title_home'],
             url: url
         }
@@ -102,6 +106,7 @@ app.get('/b/statistik', function(req, res) {
 		sys.puts(sys.inspect(docs));
 	    res.render('statistik.ejs', {
 	        locals: {
+		        uniqueId: uniqueId,
 	            title: texts['title_statistik'],
 	            docs: docs
 	        }
@@ -114,6 +119,7 @@ app.get('/b/statistik', function(req, res) {
 app.get('/b/:page', function(req, res) {
     res.render(req.params.page + '.ejs', {
         locals: {
+	        uniqueId: uniqueId,
             title: texts['title_' + req.params.page],
             appUrl: appUrl
         }
