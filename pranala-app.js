@@ -96,11 +96,13 @@ app.get('/', function(req, res) {
 });
 
 // statistic page
-app.get('/s/populer', function(req, res) {
+app.get('/b/statistik', function(req, res) {
 	var callback = function(docs) {
-	    res.render('populer.ejs', {
+		var sys = require('sys');
+		sys.puts(sys.inspect(docs));
+	    res.render('statistik.ejs', {
 	        locals: {
-	            title: texts['title_populer'],
+	            title: texts['title_statistik'],
 	            docs: docs
 	        }
 	    });

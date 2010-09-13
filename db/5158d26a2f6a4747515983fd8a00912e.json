@@ -5,5 +5,6 @@
    "url": "http://cliffano.com",
    "key": "pancanaka",
    "referer": "http://localhost:3000/",
+   "userAgent": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; GTB6.5; .NET CLR 1.1.4322; InfoPath.2)",
    "date": "2010-09-09T22:47:01.441Z"
 }

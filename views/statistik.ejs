@@ -1,14 +1,15 @@
 <div class="content pane">
   <div class="text">
     <div class="title">
-      <h3>Populer</h3>
+      <h3>Statistik</h3>
     </div>
     <p>
-      Pranala terpopuler:
+      Kami akan mengembangkan lebih banyak lagi analisa statistik dari pranala yang terdapat di sistem kami.
+      Untuk sementara, kami sediakan pranala terpopuler saat ini:
     </p>
     <p>
       <table>
-	    <% for (var i = 0, max = 20, len = docs.length; i < max && i < len; ++i) { %>
+	    <% for (var i = 0, max = 10, len = docs.length; i < max && i < len; ++i) { %>
 		  <tr>
 	        <td class="count"><%= docs[i].value %></td>
 	        <td class="url"><a href="<%= docs[i].key %>" target="_blank" rel="nofollow"><%= docs[i].key %></a></td>

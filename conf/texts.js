@@ -3,7 +3,7 @@ exports.texts = {
 	  "title_500": "Kesalahan bukan pada pesawat televisi anda. Harap dicoba sesaat lagi.",
 	  "title_hubungi": "Hubungi kami",
 	  "title_home": "Pendekkan pranalanya",
-	  "title_populer": "Pranala terpopuler",
+	  "title_statistik": "Statistik",
 	  "title_carakerja": "Cara kerja",
 	  "title_kegunaan": "Kegunaan",
 	  "title_alat": "Alat",

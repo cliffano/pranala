@@ -5,5 +5,6 @@
    "url": "http://cliffano.com",
    "key": "pancanaka",
    "referer": "http://localhost:3000/",
+   "userAgent": "Baiduspider+(+http://www.baidu.jp/spider/)",
    "date": "2010-09-09T22:45:40.239Z"
 }
