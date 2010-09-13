@@ -282,6 +282,9 @@ app.get('/:code', function(req, res) {
 });
 
 // error handling
+process.on('uncaughtException', function (error) {
+    throw new Error('Ngantuk, jadi error deh. ' + sys.inspect(error));
+});
 function NotFound(message) {
     this.name = 'NotFound';
     Error.call(this, message);
