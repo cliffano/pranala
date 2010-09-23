@@ -10,7 +10,7 @@ var assetManager = require('connect-assetmanager'),
     url = require('./lib/pranala/url');
 
 var logger = log4js.getLogger('app'),
-    env = process.env['PRANALA_ENV'],
+    env = process.env['ENV'],
     appConf = conf.env[env],
     appUrl = appConf.appUrl,
     appPort = appConf.appPort,

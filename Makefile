@@ -46,9 +46,15 @@ lint:
 
 coverage:
 
-test: clean db-test
+test-vows: clean db-test
 	mkdir -p $(BUILD_TEST)
 	PRANALA_ENV=dev vows test/vows/*
+
+test-ab: clean stop start-dev
+	sysctl -w kern.maxproc=10000
+
+dep:
+	npm install express connect-assetmanager connect-assetmanager-handlers ejs log4js vows nodelint node-inspector
 
 start-dev: clean db-app
 	./ghibli.sh start dev
@@ -56,6 +62,9 @@ start-dev: clean db-app
 stop:
 	./ghibli.sh stop
 
+status:
+	./ghibli.sh status
+    
 package: clean
 	mkdir -p $(BUILD_PACKAGE)
 	tar --exclude test --exclude .svn -cvf $(BUILD_PACKAGE)/$(APP_FULLNAME).tar *
