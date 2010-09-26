@@ -5,6 +5,7 @@ BUILD_BASE = build
 BUILD_LINT = $(BUILD_BASE)/lint
 BUILD_PACKAGE = $(BUILD_BASE)/package
 BUILD_TEST = $(BUILD_BASE)/test
+CONF_DIR = conf
 DATA_DIR = /var/www/data
 DB_APP = localhost:5984/$(APP_NAME)
 DB_TEST = localhost:5984/$(APP_NAME)_test
@@ -42,13 +43,13 @@ db-test:
 		
 lint:
 	mkdir -p $(BUILD_LINT)
-	nodelint.js pranala-app.js lib/pranala.js lib/pranala/base62.js lib/pranala/data.js lib/pranala/sequence.js lib/pranala/url.js --reporter conf/lintreporter.js | tee $(BUILD_LINT)/jslint.xml
+	nodelint --config $(CONF_DIR)/lint.js --reporter $(CONF_DIR)/lintreporter.js pranala-app.js lib/pranala.js lib/pranala/base62.js lib/pranala/data.js lib/pranala/sequence.js lib/pranala/url.js | tee $(BUILD_LINT)/jslint.xml
 
 coverage:
 
 test-vows: clean db-test
 	mkdir -p $(BUILD_TEST)
-	PRANALA_ENV=dev vows test/vows/*
+	ENV=dev vows test/vows/*
 
 test-ab: clean stop start-dev
 	sysctl -w kern.maxproc=10000
