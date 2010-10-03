@@ -6,7 +6,7 @@ var assetManager = require('connect-assetmanager'),
 	  log4js = require('log4js'),
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
-    texts = require('./conf/texts');
+    texts = require('./conf/texts'),
     url = require('./lib/pranala/url');
 
 var logger = log4js.getLogger('app'),
