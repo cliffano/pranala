@@ -40,3 +40,8 @@ var encode = function(url) {
     }
   });
 }
+
+var openExternal = function(url) {
+  window.open(url);
+  return false;
+};
