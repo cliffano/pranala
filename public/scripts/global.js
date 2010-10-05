@@ -29,7 +29,12 @@ var encode = function(url) {
       $('#indicator').hide();
       var text;
       if (result.status === 'sukses') {
-        text = 'Pranala pendeknya &raquo; <input id="answer" class="success" onclick="this.select(); copy(this);" type="text" readonly="true" value="' + result.pendek + '"/> <a href="' + result.pendek + '">Kunjungi</a>';
+        text = 'Pranala pendeknya &raquo;'
+          + '<input id="answer" class="success" onclick="this.select(); copy(this);" type="text" readonly="true" value="' + result.pendek + '"/>'
+          + '<ul id="result_action">'
+          + '<li><a href="' + result.pendek + '">Kunjungi</a></li>'
+          + '<li><a href="http://twitter.com/home?status=' + result.pendek + '">Tweet</a></li>'
+          + '</ul>';
       } else {
         text = '<div class="signal error">!</div> ' + texts['error_' + result.pesan];
       }

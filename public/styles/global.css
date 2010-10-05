@@ -146,6 +146,13 @@ div#ft {
 div.pane {
     background-color: #f5f5f1;
 }
+ul#result_action, ul#result_action li {
+    display: inline;
+    padding: 0;
+}
+ul#result_action li {
+    margin-left: 10px;
+}
 span.brand {
     color: #1e1e1f;
     font-size: 11px;
