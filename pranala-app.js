@@ -69,7 +69,8 @@ app.configure(function () {
 			        uniqueId: uniqueId,
 		            title: texts.title_404,
 		            message: texts.title_404
-		        }
+		        },
+		        status: 404
 		    });
 	    } else {
 		    logger.error(error.message);
@@ -78,7 +79,8 @@ app.configure(function () {
 			        uniqueId: uniqueId,
 		            title: texts.title_500,
 		            message: texts.title_500
-		        }
+		        },
+		        status: 500
 		    });
 	    }
 	});
