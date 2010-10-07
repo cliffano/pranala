@@ -45,8 +45,6 @@ lint:
 	mkdir -p $(BUILD_LINT)
 	nodelint --config $(CONF_DIR)/lint.js --reporter $(CONF_DIR)/lintreporter.js pranala-app.js lib/pranala.js lib/pranala/base62.js lib/pranala/data.js lib/pranala/sequence.js lib/pranala/url.js | tee $(BUILD_LINT)/jslint.xml
 
-coverage:
-
 test-vows: clean db-test
 	mkdir -p $(BUILD_TEST)
 	ENV=dev vows test/vows/*
@@ -76,4 +74,4 @@ deploy: clean package
 	scp -P $(DEPLOY_PORT) $(BUILD_PACKAGE)/$(APP_FULLNAME).tar.gz $(DEPLOY_HOST):$(DEPLOY_DIR)
 	ssh -p $(DEPLOY_PORT) $(DEPLOY_HOST) 'cd $(DEPLOY_DIR); gunzip *.tar.gz; tar -xvf *.tar; rm *.tar; ./ghibli.sh stop; ./ghibli.sh start prd;'
 	
-.PHONY: init clean db-app db-test lint coverage test start-dev stop package deploy 
+.PHONY: init clean db-app db-test lint test start-dev stop package deploy 

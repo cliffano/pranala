@@ -10,7 +10,7 @@ var assetManager = require('connect-assetmanager'),
     url = require('./lib/pranala/url');
 
 var logger = log4js.getLogger('app'),
-    env = process.env['ENV'],
+    env = process.env.ENV,
     appConf = conf.env[env],
     appUrl = appConf.appUrl,
     appPort = appConf.appPort,
@@ -27,7 +27,12 @@ log4js.addAppender(log4js.fileAppender(logFile), 'app');
 logger.setLevel(logLevel);
 
 var app = express.createServer();
-		
+function NotFound(message) {
+    this.name = 'NotFound';
+    Error.call(this, message);
+    Error.captureStackTrace(this, arguments.callee);
+}
+
 logger.info('Configuring application');
 var assetManagerGroups = {
     'js': {
@@ -35,7 +40,8 @@ var assetManagerGroups = {
         'path': './public/scripts/',
         'dataType': 'javascript',
         'files': ['jquery-min-1.4.2.js', 'json2.js', 'clipboard.js', 'global.js']
-    }, 'css': {
+    },
+    'css': {
         'route': /\/b\/styles\/pranala\.css/,
         'path': './public/styles/',
         'dataType': 'css',
@@ -50,19 +56,19 @@ var assetManagerGroups = {
         }
     }
 };
-app.configure(function() {
+app.configure(function () {
     app.set('views', __dirname + '/views');
     app.use('/', connect.bodyDecoder());
     app.use('/', connect.methodOverride());
     app.use('/b/images', connect.staticProvider(__dirname + '/public/images'));
     app.use(assetManager(assetManagerGroups));
-	app.error(function(error, req, res, next) {
+	app.error(function (error, req, res, next) {
 	    if (error instanceof NotFound) {
 		    res.render('404.ejs', {
 		        locals: {
 			        uniqueId: uniqueId,
-		            title: texts['title_404'],
-		            message: texts['title_404']
+		            title: texts.title_404,
+		            message: texts.title_404
 		        }
 		    });
 	    } else {
@@ -70,53 +76,53 @@ app.configure(function() {
 		    res.render('500.ejs', {
 		        locals: {
 			        uniqueId: uniqueId,
-		            title: texts['title_500'],
-		            message: texts['title_500']
+		            title: texts.title_500,
+		            message: texts.title_500
 		        }
 		    });
 	    }
 	});
 });
-app.configure('dev', function() {
+app.configure('dev', function () {
     app.set('reload views', 1000);
     app.use('/', connect.errorHandler({ dumpExceptions: true, showStack: true }));
 });
-app.configure('prd', function() {
+app.configure('prd', function () {
     app.use('/', connect.errorHandler());
 });
 
 logger.info('Setting up routers');
 
 // home page
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
 	var url = req.query.pranala || 'http://';
     res.render('home.ejs', {
         locals: {
 	        uniqueId: uniqueId,
-            title: texts['title_home'],
+            title: texts.title_home,
             url: url
         }
     });
 });
 
 // statistic page
-app.get('/b/statistik', function(req, res) {
-	var callback = function(docs) {
+app.get('/b/statistik', function (req, res) {
+	var callback = function (docs) {
 		var sys = require('sys');
 		sys.puts(sys.inspect(docs));
 	    res.render('statistik.ejs', {
 	        locals: {
 		        uniqueId: uniqueId,
-	            title: texts['title_statistik'],
+	            title: texts.title_statistik,
 	            docs: docs
 	        }
 	    });
-	}
+	};
     pranala.popular(callback);
 });
 
 // brochure pages
-app.get('/b/:page', function(req, res) {
+app.get('/b/:page', function (req, res) {
     res.render(req.params.page + '.ejs', {
         locals: {
 	        uniqueId: uniqueId,
@@ -126,22 +132,15 @@ app.get('/b/:page', function(req, res) {
     });
 });
 
-// main form, twitter iphone
-app.get('/x', function(req, res) {
-    v0Shorten(req, res);
-});
-
 // shorten API
-app.get('/v0/pendekkan', function(req, res) {
-    v0Shorten(req, res);
-});
-var v0Shorten = function(req, res) {
-    var _url = url.sanitise(decodeURIComponent(req.query.panjang || req.query.prn || ''));
-    var error = url.validate(_url);
+var v0Shorten = function (req, res) {
+    var _url = url.sanitise(decodeURIComponent(req.query.panjang || req.query.prn || '')),
+        error = url.validate(_url),
+        callback, result;
     if (req.query.format === 'json') {
         if (error === null) {
-            var callback = function(doc) {
-                var result = new Object();
+            callback = function (doc) {
+                result = {};
                 result.status = 'sukses';
                 result.pendek = appUrl + '/' + doc._id;
                 logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
@@ -149,7 +148,7 @@ var v0Shorten = function(req, res) {
             };
             pranala.encode(_url, callback);
         } else {
-            var result = new Object();
+            result = {};
             result.status = 'gagal';
             result.pesan = error;
             res.send(JSON.stringify(result), 200);
@@ -157,7 +156,7 @@ var v0Shorten = function(req, res) {
 
     } else {
 	    if (error === null) {
-	        var callback = function(doc) {
+	        callback = function (doc) {
 	            logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
 	            res.send(appUrl + '/' + doc._id, 200);
 	        };
@@ -166,24 +165,28 @@ var v0Shorten = function(req, res) {
 	        res.send('', 200);
 	    }
     }
-}
+};
+app.get('/v0/pendekkan', function (req, res) {
+    v0Shorten(req, res);
+});
 
 // expand API
-app.get('/v0/panjangkan', function(req, res) {
-    var _url = url.sanitise(decodeURIComponent(req.query.pendek));
-    var error = url.validateShort(_url, appUrl);
-    var regex = new RegExp(appUrl + '/', 'g');
+app.get('/v0/panjangkan', function (req, res) {
+    var _url = url.sanitise(decodeURIComponent(req.query.pendek)),
+        error = url.validateShort(_url, appUrl),
+        regex = new RegExp(appUrl + '/', 'g'),
+        code, callback, result;
     if (req.query.format === 'json') {
         if (error === null) {
-            var code = _url.replace(regex, '');
-            var callback = function(doc) {
+            code = _url.replace(regex, '');
+            callback = function (doc) {
 	            if (doc === null) {
-		            var result = new Object();
+		            result = {};
 		            result.status = 'gagal';
 		            result.pesan = 'TIDAK_DITEMUKAN';
 		            res.send(JSON.stringify(result), 200);
 		        } else {
-	                var result = new Object();
+	                result = {};
 	                result.status = 'sukses';
 	                result.panjang = doc.url;
 		            logger.debug('Decoded code ' + code + ' to url ' + doc.url);
@@ -192,15 +195,15 @@ app.get('/v0/panjangkan', function(req, res) {
             };
             pranala.decode(code, callback);
         } else {
-            var result = new Object();
+            result = {};
             result.status = 'gagal';
             result.pesan = error;
             res.send(JSON.stringify(result), 200);
         }
     } else {
 	    if (error === null) {
-	        var code = _url.replace(regex, '');
-	        var callback = function(doc, error) {
+	        code = _url.replace(regex, '');
+	        callback = function (doc, error) {
 	            if (doc === null) {
 		            res.send('', 200);
 		        } else {
@@ -215,28 +218,34 @@ app.get('/v0/panjangkan', function(req, res) {
     }
 });
 
+// main form, twitter iphone, wp-prnla
+app.get('/x', function (req, res) {
+    v0Shorten(req, res);
+});
+
 // mobile page
-app.get('/m', function(req, res) {
-	var url = '';
-	var shortenedUrl = '';
+app.get('/m', function (req, res) {
+	var url = '',
+	    shortenedUrl = '';
     res.render('m.ejs', {
 	    layout: false,
         locals: {
-            title: texts['title_m'],
+            title: texts.title_m,
             url: '',
             shortenedUrl: ''
         }
     });
 });
-app.post('/m', function(req, res) {
-    var url = req.body.url;
+app.post('/m', function (req, res) {
+    var url = req.body.url,
+        callback;
     if (url) {
-	    var callback = function(doc) {
+	    callback = function (doc) {
 	        logger.debug('Encoded url ' + url + ' to code ' + doc._id);
 		    res.render('m.ejs', {
 			    layout: false,
 		        locals: {
-		            title: texts['title_m'],
+		            title: texts.title_m,
 		            url: url,
 		            shortenedUrl: appUrl + '/' + doc._id
 		        }
@@ -247,7 +256,7 @@ app.post('/m', function(req, res) {
 	    res.render('m.ejs', {
 		    layout: false,
 	        locals: {
-	            title: texts['title_m'],
+	            title: texts.title_m,
 	            url: '',
 	            shortenedUrl: ''
 	        }
@@ -256,7 +265,7 @@ app.post('/m', function(req, res) {
 });
 
 // pre-verification test
-app.get('/u/pvt', function(req, res) {
+app.get('/u/pvt', function (req, res) {
     res.render('pvt.ejs', {
 	    layout: false,
         locals: {
@@ -266,20 +275,21 @@ app.get('/u/pvt', function(req, res) {
 });
 
 // decode a short URL, then redirect to long URL
-app.get('/:code', function(req, res) {
-    var callback = function(doc) {
+app.get('/:code', function (req, res) {
+    var url,
+        callback = function (doc) {
         if (doc === null) {
 		    res.render('takada.ejs', {
 		        locals: {
-		            title: texts['title_takada']
+		            title: texts.title_takada
 		        }
 		    });
         } else {
-	        var url = doc.url;
+	        url = doc.url;
             logger.debug('Decoded code ' + req.params.code + ' to url ' + url);
-            var callback = function(doc) {
+            callback = function (doc) {
 	            res.redirect(url);
-            }
+            };
             // x-real-ip is configured in nginx.conf
             pranala.stat(req.params.code, url, 'gatotkaca', req.headers['x-real-ip'], req.headers.referer, req.headers['user-agent'], callback);
         }
@@ -291,17 +301,12 @@ app.get('/:code', function(req, res) {
 process.on('uncaughtException', function (error) {
     throw new Error('Ngantuk, jadi error deh. ' + sys.inspect(error));
 });
-function NotFound(message) {
-    this.name = 'NotFound';
-    Error.call(this, message);
-    Error.captureStackTrace(this, arguments.callee);
-}
 sys.inherits(NotFound, Error);
-app.get('/500', function(req, res) {
+app.get('/500', function (req, res) {
     throw new Error('Ngantuk, jadi error deh.');
 });
-app.get('/*', function(req, res) {
-    throw new NotFound;
+app.get('/*', function (req, res) {
+    throw new NotFound();
 });
 
 logger.info('Starting application in ' + env + ' environment on port ' + appPort);
