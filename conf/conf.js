@@ -1,8 +1,8 @@
 exports.conf = {
     "env": {
 	    "dev": {
-	        "appUrl": "http://localhost:3000",
-	        "appPort": 3000,
+	        "appUrl": "http://localhost:9300",
+	        "appPort": 9300,
 	        "dbUrl": "http://localhost:5984",
 			"dbName": "pranala",
 			"sequenceFile": "/var/www/data/pranala-seq",
@@ -11,7 +11,7 @@ exports.conf = {
 	    },
 	    "prd": {
 	        "appUrl": "http://prn.la",
-	        "appPort": 3000,
+	        "appPort": 9300,
 	        "dbUrl": "http://localhost:5984",
 			"dbName": "pranala",
 			"sequenceFile": "/var/www/data/pranala-seq",
