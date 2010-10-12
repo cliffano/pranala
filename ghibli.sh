@@ -10,7 +10,7 @@ case $1 in
 "stop")
 	pid=`ps -ef | sed -n '/node pranala-app.js/{/grep/!p;}' | awk '{print$2}'`;
 	echo "Stopping $NAME with process ID $pid";
-	kill "$pid";;
+        kill -9 "$pid";;
 "status")
     pid=`ps -ef | sed -n '/node pranala-app.js/{/grep/!p;}' | awk '{print$2}'`;
     if [ -z $pid ]
