@@ -19,7 +19,7 @@ var logger = log4js.getLogger('app'),
     sequenceFile = appConf.sequenceFile,
     logFile = appConf.logFile,
     logLevel = appConf.logLevel,
-    pranala = new Pranala(dbUrl, dbName, sequenceFile),
+    pranala = new Pranala(dbUrl, dbName, sequenceFile, 'conf/text'),
     texts = texts.texts,
     uniqueId = (new Date()).getTime();
 		
@@ -101,7 +101,7 @@ app.get('/', function (req, res) {
     res.render('home.ejs', {
         locals: {
 	        uniqueId: uniqueId,
-            title: texts.title_home,
+            title: texts.title_home + pranala.getText('id_ID', 'title.home'),
             url: url
         }
     });
