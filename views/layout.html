@@ -34,6 +34,7 @@
       </div>
       <div id="nav">
         <ul>
+	        <li><a href="/"><%= global.pranala.getText(lang, 'nav.pendekkan') %></a></a></li>
 	        <% for (var i = 0, ln = global.nav.length; i < ln; i++) { %>
 		        <li><a href="/b/<%= global.nav[i] %>"><%= global.pranala.getText(lang, 'nav.' + global.nav[i]) %></a></li>
 		      <% } %>

@@ -72,9 +72,10 @@ app.configure(function () {
     app.use(assetManager(assetManagerGroups));
     app.use(express.cookieDecoder());
     app.use(express.session());
+    app.register('.html', require('ejs'));
 	app.error(function (error, req, res, next) {
 	    if (error instanceof NotFound) {
-		    res.render('404.ejs', {
+		    res.render('404.html', {
 		        locals: {
 			        global: global,
 			        lang: getLang(req),
@@ -85,7 +86,7 @@ app.configure(function () {
 		    });
 	    } else {
 		    logger.error(error.message);
-		    res.render('500.ejs', {
+		    res.render('500.html', {
 		        locals: {
 			        global: global,
 			        lang: getLang(req),
@@ -110,7 +111,7 @@ logger.info('Setting up routers');
 // home page
 app.get('/', function (req, res) {
 	var url = req.query.pranala || 'http://';
-    res.render('home.ejs', {
+    res.render('home.html', {
         locals: {
 	        global: global,
 	        lang: getLang(req),
@@ -125,7 +126,7 @@ app.get('/b/statistik', function (req, res) {
 	var callback = function (docs) {
 		var sys = require('sys');
 		sys.puts(sys.inspect(docs));
-	    res.render('statistik.ejs', {
+	    res.render('statistik.html', {
 	        locals: {
 		        global: global,
 		        lang: getLang(req),
@@ -139,7 +140,7 @@ app.get('/b/statistik', function (req, res) {
 
 // brochure pages
 app.get('/b/:page', function (req, res) {
-    res.render(req.params.page + '.ejs', {
+    res.render(req.params.page + '.html', {
         locals: {
 	        global: global,
 	        lang: getLang(req),
@@ -250,7 +251,7 @@ app.get('/l', function (req, res) {
 app.get('/m', function (req, res) {
 	var url = '',
 	    shortenedUrl = '';
-    res.render('m.ejs', {
+    res.render('m.html', {
 	    layout: false,
         locals: {
             title: pranala.getText(getLang(req), 'title.m'),
@@ -265,7 +266,7 @@ app.post('/m', function (req, res) {
     if (url) {
 	    callback = function (doc) {
 	        logger.debug('Encoded url ' + url + ' to code ' + doc._id);
-		    res.render('m.ejs', {
+		    res.render('m.html', {
 			    layout: false,
 		        locals: {
 		            title: pranala.getText(getLang(req), 'title.m'),
@@ -276,7 +277,7 @@ app.post('/m', function (req, res) {
 	    };
 	    pranala.encode(url, callback);
 	} else {
-	    res.render('m.ejs', {
+	    res.render('m.html', {
 		    layout: false,
 	        locals: {
 	            title: pranala.getText(getLang(req), 'title.m'),
@@ -289,7 +290,7 @@ app.post('/m', function (req, res) {
 
 // pre-verification test
 app.get('/u/pvt', function (req, res) {
-    res.render('pvt.ejs', {
+    res.render('pvt.html', {
 	    layout: false,
         locals: {
             appUrl: appUrl
@@ -302,7 +303,7 @@ app.get('/:code', function (req, res) {
     var url,
         callback = function (doc) {
         if (doc === null) {
-		    res.render('takada.ejs', {
+		    res.render('takada.html', {
 		        locals: {
 		            title: pranala.getText(getLang(req), 'title.takada')
 		        }
