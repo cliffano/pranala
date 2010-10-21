@@ -1,0 +1,29 @@
+{
+		"meta": {
+		    "code": "en",
+		    "name": "English"
+		},
+    "title": {
+			  "404": "Page not found",
+			  "500": "Server error",
+			  "hubungi": "Contact",
+			  "home": "Shorten the link",
+			  "statistik": "Statistic",
+			  "carakerja": "How it works",
+			  "kegunaan": "Usage",
+			  "alat": "Tools",
+			  "api": "API",
+			  "kontribusi": "Contribute",
+			  "m": "Mobile",
+			  "takada": "Link not found"
+	  },
+    "nav": {
+			  "statistik": "Statistic",
+			  "carakerja": "How it works",
+			  "kegunaan": "Uses",
+			  "alat": "Tools",
+			  "api": "API",
+			  "kontribusi": "Contribute",
+			  "hubungi": "Contact"
+	  }
+}

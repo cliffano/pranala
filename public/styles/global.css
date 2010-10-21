@@ -21,8 +21,20 @@ div#nav ul, div#nav li {
     margin-left: 10px;
 }
 div#social {
+    float: right;
     padding: 0 20px 0 20px;
     text-align: right;
+}
+div#lang {
+    float: left;
+    text-align: left;
+}
+div#lang ul, div#lang li {
+    display: inline;
+    padding: 0;
+}
+div#lang li {
+    margin-right: 10px;
 }
 div#hd {
     padding: 60px 20px 0 20px;

@@ -3,10 +3,9 @@ var assetManager = require('connect-assetmanager'),
     conf = require('./conf/conf').conf,
     connect = require('connect'),
     express = require('express'),
-	  log4js = require('log4js'),
+    log4js = require('log4js'),
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
-    texts = require('./conf/texts'),
     url = require('./lib/pranala/url');
 
 var logger = log4js.getLogger('app'),
@@ -20,13 +19,22 @@ var logger = log4js.getLogger('app'),
     logFile = appConf.logFile,
     logLevel = appConf.logLevel,
     pranala = new Pranala(dbUrl, dbName, sequenceFile, 'conf/text'),
-    texts = texts.texts,
-    uniqueId = (new Date()).getTime();
-		
+    global = {
+        uniqueId: (new Date()).getTime(),
+        pranala: pranala,
+        nav: [ 'statistik', 'carakerja', 'kegunaan', 'alat', 'api', 'kontribusi', 'hubungi' ]
+    };
+    
 log4js.addAppender(log4js.fileAppender(logFile), 'app');
 logger.setLevel(logLevel);
 
 var app = express.createServer();
+var getLang = function(req) {
+    if (req.session.lang === undefined) {
+        req.session.lang = 'id';
+    }
+    return req.session.lang;
+};
 function NotFound(message) {
     this.name = 'NotFound';
     Error.call(this, message);
@@ -62,13 +70,16 @@ app.configure(function () {
     app.use('/', connect.methodOverride());
     app.use('/b/images', connect.staticProvider(__dirname + '/public/images'));
     app.use(assetManager(assetManagerGroups));
+    app.use(express.cookieDecoder());
+    app.use(express.session());
 	app.error(function (error, req, res, next) {
 	    if (error instanceof NotFound) {
 		    res.render('404.ejs', {
 		        locals: {
-			        uniqueId: uniqueId,
-		            title: texts.title_404,
-		            message: texts.title_404
+			        global: global,
+			        lang: getLang(req),
+		            title: pranala.getText(getLang(req), 'title.404'),
+		            message: pranala.getText(getLang(req), 'title.404')
 		        },
 		        status: 404
 		    });
@@ -76,9 +87,10 @@ app.configure(function () {
 		    logger.error(error.message);
 		    res.render('500.ejs', {
 		        locals: {
-			        uniqueId: uniqueId,
-		            title: texts.title_500,
-		            message: texts.title_500
+			        global: global,
+			        lang: getLang(req),
+		            title: pranala.getText(getLang(req), 'title.500'),
+		            message: pranala.getText(getLang(req), 'title.500')
 		        },
 		        status: 500
 		    });
@@ -100,8 +112,9 @@ app.get('/', function (req, res) {
 	var url = req.query.pranala || 'http://';
     res.render('home.ejs', {
         locals: {
-	        uniqueId: uniqueId,
-            title: texts.title_home + pranala.getText('id_ID', 'title.home'),
+	        global: global,
+	        lang: getLang(req),
+            title: pranala.getText(getLang(req), 'title.home'),
             url: url
         }
     });
@@ -114,8 +127,9 @@ app.get('/b/statistik', function (req, res) {
 		sys.puts(sys.inspect(docs));
 	    res.render('statistik.ejs', {
 	        locals: {
-		        uniqueId: uniqueId,
-	            title: texts.title_statistik,
+		        global: global,
+		        lang: getLang(req),
+	            title: pranala.getText(getLang(req), 'title.statistik'),
 	            docs: docs
 	        }
 	    });
@@ -127,8 +141,9 @@ app.get('/b/statistik', function (req, res) {
 app.get('/b/:page', function (req, res) {
     res.render(req.params.page + '.ejs', {
         locals: {
-	        uniqueId: uniqueId,
-            title: texts['title_' + req.params.page],
+	        global: global,
+	        lang: getLang(req),
+            title: pranala.getText(getLang(req), 'title.' + req.params.page),
             appUrl: appUrl
         }
     });
@@ -225,6 +240,12 @@ app.get('/x', function (req, res) {
     v0Shorten(req, res);
 });
 
+// language
+app.get('/l', function (req, res) {
+    req.session.lang = req.query.lang;
+    res.redirect(req.query.url);
+});
+
 // mobile page
 app.get('/m', function (req, res) {
 	var url = '',
@@ -232,7 +253,7 @@ app.get('/m', function (req, res) {
     res.render('m.ejs', {
 	    layout: false,
         locals: {
-            title: texts.title_m,
+            title: pranala.getText(getLang(req), 'title.m'),
             url: '',
             shortenedUrl: ''
         }
@@ -247,7 +268,7 @@ app.post('/m', function (req, res) {
 		    res.render('m.ejs', {
 			    layout: false,
 		        locals: {
-		            title: texts.title_m,
+		            title: pranala.getText(getLang(req), 'title.m'),
 		            url: url,
 		            shortenedUrl: appUrl + '/' + doc._id
 		        }
@@ -258,7 +279,7 @@ app.post('/m', function (req, res) {
 	    res.render('m.ejs', {
 		    layout: false,
 	        locals: {
-	            title: texts.title_m,
+	            title: pranala.getText(getLang(req), 'title.m'),
 	            url: '',
 	            shortenedUrl: ''
 	        }
@@ -283,7 +304,7 @@ app.get('/:code', function (req, res) {
         if (doc === null) {
 		    res.render('takada.ejs', {
 		        locals: {
-		            title: texts.title_takada
+		            title: pranala.getText(getLang(req), 'title.takada')
 		        }
 		    });
         } else {

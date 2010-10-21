@@ -6,8 +6,8 @@
   <meta name="keywords" content="pranala, pautan, link, URL, pendek, pemendek, singkat, penyingkat, Indonesia, URL shortener, Prnla"/>
   <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   <link rel="shortcut icon" href="/b/images/favicon.ico"/>
-  <link rel="stylesheet" type="text/css" href="/b/styles/pranala.css?<%= uniqueId %>"/>
-  <script src="/b/scripts/pranala.js?<%= uniqueId %>"></script>
+  <link rel="stylesheet" type="text/css" href="/b/styles/pranala.css?<%= global.uniqueId %>"/>
+  <script src="/b/scripts/pranala.js?<%= global.uniqueId %>"></script>
 </head>
 <body>
   <div id="doc">
@@ -20,6 +20,13 @@
 			  <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 			  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://prn.la" data-text="Pendekkan pranalanya dengan http://prn.la" data-count="none">Tweet</a>
 			</div>
+		</div>.
+		<div id="lang">
+			<ul>
+				<% for (var i = 0, ln = global.pranala.getLangs().length; i < ln; i++) { %>
+				  <li><a href="/l?lang=<%= global.pranala.getLangs()[i].code %>&url=/"><%= global.pranala.getLangs()[i].name %></a></li>
+			  <% } %>
+		  </ul>
 		</div>
     <div id="hd">
       <div id="logo">
@@ -27,14 +34,9 @@
       </div>
       <div id="nav">
         <ul>
-          <li><a href="/">Pendekkan</a></li>
-          <li><a href="/b/statistik">Statistik</a></li>
-          <li><a href="/b/carakerja">Cara kerja</a></li>
-          <li><a href="/b/kegunaan">Kegunaan</a></li>
-          <li><a href="/b/alat">Alat</a></li>
-          <li><a href="/b/api">API</a></li>
-          <li><a href="/b/kontribusi">Kontribusi</a></li>
-          <li><a href="/b/hubungi">Hubungi</a></li>
+	        <% for (var i = 0, ln = global.nav.length; i < ln; i++) { %>
+		        <li><a href="/b/<%= global.nav[i] %>"><%= global.pranala.getText(lang, 'nav.' + global.nav[i]) %></a></li>
+		      <% } %>
         </ul>
       </div>
     </div> 

@@ -1,4 +1,8 @@
 {
+    "meta": {
+        "code": "id",
+        "name": "Bahasa Indonesia"
+    },
     "title": {
 			  "404": "Laman tidak ditemukan",
 			  "500": "Kesalahan bukan pada pesawat televisi anda. Harap dicoba sesaat lagi.",
@@ -12,5 +16,14 @@
 			  "kontribusi": "Kontribusi",
 			  "m": "Mobile",
 			  "takada": "Pranala tidak ditemukan"
+	  },
+    "nav": {
+			  "statistik": "Statistik",
+			  "carakerja": "Cara kerja",
+			  "kegunaan": "Kegunaan",
+			  "alat": "Alat",
+			  "api": "API",
+			  "kontribusi": "Kontribusi",
+			  "hubungi": "Hubungi"
 	  }
 }

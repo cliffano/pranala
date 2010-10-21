@@ -9,7 +9,7 @@
     </p>
     <p>
       <table>
-	    <% for (var i = 0, max = 10, len = docs.length; i < max && i < len; ++i) { %>
+	    <% for (var i = 0, max = 10, ln = docs.length; i < max && i < ln; ++i) { %>
 		  <tr>
 	        <td class="count"><%= docs[i].value %></td>
 	        <td class="url"><a href="<%= docs[i].key %>" rel="nofollow" onclick="openExternal('<%= docs[i].key %>');"><%= docs[i].key %></a></td>
