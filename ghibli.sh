@@ -3,22 +3,40 @@
 NAME="Pranala";
 FILE="pranala-app.js";
 
+get_pid() {
+    pid=`ps -ef | sed -n '/node pranala-app.js/{/grep/!p;}' | awk '{print$2}'`;
+    echo "$pid";
+}
+
 case $1 in
 "start")
-    echo "Starting $NAME in $2 environment";
-	ENV=$2 nohup node $FILE > nohup.out 2> nohup.err < /dev/null &;;
-"stop")
-	pid=`ps -ef | sed -n '/node pranala-app.js/{/grep/!p;}' | awk '{print$2}'`;
-	echo "Stopping $NAME with process ID $pid";
-        kill -9 "$pid";;
+    pid=$(get_pid);
+    if [ -z $pid ]
+    then
+        echo "Starting $NAME in $2 environment."
+        ENV=$2 nohup node $FILE > nohup.out 2> nohup.err < /dev/null &
+        pid=$(get_pid)
+        echo "$NAME is running on pid $pid."
+    else
+        echo "$NAME is already running on pid $pid."
+    fi;;
 "status")
-    pid=`ps -ef | sed -n '/node pranala-app.js/{/grep/!p;}' | awk '{print$2}'`;
+    pid=$(get_pid);
     if [ -z $pid ]
     then
         echo "$NAME is not running."
     else
-        echo "$NAME is running on process ID $pid."
+        echo "$NAME is running on pid $pid."
+    fi;;
+"stop")
+    pid=$(get_pid);
+    if [ -z $pid ]
+    then
+        echo "$NAME is not running."
+    else
+        echo "Stopping $NAME on pid $pid."
+        kill -9 "$pid"
     fi;;
 *)
-    echo "Usage ./ghibli.sh <start|stop> <dev|prd>";;
+    echo "Usage:\n\t./$0 <start|stop> <dev|prd>";;
 esac
