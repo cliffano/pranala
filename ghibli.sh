@@ -38,5 +38,5 @@ case $1 in
         kill -9 "$pid"
     fi;;
 *)
-    echo "Usage:\n\t./$0 <start|stop> <dev|prd>";;
+    echo "Usage:\n\t$0 <start|stop|status> <dev|prd>";;
 esac

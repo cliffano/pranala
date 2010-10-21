@@ -26,5 +26,20 @@
 			  "api": "API",
 			  "kontribusi": "Contribute",
 			  "hubungi": "Contact"
+	  },
+	  "page": {
+	      "home": {
+	          "button": "Shorten",
+	          "loading": "The elves are hard at work..."
+	      },
+		    "hubungi": {
+		        "p1a": "Jika anda ingin berkomentar, bertanya, mengkritik, atau sekedar ingin menyapa, kami dapat dihubungi melalui surel",
+		        "p1b": "atau Twitter",
+		        "p2": "Dan sebelum anda bertanya &quot;Apa sih pranala itu?&quot;",
+		        "p3a": "Kami",
+		        "p3b": "menjawab",
+		        "p3c": "mengutip dari",
+		        "p3d": "Pranala adalah istilah bahasa Indonesia nya link atau URL."
+		    }
 	  }
 }

@@ -21,7 +21,7 @@ var logger = log4js.getLogger('app'),
     pranala = new Pranala(dbUrl, dbName, sequenceFile, 'conf/text'),
     global = {
         uniqueId: (new Date()).getTime(),
-        pranala: pranala,
+        p: pranala,
         nav: [ 'statistik', 'carakerja', 'kegunaan', 'alat', 'api', 'kontribusi', 'hubungi' ]
     };
     
@@ -31,7 +31,8 @@ logger.setLevel(logLevel);
 var app = express.createServer();
 var getLang = function(req) {
     if (req.session.lang === undefined) {
-        req.session.lang = 'id';
+        var acceptLang = req.headers['accept-language'];
+        req.session.lang = (acceptLang && acceptLang.match(/^'+id/)) ? 'id' : 'en';
     }
     return req.session.lang;
 };
@@ -77,10 +78,9 @@ app.configure(function () {
 	    if (error instanceof NotFound) {
 		    res.render('404.html', {
 		        locals: {
-			        global: global,
+			        g: global,
 			        lang: getLang(req),
-		            title: pranala.getText(getLang(req), 'title.404'),
-		            message: pranala.getText(getLang(req), 'title.404')
+		            page: '404'
 		        },
 		        status: 404
 		    });
@@ -88,10 +88,9 @@ app.configure(function () {
 		    logger.error(error.message);
 		    res.render('500.html', {
 		        locals: {
-			        global: global,
+			        g: global,
 			        lang: getLang(req),
-		            title: pranala.getText(getLang(req), 'title.500'),
-		            message: pranala.getText(getLang(req), 'title.500')
+		            page: '500'
 		        },
 		        status: 500
 		    });
@@ -113,24 +112,23 @@ app.get('/', function (req, res) {
 	var url = req.query.pranala || 'http://';
     res.render('home.html', {
         locals: {
-	        global: global,
+	        g: global,
 	        lang: getLang(req),
-            title: pranala.getText(getLang(req), 'title.home'),
+            page: 'home',
             url: url
         }
     });
 });
 
 // statistic page
-app.get('/b/statistik', function (req, res) {
+app.get('/b/:lang/statistik', function (req, res) {
 	var callback = function (docs) {
 		var sys = require('sys');
-		sys.puts(sys.inspect(docs));
 	    res.render('statistik.html', {
 	        locals: {
-		        global: global,
-		        lang: getLang(req),
-	            title: pranala.getText(getLang(req), 'title.statistik'),
+		        g: global,
+		        lang: req.params.lang,
+	            page: 'statistik',
 	            docs: docs
 	        }
 	    });
@@ -139,12 +137,12 @@ app.get('/b/statistik', function (req, res) {
 });
 
 // brochure pages
-app.get('/b/:page', function (req, res) {
+app.get('/b/:lang/:page', function (req, res) {
     res.render(req.params.page + '.html', {
         locals: {
-	        global: global,
-	        lang: getLang(req),
-            title: pranala.getText(getLang(req), 'title.' + req.params.page),
+	        g: global,
+	        lang: req.params.lang,
+            page: req.params.page,
             appUrl: appUrl
         }
     });
@@ -254,7 +252,9 @@ app.get('/m', function (req, res) {
     res.render('m.html', {
 	    layout: false,
         locals: {
-            title: pranala.getText(getLang(req), 'title.m'),
+            g: global,
+            lang: getLang(req),
+            page: 'm',
             url: '',
             shortenedUrl: ''
         }
@@ -269,7 +269,9 @@ app.post('/m', function (req, res) {
 		    res.render('m.html', {
 			    layout: false,
 		        locals: {
-		            title: pranala.getText(getLang(req), 'title.m'),
+                    g: global,
+                    lang: getLang(req),
+		            page: 'm',
 		            url: url,
 		            shortenedUrl: appUrl + '/' + doc._id
 		        }
@@ -280,7 +282,9 @@ app.post('/m', function (req, res) {
 	    res.render('m.html', {
 		    layout: false,
 	        locals: {
-	            title: pranala.getText(getLang(req), 'title.m'),
+                g: global,
+                lang: getLang(req),
+	            page: 'm',
 	            url: '',
 	            shortenedUrl: ''
 	        }
@@ -305,7 +309,7 @@ app.get('/:code', function (req, res) {
         if (doc === null) {
 		    res.render('takada.html', {
 		        locals: {
-		            title: pranala.getText(getLang(req), 'title.takada')
+		            page: 'takada'
 		        }
 		    });
         } else {

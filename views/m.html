@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Prnla [masih beta] - <%= title %></title>
+  <title>Prnla [beta] - <%= g.p.getText(lang, 'title.' + page) %></title>
 </head>
 <body>
   <div>
@@ -14,7 +14,7 @@
     <a href="<%= shortenedUrl %>"><%= shortenedUrl %></a>
   </div>
   <div>
-	<p><a href="/b/hubungi">Hubungi</a></p>
+	<p><a href="/b/hubungi"><%= g.p.getText(lang, 'nav.hubungi') %></a></p>
   </div>
 </body>
 </html>

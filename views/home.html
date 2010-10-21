@@ -1,11 +1,11 @@
 <div class="content pane">
   <form action="#" method="get" onsubmit="encode($('#url').val()); return false;">
     <input id="url" type="text" size="48" maxlength="2000" value="<%= url %>" onclick="if (this.value === 'http://') { this.value = ''; }"/>
-    <input id="shorten" class="button" type="submit" value="Pendekkan"/>
+    <input id="shorten" class="button" type="submit" value="<%= g.p.getText(lang, 'page.home.button') %>"/>
   </form>
   <br style="clear: both;"/>
   <div id="indicator" class="hidden">
-    <img src="/b/images/loading.gif" height="19" width="220" alt="Kurcacinya sedang sibuk bekerja..."/>
+    <img src="/b/images/loading.gif" height="19" width="220" alt="<%= g.p.getText(lang, 'page.home.loading') %>"/>
   </div>
   <div id="result" class="text hidden"></div>
 </div>

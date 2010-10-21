@@ -4,16 +4,15 @@
       <h3>Hubungi</h3>
     </div>
     <p>
-      Jika anda ingin berkomentar, bertanya, mengkritik, atau sekedar ingin menyapa,
-      kami dapat dihubungi melalui surel <a href="mailto:redaksi@prn.la">redaksi@prn.la</a>
-      atau Twitter <a href="http://twitter.com/prnla">@prnla</a> .
+      <%= g.p.getText(lang, 'page.hubungi.p1a') %> <a href="mailto:redaksi@prn.la">redaksi@prn.la</a>
+      <%= g.p.getText(lang, 'page.hubungi.p1b') %> <a href="http://twitter.com/prnla">@prnla</a> .
     </p>
     <p>
-      Dan sebelum anda bertanya "Apa sih pranala itu?"
+      <%- g.p.getText(lang, 'page.hubungi.p2') %>
     </p>
     <p>
-      Kami <span style="text-decoration: line-through;">menjawab</span> mengutip dari <a href="http://id.wikipedia.org/wiki/Pranala">Wikipedia</a>...<br/>
-      Pranala adalah istilah bahasa Indonesia nya link atau URL.<br/>
+      <%= g.p.getText(lang, 'page.hubungi.p3a') %> <span style="text-decoration: line-through;"><%= g.p.getText(lang, 'page.hubungi.p3b') %></span> <%= g.p.getText(lang, 'page.hubungi.p3c') %> <a href="http://id.wikipedia.org/wiki/Pranala">Wikipedia</a>...<br/>
+      <%= g.p.getText(lang, 'page.hubungi.p3d') %><br/>
     </p>
   </div>
 </div>
