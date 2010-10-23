@@ -45,6 +45,18 @@
 	          "longlink": "Pranala panjang",
 	          "shortlink": "Pranala pendek"
 	      },
+	      "kegunaan": {
+	          "p1a": "Berikut ini adalah contoh skenario kegunaan",
+	          "p1b": "(seratus persen khayalan)...",
+	          "p2": "Bayangkan Indonesia akhirnya juara Piala Dunia di tahun 2058.",
+	          "p3": "Nah, pranala yang panjangnya 72 karakter ini,",
+	          "p4": "dapat dipendekkan menjadi seperti ini,",
+	          "p5": "menjadi hanya 17 karakter. Anda menghemat 72 - 17 = 55 karakter, yang akhirnya dapat anda gunakan untuk pesan yang lebih panjang.",
+	          "example": {
+	              "partial": "@teman http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058 Wahhhhh akhirnya, ngga sia-sia bergadang semalaman ditemani se",
+	              "complete": "@teman http://prn.la/g0L Wahhhhh akhirnya, ngga sia-sia bergadang semalaman ditemani sepiring pisang goreng hangat."
+	          }
+	      },
 	      "kontribusi": {
 	          "promosi": {
 	              "title": "Promosi",
