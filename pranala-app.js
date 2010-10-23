@@ -66,6 +66,7 @@ var assetManagerGroups = {
     }
 };
 app.configure(function () {
+    app.use(express.conditionalGet());
     app.set('views', __dirname + '/views');
     app.use(express.bodyDecoder());
     app.use(express.methodOverride());
