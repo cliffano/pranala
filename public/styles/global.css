@@ -179,13 +179,13 @@ div#hd a {
     text-decoration: underline;
 }
 div#lang a, div#ft a {
-    background-color: #808080;
+    background-color: #484848;
     color: #fbfbfb;
     padding: 2px;
     text-decoration: none;
 }
 div#lang a:hover, div#ft a:hover {
-    background-color: #484848;
+    background-color: #808080;
     color: #fbfbfb;
     text-decoration: none;
 }

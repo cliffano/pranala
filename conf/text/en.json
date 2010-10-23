@@ -32,14 +32,38 @@
 	          "button": "Shorten",
 	          "loading": "The elves are hard at work..."
 	      },
+	      "kontribusi": {
+	          "promosi": {
+	              "title": "Spread the word",
+	              "p": "Tell your friends, family, neighbours, all about this web site. Do you have a blog or a Twitter account? please mention our site. Thanks."
+	          },
+	          "bug": {
+	              "title": "Bug",
+	              "p1": "If you find any bug or error, you can let us know by",
+	              "p2": "opening an issue",
+	              "p3": "at Google Code."
+	          },
+	          "perangkatlunak": {
+	              "title": "Development",
+	              "p1": "If you're a developer, you can help us by writing a client library for our",
+	              "p2": "API",
+	              "p3": "in various programming languages (PHP, Ruby, Perl, Python, Java, etc)."
+	          },
+	          "kampanye": {
+	              "title": "Poster",
+	              "p1": "And for those who dare, you can print this poster in large size and stick it in public places. This is a picture of Susilo Bambang Yudhoyono, Indonesia's president and arguably the most powerful person on the archipelago.",
+	              "p2": "Susilo Bambang Yudhoyono supports link shortening.",
+	              "p3": "Any creative ideas and suggestions? Send them to"
+	          }
+	      },
 		    "hubungi": {
-		        "p1a": "Jika anda ingin berkomentar, bertanya, mengkritik, atau sekedar ingin menyapa, kami dapat dihubungi melalui surel",
-		        "p1b": "atau Twitter",
-		        "p2": "Dan sebelum anda bertanya &quot;Apa sih pranala itu?&quot;",
-		        "p3a": "Kami",
-		        "p3b": "menjawab",
-		        "p3c": "mengutip dari",
-		        "p3d": "Pranala adalah istilah bahasa Indonesia nya link atau URL."
+		        "p1a": "If you'd like to comment, ask a question, criticise, or just say hi, we can be contacted via e-mail",
+		        "p1b": "or Twitter",
+		        "p2": "And before you ask &quot;WTH is pranala?&quot;",
+		        "p3a": "We",
+		        "p3b": "answer",
+		        "p3c": "quote from",
+		        "p3d": "Pranala is the Indonesian terminology for link or URL."
 		    }
 	  }
 }

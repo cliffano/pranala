@@ -4,11 +4,10 @@
       <h3>Kontribusi</h3>
     </div>
     <p>
-      <h4>Promosi</h4>
+      <h4><%= g.p.getText(lang, 'page.kontribusi.promosi.title') %></h4>
     </p>
     <p>
-      Beritahu teman, keluarga, tetangga anda tentang situs kami. Anda memiliki sebuah blog atau akun Twitter?
-      tolong tuliskan sedikit tentang kami. Terima kasih.
+      <%= g.p.getText(lang, 'page.kontribusi.promosi.p') %>
     </p>
     <p>
       <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
@@ -21,34 +20,33 @@
       <span class="st_sharethis_large" displayText="ShareThis"></span>
     </p>
     <p>
-      <h4>Bug</h4>
+      <h4><%= g.p.getText(lang, 'page.kontribusi.bug.title') %></h4>
     </p>
     <p>
-      Jika anda menemukan bug atau kesalahan di situs ini, anda dapat memberitahu kami dengan cara
-      <a href="http://code.google.com/p/pranala/issues/list">membuka issue</a> di Google Code.
+      <%= g.p.getText(lang, 'page.kontribusi.bug.p1') %>
+      <a href="http://code.google.com/p/pranala/issues/list"><%= g.p.getText(lang, 'page.kontribusi.bug.p2') %></a> <%= g.p.getText(lang, 'page.kontribusi.bug.p3') %>
     </p>
     <p>
-      <h4>Perangkat lunak</h4>
+      <h4><%= g.p.getText(lang, 'page.kontribusi.perangkatlunak.title') %></h4>
     </p>
     <p>
-      Jika anda seorang pengembang perangkat lunak, anda dapat membantu kami dengan membuat pustaka klien untuk
-      <a href="/b/api">API</a> kami dalam berbagai bahasa pemrograman (PHP, Ruby, Perl, Python, Java, dll).
+      <%= g.p.getText(lang, 'page.kontribusi.perangkatlunak.p1') %>
+      <a href="/b/api"><%= g.p.getText(lang, 'page.kontribusi.perangkatlunak.p2') %></a> 
     </p>
     <p>
-      <h4>Kampanye</h4>
+      <h4><%= g.p.getText(lang, 'page.kontribusi.kampanye.title') %></h4>
     </p>
     <p>
-      Dan untuk yang nekat dan bernyali besar, silakan cetak poster kampanye di bawah ini dalam ukuran besar
-      dan tempelkan di tempat-tempat umum.
+      <%= g.p.getText(lang, 'page.kontribusi.kampanye.p1') %>
     </p>
     <p>
-      SBY menggalakkan gerakan memendekkan pranala.
+      <%= g.p.getText(lang, 'page.kontribusi.kampanye.p2') %>
     </p>
     <p>
-      <img src="/b/images/poster_sby.jpg" height="280" width="430"/>
+      <img src="/b/images/<%= lang %>_poster_sby.jpg" height="280" width="430"/>
     </p>
     <p>
-      Punya ide-ide cemerlang? Kirimkan ke <a href="mailto:redaksi@prn.la">redaksi@prn.la</a> .
+      <%= g.p.getText(lang, 'page.kontribusi.kampanye.p3') %> <a href="mailto:redaksi@prn.la">redaksi@prn.la</a> .
     </p>
   </div>
 </div>

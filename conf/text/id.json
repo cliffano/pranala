@@ -32,6 +32,30 @@
 	          "button": "Pendekkan",
 	          "loading": "Kurcacinya sedang sibuk bekerja..."
 	      },
+	      "kontribusi": {
+	          "promosi": {
+	              "title": "Promosi",
+	              "p": "Beritahu teman, keluarga, tetangga anda tentang situs kami. Anda memiliki sebuah blog atau akun Twitter? tolong tuliskan sedikit tentang kami. Terima kasih."
+	          },
+	          "bug": {
+	              "title": "Bug",
+	              "p1": "Jika anda menemukan bug atau kesalahan di situs ini, anda dapat memberitahu kami dengan cara",
+	              "p2": "membuka issue",
+	              "p3": "di Google Code."
+	          },
+	          "perangkatlunak": {
+	              "title": "Perangkat lunak",
+	              "p1": "Jika anda seorang pengembang perangkat lunak, anda dapat membantu kami dengan membuat pustaka klien untuk",
+	              "p2": "API",
+	              "p3": "kami dalam berbagai bahasa pemrograman (PHP, Ruby, Perl, Python, Java, dll)."
+	          },
+	          "kampanye": {
+	              "title": "Kampanye",
+	              "p1": "Dan untuk yang nekat dan bernyali besar, silakan cetak poster kampanye di bawah ini dalam ukuran besar dan tempelkan di tempat-tempat umum.",
+	              "p2": "SBY menggalakkan gerakan memendekkan pranala.",
+	              "p3": "Punya ide-ide cemerlang? Kirimkan ke"
+	          }
+	      },
 		    "hubungi": {
 		        "p1a": "Jika anda ingin berkomentar, bertanya, mengkritik, atau sekedar ingin menyapa, kami dapat dihubungi melalui surel",
 		        "p1b": "atau Twitter",
