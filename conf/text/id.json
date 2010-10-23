@@ -35,6 +35,16 @@
 	      "statistik": {
 	          "p": "Kami akan mengembangkan lebih banyak lagi analisa statistik dari pranala yang terdapat di sistem kami. Untuk sementara, kami sediakan pranala terpopuler saat ini:"
 	      },
+	      "carakerja": {
+	          "p1a": "Cara kerja",
+	          "p1b": "sangat sederhana.",
+	          "p2": "Masukkan pranala panjang,",
+	          "p3a": "klik tombol",
+	          "p3b": ", lalu pranala pendeknya akan ditampilkan.",
+	          "p4": "Mudah kan?",
+	          "longlink": "Pranala panjang",
+	          "shortlink": "Pranala pendek"
+	      },
 	      "kontribusi": {
 	          "promosi": {
 	              "title": "Promosi",

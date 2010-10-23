@@ -21,7 +21,7 @@
         "pendekkan": "Shorten",
 			  "statistik": "Statistic",
 			  "carakerja": "How it works",
-			  "kegunaan": "Uses",
+			  "kegunaan": "Usage",
 			  "alat": "Tools",
 			  "api": "API",
 			  "kontribusi": "Contribute",
@@ -34,6 +34,16 @@
 	      },
 	      "statistik": {
 	          "p": "We will add more link analytics later on. In the mean time, we have the list of the most clicked links:"
+	      },
+	      "carakerja": {
+	          "p1a": "The way",
+	          "p1b": "works is very simple.",
+	          "p2": "Type in the long link,",
+	          "p3a": "click the button",
+	          "p3b": ", then the short link will be displayed.",
+	          "p4": "Easy, right?",
+	          "longlink": "Long link",
+	          "shortlink": "Short link"
 	      },
 	      "kontribusi": {
 	          "promosi": {
