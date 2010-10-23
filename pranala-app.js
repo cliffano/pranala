@@ -302,6 +302,20 @@ app.get('/u/pvt', function (req, res) {
     });
 });
 
+// sitemap.xml
+app.get('/sitemap.xml', function(req, res) {
+    res.render('sitemap.html', {
+        layout: false,
+        locals: {
+            appUrl: appUrl,
+            g: global
+        },
+        headers: {
+            'content-type': 'text/xml'
+        }
+    });
+});
+
 // decode a short URL, then redirect to long URL
 app.get('/:code', function (req, res) {
     var url,

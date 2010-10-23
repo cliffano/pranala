@@ -1,0 +1,14 @@
+<urlset>
+  <url>
+    <loc><%= appUrl %></loc>
+    <priority>1.000</priority>
+  </url>
+  <% for (var i = 0, iLn = g.nav.length; i < iLn; i++) { %>
+    <% for (var j = 0, jLn = g.p.getLangs().length; j < jLn; j++) { %>
+	    <url>
+	      <loc><%= appUrl %>/b/<%= g.p.getLangs()[j].code %>/<%= g.nav[i] %></loc>
+	      <priority>0.5000</priority>
+	    </url>
+	  <% } %>
+  <% } %>
+</urlset>
