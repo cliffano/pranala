@@ -32,6 +32,9 @@
 	          "button": "Shorten",
 	          "loading": "The elves are hard at work..."
 	      },
+	      "statistik": {
+	          "p": "We will add more link analytics later on. In the mean time, we have the list of the most clicked links:"
+	      },
 	      "kontribusi": {
 	          "promosi": {
 	              "title": "Spread the word",

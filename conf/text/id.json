@@ -32,6 +32,9 @@
 	          "button": "Pendekkan",
 	          "loading": "Kurcacinya sedang sibuk bekerja..."
 	      },
+	      "statistik": {
+	          "p": "Kami akan mengembangkan lebih banyak lagi analisa statistik dari pranala yang terdapat di sistem kami. Untuk sementara, kami sediakan pranala terpopuler saat ini:"
+	      },
 	      "kontribusi": {
 	          "promosi": {
 	              "title": "Promosi",
