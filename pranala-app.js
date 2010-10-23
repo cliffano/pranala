@@ -67,9 +67,9 @@ var assetManagerGroups = {
 };
 app.configure(function () {
     app.set('views', __dirname + '/views');
-    app.use('/', connect.bodyDecoder());
-    app.use('/', connect.methodOverride());
-    app.use('/b/images', connect.staticProvider(__dirname + '/public/images'));
+    app.use(express.bodyDecoder());
+    app.use(express.methodOverride());
+    app.use('/b/images', express.staticProvider(__dirname + '/public/images'));
     app.use(assetManager(assetManagerGroups));
     app.use(express.cookieDecoder());
     app.use(express.session());
@@ -99,10 +99,10 @@ app.configure(function () {
 });
 app.configure('dev', function () {
     app.set('reload views', 1000);
-    app.use('/', connect.errorHandler({ dumpExceptions: true, showStack: true }));
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 app.configure('prd', function () {
-    app.use('/', connect.errorHandler());
+    app.use(express.errorHandler());
 });
 
 logger.info('Setting up routers');
