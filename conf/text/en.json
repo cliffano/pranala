@@ -3,6 +3,7 @@
 		    "code": "en",
 		    "name": "English"
 		},
+    "label": "Shorten the link",
     "title": {
 			  "404": "Page not found",
 			  "500": "Server error",
@@ -55,6 +56,54 @@
 	          "example": {
 	              "partial": "@friend http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058 Finally, stayed up all night watching the final game, accompan",
 	              "complete": "@friend http://prn.la/g0L Finally, stayed up all night watching the final game, accompanied with peanuts and beers."
+	          }
+	      },
+	      "alat": {
+	          "bookmarklet": {
+	              "title": "Bookmarklet",
+	              "pa": "Bookmark or drag this link",
+	              "pb": "to your browser toolbar."
+	          },
+						"firefox": {
+						    "title": "Firefox Add-on",
+	              "pa": "You can",
+	              "pb": "download Pranafox",
+	              "pc": "from Mozilla.org .",
+	              "pd": "Pranafox is a Firefox Add-on which adds a right click menu option to shorten the selected URL using"
+	          },
+						"twitteriphone": {
+						    "title": "Twitter iPhone",
+	              "pa": "You can use",
+	              "pb": "as a custom URL shortener on",
+	              "pc": "Open",
+	              "pd": ", select",
+	              "pe": ", then",
+	              "pf": ", then",
+	              "pg": ", and type in"
+	          },
+						"chrome": {
+						    "title": "Chrome Extension",
+	              "pa": "Google Chrome users can use",
+	              "pb": "Similar to Pranafox, Pranachrome which also adds a right click menu option to shorten the selected URL using"
+	          },
+						"wordpress": {
+						    "title": "WordPress Plugin",
+	              "pa": "If you have a WordPress blog,",
+	              "pb": "can be used to shorten the URL of each blog post using feature"
+	          },
+						"tweetdeck": {
+						    "title": "TweetDeck",
+	              "pa": "You can also use",
+	              "pb": "as a custom URL shortener on",
+	              "pc": "Open",
+	              "pd": ", then select",
+	              "pe": "from the left menu, then select",
+	              "pf": "on",
+	              "pg": "then type in"
+	          },
+						"mobile": {
+						    "title": "Mobile Pranala",
+	              "p": "A very simple version of this site can be accessed on"
 	          }
 	      },
 	      "kontribusi": {

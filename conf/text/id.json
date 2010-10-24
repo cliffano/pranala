@@ -3,6 +3,7 @@
         "code": "id",
         "name": "Bahasa Indonesia"
     },
+    "label": "Pendekkan pranalanya",
     "title": {
 			  "404": "Laman tidak ditemukan",
 			  "500": "Kesalahan bukan pada pesawat televisi anda. Harap dicoba sesaat lagi.",
@@ -55,6 +56,54 @@
 	          "example": {
 	              "partial": "@teman http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058 Wahhhhh akhirnya, ngga sia-sia bergadang semalaman ditemani se",
 	              "complete": "@teman http://prn.la/g0L Wahhhhh akhirnya, ngga sia-sia bergadang semalaman ditemani sepiring pisang goreng hangat."
+	          }
+	      },
+	      "alat": {
+	          "bookmarklet": {
+	              "title": "Bookmarklet",
+	              "pa": "Bookmark atau seret pranala berikut ini",
+	              "pb": "ke toolbar peramban web anda."
+	          },
+						"firefox": {
+						    "title": "Pengaya Firefox",
+	              "pa": "Silahkan",
+	              "pb": "mengunduh Pranafox",
+	              "pc": "dari situs Mozilla.org .",
+	              "pd": "Pranafox adalah pengaya Firefox yang menambah menu klik kanan untuk memendekkan pranala panjang dengan menggunakan situs"
+	          },
+						"twitteriphone": {
+						    "title": "Twitter iPhone",
+	              "pa": "Anda dapat menggunakan",
+	              "pb": "sebagai pemendek pranala kustom di aplikasi",
+	              "pc": "Buka halaman",
+	              "pd": ", pilih menu",
+	              "pe": ", lalu menu",
+	              "pf": ", lalu menu",
+	              "pg": ", dan masukkan"
+	          },
+						"chrome": {
+						    "title": "Ekstensi Chrome",
+	              "pa": "Para pengguna peramban Google Chrome dapat menggunakan",
+	              "pb": "Serupa dengan Pranafox, Pranachrome juga menambah menu klik kanan untuk memendekkan pranala panjang dengan menggunakan situs"
+	          },
+						"wordpress": {
+						    "title": "Plugin WordPress",
+	              "pa": "Jika anda memiliki sebuah blog WordPress,",
+	              "pb": "dapat digunakan untuk mendapatkan pranala pendek untuk setiap artikel di blog anda melalui fungsi"
+	          },
+						"tweetdeck": {
+						    "title": "TweetDeck",
+	              "pa": "Anda juga dapat menggunakan",
+	              "pb": "sebagai pemendek pranala kustom di aplikasi",
+	              "pc": "Buka halaman",
+	              "pd": ", lalu pilih",
+	              "pe": "dari menu di sisi kiri, lalu pilih",
+	              "pf": "di bagian",
+	              "pg": "dan masukkan"
+	          },
+						"mobile": {
+						    "title": "Mobile Pranala",
+	              "p": "Versi sederhana dari situs ini dapat dikunjungi di"
 	          }
 	      },
 	      "kontribusi": {
