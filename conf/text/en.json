@@ -50,12 +50,12 @@
 	          "p1a": "Here's an example usage scenario of",
 	          "p1b": "(100% made up)...",
 	          "p2": "Imagine Indonesia as the winner of World Cup 2058.",
-	          "p3": "Now, this long link with 72 characters,",
+	          "p3": "Now, this lengthy link with 72 characters,",
 	          "p4": "can be shortened into,",
 	          "p5": "only 17 characters. You're saving 72 - 17 = 55 characters, which you can use for the rest of the message itself.",
 	          "example": {
 	              "partial": "@friend http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058 Finally, stayed up all night watching the final game, accompan",
-	              "complete": "@friend http://prn.la/g0L Finally, stayed up all night watching the final game, accompanied with peanuts and beers."
+	              "complete": "@friend http://prn.la/g0L Finally, stayed up all night watching the final game, accompanied by peanuts and beer."
 	          }
 	      },
 	      "alat": {
