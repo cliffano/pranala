@@ -4,6 +4,10 @@
 		    "name": "English"
 		},
     "label": "Shorten the link",
+    "copyright": {
+        "pa": "Copyright",
+        "pb": "Site by"
+    },
     "title": {
 			  "404": "Page not found",
 			  "500": "Server error",

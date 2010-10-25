@@ -4,6 +4,10 @@
         "name": "Bahasa Indonesia"
     },
     "label": "Pendekkan pranalanya",
+    "copyright": {
+        "pa": "Hak Cipta",
+        "pb": "Prakarya"
+    },
     "title": {
 			  "404": "Laman tidak ditemukan",
 			  "500": "Kesalahan bukan pada pesawat televisi anda. Harap dicoba sesaat lagi.",
