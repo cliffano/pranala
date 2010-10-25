@@ -72,9 +72,10 @@ app.configure(function () {
     app.use(express.bodyDecoder());
     app.use(express.methodOverride());
     app.use('/b/images', express.staticProvider(__dirname + '/public/images'));
-    app.use(assetManager(assetManagerGroups));
     app.use(express.cookieDecoder());
     app.use(express.session());
+    app.use(express.gzip());
+    app.use(assetManager(assetManagerGroups));
     app.register('.html', require('ejs'));
 	app.error(function (error, req, res, next) {
 	    if (error instanceof NotFound) {
