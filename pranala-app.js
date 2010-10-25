@@ -20,6 +20,7 @@ var logger = log4js.getLogger('app'),
     logLevel = appConf.logLevel,
     pranala = new Pranala(dbUrl, dbName, sequenceFile, 'conf/text'),
     global = {
+        env: env,
         uniqueId: (new Date()).getTime(),
         p: pranala,
         nav: [ 'statistic', 'howitworks', 'usage', 'tools', 'api', 'contribute', 'contact' ]
