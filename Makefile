@@ -66,7 +66,7 @@ status:
     
 package: clean
 	mkdir -p $(BUILD_PACKAGE)
-	tar --exclude test --exclude .svn -cvf $(BUILD_PACKAGE)/$(APP_FULLNAME).tar *
+	tar --exclude test --exclude .svn --exclude ._* -cvf $(BUILD_PACKAGE)/$(APP_FULLNAME).tar *
 	gzip $(BUILD_PACKAGE)/$(APP_FULLNAME).tar
 	
 deploy: clean package

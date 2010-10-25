@@ -7,36 +7,36 @@
     "title": {
 			  "404": "Laman tidak ditemukan",
 			  "500": "Kesalahan bukan pada pesawat televisi anda. Harap dicoba sesaat lagi.",
-			  "hubungi": "Hubungi kami",
+			  "contact": "Hubungi kami",
 			  "home": "Pendekkan pranalanya",
-			  "statistik": "Statistik",
-			  "carakerja": "Cara kerja",
-			  "kegunaan": "Kegunaan",
-			  "alat": "Alat",
+			  "statistic": "Statistik",
+			  "howitworks": "Cara kerja",
+			  "usage": "Kegunaan",
+			  "tools": "Alat",
 			  "api": "API",
-			  "kontribusi": "Kontribusi",
+			  "contribute": "Kontribusi",
 			  "m": "Mobile",
 			  "takada": "Pranala tidak ditemukan"
 	  },
     "nav": {
         "pendekkan": "Pendekkan",
-			  "statistik": "Statistik",
-			  "carakerja": "Cara kerja",
-			  "kegunaan": "Kegunaan",
-			  "alat": "Alat",
+			  "statistic": "Statistik",
+			  "howitworks": "Cara kerja",
+			  "usage": "Kegunaan",
+			  "tools": "Alat",
 			  "api": "API",
-			  "kontribusi": "Kontribusi",
-			  "hubungi": "Hubungi"
+			  "contribute": "Kontribusi",
+			  "contact": "Hubungi"
 	  },
 	  "page": {
 	      "home": {
 	          "button": "Pendekkan",
 	          "loading": "Kurcacinya sedang sibuk bekerja..."
 	      },
-	      "statistik": {
+	      "statistic": {
 	          "p": "Kami akan mengembangkan lebih banyak lagi analisa statistik dari pranala yang terdapat di sistem kami. Untuk sementara, kami sediakan pranala terpopuler saat ini:"
 	      },
-	      "carakerja": {
+	      "howitworks": {
 	          "p1a": "Cara kerja",
 	          "p1b": "sangat sederhana.",
 	          "p2": "Masukkan pranala panjang,",
@@ -46,7 +46,7 @@
 	          "longlink": "Pranala panjang",
 	          "shortlink": "Pranala pendek"
 	      },
-	      "kegunaan": {
+	      "usage": {
 	          "p1a": "Berikut ini adalah contoh skenario kegunaan",
 	          "p1b": "(seratus persen khayalan)...",
 	          "p2": "Bayangkan Indonesia akhirnya juara Piala Dunia di tahun 2058.",
@@ -58,7 +58,7 @@
 	              "complete": "@teman http://prn.la/g0L Wahhhhh akhirnya, ngga sia-sia bergadang semalaman ditemani sepiring pisang goreng hangat."
 	          }
 	      },
-	      "alat": {
+	      "tools": {
 	          "bookmarklet": {
 	              "title": "Bookmarklet",
 	              "pa": "Bookmark atau seret pranala berikut ini",
@@ -106,7 +106,7 @@
 	              "p": "Versi sederhana dari situs ini dapat dikunjungi di"
 	          }
 	      },
-	      "kontribusi": {
+	      "contribute": {
 	          "promosi": {
 	              "title": "Promosi",
 	              "p": "Beritahu teman, keluarga, tetangga anda tentang situs kami. Anda memiliki sebuah blog atau akun Twitter? tolong tuliskan sedikit tentang kami. Terima kasih."
@@ -130,7 +130,7 @@
 	              "p3": "Punya ide-ide cemerlang? Kirimkan ke"
 	          }
 	      },
-		    "hubungi": {
+		    "contact": {
 		        "p1a": "Jika anda ingin berkomentar, bertanya, mengkritik, atau sekedar ingin menyapa, kami dapat dihubungi melalui surel",
 		        "p1b": "atau Twitter",
 		        "p2": "Dan sebelum anda bertanya &quot;Apa sih pranala itu?&quot;",

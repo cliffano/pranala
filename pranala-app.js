@@ -22,7 +22,7 @@ var logger = log4js.getLogger('app'),
     global = {
         uniqueId: (new Date()).getTime(),
         p: pranala,
-        nav: [ 'statistik', 'carakerja', 'kegunaan', 'alat', 'api', 'kontribusi', 'hubungi' ]
+        nav: [ 'statistic', 'howitworks', 'usage', 'tools', 'api', 'contribute', 'contact' ]
     };
     
 log4js.addAppender(log4js.fileAppender(logFile), 'app');
@@ -122,14 +122,14 @@ app.get('/', function (req, res) {
 });
 
 // statistic page
-app.get('/b/:lang/statistik', function (req, res) {
+app.get('/b/:lang/statistic', function (req, res) {
 	var callback = function (docs) {
 		var sys = require('sys');
-	    res.render('statistik.html', {
+	    res.render('statistic.html', {
 	        locals: {
 		        g: global,
 		        lang: req.params.lang,
-	            page: 'statistik',
+	            page: 'statistic',
 	            docs: docs
 	        }
 	    });
