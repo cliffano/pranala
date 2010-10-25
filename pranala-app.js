@@ -30,7 +30,7 @@ log4js.addAppender(log4js.fileAppender(logFile), 'app');
 logger.setLevel(logLevel);
 
 var app = express.createServer();
-var getLang = function(req) {
+var getLang = function (req) {
     if (req.session.lang === undefined) {
         var acceptLang = req.headers['accept-language'];
         req.session.lang = (acceptLang && acceptLang.match(/^'+id/)) ? 'id' : 'en';
@@ -306,7 +306,7 @@ app.get('/u/pvt', function (req, res) {
 });
 
 // sitemap.xml
-app.get('/sitemap.xml', function(req, res) {
+app.get('/sitemap.xml', function (req, res) {
     res.render('sitemap.html', {
         layout: false,
         locals: {
