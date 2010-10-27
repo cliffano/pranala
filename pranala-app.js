@@ -245,7 +245,7 @@ app.get('/x', function (req, res) {
 // language
 app.get('/l', function (req, res) {
     req.session.lang = req.query.lang;
-    res.redirect(req.query.url);
+    res.redirect(req.query.url, 301);
 });
 
 // mobile page
@@ -333,7 +333,7 @@ app.get('/:code', function (req, res) {
 	        url = doc.url;
             logger.debug('Decoded code ' + req.params.code + ' to url ' + url);
             callback = function (doc) {
-	            res.redirect(url);
+	            res.redirect(url, 301);
             };
             // x-real-ip is configured in nginx.conf
             pranala.stat(req.params.code, url, 'gatotkaca', req.headers['x-real-ip'], req.headers.referer, req.headers['user-agent'], callback);
