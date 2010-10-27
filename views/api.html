@@ -4,106 +4,106 @@
       <h3><%= g.p.getText(lang, 'nav.api') %></h3>
     </div>
     <p>
-      Jika anda ingin menggunakan API berikut ini, harap hubungi kami di <a href="mailto:redaksi@prn.la">redaksi@prn.la</a> .
-      Anda akan kami hubungi jika ada perubahan-perubahan pada API kami.
+      <%= g.p.getText(lang, 'page.api.p1a') %> <a href="mailto:redaksi@prn.la">redaksi@prn.la</a> .
+      <%= g.p.getText(lang, 'page.api.p1b') %>
     </p>
     <p>
-      <h5>/v0/pendekkan</h5>
+      <h5>/v0/shorten</h5>
     </p>
     <p>
-      Contoh
+      <%= g.p.getText(lang, 'page.api.section.example') %>
       <ul>
-        <li><%= appUrl %>/v0/pendekkan?panjang=http%3A%2F%2Fberitakita.co.id%2Fterkini%2Findonesia-akhirnya-juara-piala-dunia-2058&format=json</li>
+        <li><div class="marquee"><%= appUrl %>/v0/shorten?long=http%3A%2F%2Fberitakita.co.id%2Fterkini%2Findonesia-akhirnya-juara-piala-dunia-2058&format=json</div></li>
       </ul>
     </p>
     <p>
-      Parameter
+      <%= g.p.getText(lang, 'page.api.section.param') %>
       <ul>
-        <li><strong>panjang</strong> - pranala panjang yang akan dipendekkan</li>
-        <li><strong>format</strong> - format respons, misalnya: <strong>json</strong>, <strong>teks</strong></li>
+        <li><strong>long</strong> - <%= g.p.getText(lang, 'page.api.term.long') %></li>
+        <li><strong>format</strong> - <%= g.p.getText(lang, 'page.api.term.format') %> <strong>json</strong>, <strong>text</strong></li>
       </ul>
     </p>
     <p>
-      Respons
+      <%= g.p.getText(lang, 'page.api.section.response') %>
       <ul>
         <li>
           json<br/>
-          <div class="snippet">Sukses</div>
+          <div class="snippet"><%= g.p.getText(lang, 'page.api.term.success') %></div>
           <div class="marquee">
             <pre>{
-  "status":"sukses",
-  "pendek":"<%= appUrl %>/g0L"
+  "status":"success",
+  "short":"<%= appUrl %>/g0L"
 }</pre>
           </div>
-          <div class="snippet">Gagal</div>
+          <div class="snippet"><%= g.p.getText(lang, 'page.api.term.failure') %></div>
           <div class="marquee">
             <pre>{
-  "status":"gagal",
-  "pesan":"TIDAK_SAHIH"
+  "status":"failure",
+  "message":"INVALID"
 }</pre>
           </div>
         </li>
         <li>
-          teks<br/>
-          <div class="snippet">Sukses</div>
+          text<br/>
+          <div class="snippet"><%= g.p.getText(lang, 'page.api.term.success') %></div>
           <div class="marquee">
             <pre><%= appUrl %>/g0L</pre>
           </div>
-          <div class="snippet">Gagal</div>
+          <div class="snippet"><%= g.p.getText(lang, 'page.api.term.failure') %></div>
           <div class="marquee">
             <pre></pre>
           </div>
-          Respons teks kosong.
+          <%= g.p.getText(lang, 'page.api.term.empty') %>
         </li>
       </ul>
     </p>
     <p>
-      <h5>/v0/panjangkan</h5>
+      <h5>/v0/expand</h5>
     </p>
     <p>
-      Contoh
+      <%= g.p.getText(lang, 'page.api.section.example') %>
       <ul>
-        <li><%= appUrl %>/v0/panjangkan?pendek=http%3A%2F%2Fprn.la%2Fg0L&format=json</li>
+        <li><div class="marquee"><%= appUrl %>/v0/expand?short=http%3A%2F%2Fprn.la%2Fg0L&format=json</div></li>
       </ul>
     </p>
     <p>
-      Parameter
+      <%= g.p.getText(lang, 'page.api.section.param') %>
       <ul>
-        <li><strong>pendek</strong> - pranala pendek yang akan dipanjangkan</li>
-        <li><strong>format</strong> - format respons, misalnya: <strong>json</strong>, <strong>teks</strong></li>
+        <li><strong>short</strong> - <%= g.p.getText(lang, 'page.api.term.short') %></li>
+        <li><strong>format</strong> - <%= g.p.getText(lang, 'page.api.term.format') %> <strong>json</strong>, <strong>text</strong></li>
       </ul>
     </p>
     <p>
-      Respons
+      <%= g.p.getText(lang, 'page.api.section.response') %>
       <ul>
         <li>
           json<br/>
-          <div class="snippet">Sukses</div>
+          <div class="snippet"><%= g.p.getText(lang, 'page.api.term.success') %></div>
           <div class="marquee">
             <pre>{
-  "status":"sukses",
-  "panjang":"http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058"
+  "status":"success",
+  "long":"http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058"
 }</pre>
           </div>
-          <div class="snippet">Gagal</div>
+          <div class="snippet"><%= g.p.getText(lang, 'page.api.term.failure') %></div>
           <div class="marquee">
             <pre>{
-  "status":"gagal",
-  "pesan":"TIDAK_DITEMUKAN"
+  "status":"failure",
+  "message":"NOT_FOUND"
 }</pre>
           </div>
         </li>
         <li>
-          teks<br/>
-          <div class="snippet">Sukses</div>
+          text<br/>
+          <div class="snippet"><%= g.p.getText(lang, 'page.api.term.success') %></div>
           <div class="marquee">
             <pre>http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058</pre>
           </div>
-          <div class="snippet">Gagal</div>
+          <div class="snippet"><%= g.p.getText(lang, 'page.api.term.failure') %></div>
           <div class="marquee">
             <pre></pre>
           </div>
-          Respons teks kosong.
+          <%= g.p.getText(lang, 'page.api.term.empty') %>
         </li>
       </ul>
     </p>

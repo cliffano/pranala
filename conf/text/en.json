@@ -113,6 +113,23 @@
 	              "p": "A very simple version of this site can be accessed on"
 	          }
 	      },
+	      "api": {
+	          "p1a": "If you'd like to use our API, please let us know via e-mail",
+	          "p1b": "We'll let you know if there's any modification to the API",
+	          "section": {
+	              "example": "Example",
+	              "param": "Parameters",
+	              "response": "Response"
+	          },
+	          "term": {
+	              "long": "long URL to be shortened",
+	              "short": "short URL to be expanded",
+	              "format": "response format, e.g.:",
+	              "empty": "Empty text response.",
+	              "success": "Success",
+	              "failure": "Failure"
+	          }
+	      },
 	      "contribute": {
 	          "promosi": {
 	              "title": "Spread the word",

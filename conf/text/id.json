@@ -113,6 +113,23 @@
 	              "p": "Versi sederhana dari situs ini dapat dikunjungi di"
 	          }
 	      },
+	      "api": {
+	          "p1a": "Jika anda ingin menggunakan API berikut ini, harap hubungi kami di",
+	          "p1b": "Anda akan kami hubungi jika ada perubahan-perubahan pada API kami.",
+	          "section": {
+	              "example": "Contoh",
+	              "param": "Parameter",
+	              "response": "Respons"
+	          },
+	          "term": {
+	              "long": "pranala panjang yang akan dipendekkan",
+	              "short": "pranala pendek yang akan dipanjangkan",
+	              "format": "format respons, misalnya:",
+	              "empty": "Respons teks kosong.",
+	              "success": "Sukses",
+	              "failure": "Gagal"
+	          }
+	      },
 	      "contribute": {
 	          "promosi": {
 	              "title": "Promosi",

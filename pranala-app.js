@@ -153,23 +153,23 @@ app.get('/b/:lang/:page', function (req, res) {
 
 // shorten API
 var v0Shorten = function (req, res) {
-    var _url = url.sanitise(decodeURIComponent(req.query.panjang || req.query.prn || '')),
+    var _url = url.sanitise(decodeURIComponent(req.query.long || req.query.prn || '')),
         error = url.validate(_url),
         callback, result;
     if (req.query.format === 'json') {
         if (error === null) {
             callback = function (doc) {
                 result = {};
-                result.status = 'sukses';
-                result.pendek = appUrl + '/' + doc._id;
+                result.status = 'success';
+                result.short = appUrl + '/' + doc._id;
                 logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
                 res.send(JSON.stringify(result), 200);
             };
             pranala.encode(_url, callback);
         } else {
             result = {};
-            result.status = 'gagal';
-            result.pesan = error;
+            result.status = 'failure';
+            result.message = error;
             res.send(JSON.stringify(result), 200);
         }
 
@@ -185,13 +185,13 @@ var v0Shorten = function (req, res) {
 	    }
     }
 };
-app.get('/v0/pendekkan', function (req, res) {
+app.get('/v0/shorten', function (req, res) {
     v0Shorten(req, res);
 });
 
 // expand API
-app.get('/v0/panjangkan', function (req, res) {
-    var _url = url.sanitise(decodeURIComponent(req.query.pendek)),
+app.get('/v0/expand', function (req, res) {
+    var _url = url.sanitise(decodeURIComponent(req.query.short)),
         error = url.validateShort(_url, appUrl),
         regex = new RegExp(appUrl + '/', 'g'),
         code, callback, result;
@@ -201,13 +201,13 @@ app.get('/v0/panjangkan', function (req, res) {
             callback = function (doc) {
 	            if (doc === null) {
 		            result = {};
-		            result.status = 'gagal';
-		            result.pesan = 'TIDAK_DITEMUKAN';
+		            result.status = 'failure';
+		            result.message = 'NOT_FOUND';
 		            res.send(JSON.stringify(result), 200);
 		        } else {
 	                result = {};
-	                result.status = 'sukses';
-	                result.panjang = doc.url;
+	                result.status = 'success';
+	                result.long = doc.url;
 		            logger.debug('Decoded code ' + code + ' to url ' + doc.url);
 	                res.send(JSON.stringify(result), 200);
 	            }
@@ -215,8 +215,8 @@ app.get('/v0/panjangkan', function (req, res) {
             pranala.decode(code, callback);
         } else {
             result = {};
-            result.status = 'gagal';
-            result.pesan = error;
+            result.status = 'failure';
+            result.message = error;
             res.send(JSON.stringify(result), 200);
         }
     } else {

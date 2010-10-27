@@ -57,23 +57,23 @@ vows.describe('URL').addBatch({
 		'validate': {
             'returns correct error codes': function() {
 	            assert.isNull(url.validate('http://nba.coma'));
-	            assert.equal(url.validate(null), 'TIDAK_ADA');
-	            assert.equal(url.validate('       '), 'TIDAK_ADA');
-	            assert.equal(url.validate('http://prn.la'), 'SUDAH_DIPENDEKKAN');
-	            assert.equal(url.validate('http://()'), 'TIDAK_SAHIH');
+	            assert.equal(url.validate(null), 'EMPTY');
+	            assert.equal(url.validate('       '), 'EMPTY');
+	            assert.equal(url.validate('http://prn.la'), 'ALREADY_SHORTENED');
+	            assert.equal(url.validate('http://()'), 'INVALID');
             },
             'returns correct error codes for shortened URL': function() {
 	            var appUrl = 'http://prwn.la:1';
 	            assert.isNull(url.validateShort('http://prwn.la:1/09', appUrl));
 	            assert.isNull(url.validateShort('http://prwn.la:1/az', appUrl));
 	            assert.isNull(url.validateShort('http://prwn.la:1/AZ', appUrl));
-	            assert.equal(url.validateShort('http://prwn.la:1', appUrl), 'TIDAK_DITEMUKAN');
-	            assert.equal(url.validateShort('http://prwn.la:1/', appUrl), 'TIDAK_DITEMUKAN');
-	            assert.equal(url.validateShort('http://prwn.la:1/-', appUrl), 'TIDAK_DITEMUKAN');
-	            assert.equal(url.validateShort('prwn.la:1', appUrl), 'TIDAK_DITEMUKAN');
-	            assert.equal(url.validateShort(null, appUrl), 'TIDAK_DITEMUKAN');
-	            assert.equal(url.validateShort('', appUrl), 'TIDAK_DITEMUKAN');
-	            assert.equal(url.validateShort('http://nba.com', appUrl), 'TIDAK_DITEMUKAN');
+	            assert.equal(url.validateShort('http://prwn.la:1', appUrl), 'NOT_FOUND');
+	            assert.equal(url.validateShort('http://prwn.la:1/', appUrl), 'NOT_FOUND');
+	            assert.equal(url.validateShort('http://prwn.la:1/-', appUrl), 'NOT_FOUND');
+	            assert.equal(url.validateShort('prwn.la:1', appUrl), 'NOT_FOUND');
+	            assert.equal(url.validateShort(null, appUrl), 'NOT_FOUND');
+	            assert.equal(url.validateShort('', appUrl), 'NOT_FOUND');
+	            assert.equal(url.validateShort('http://nba.com', appUrl), 'NOT_FOUND');
             }
         }
     }
