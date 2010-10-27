@@ -3,7 +3,10 @@
 		    "code": "en",
 		    "name": "English"
 		},
+    "name": "Prnla [beta] URL Shortening Service",
     "label": "Shorten the link",
+		"description": "Prnla - URL Shortening Service - Shorten the link",
+		"keywords": "link, URL, short, shortening, expand, URL shortening service, Prnla",
     "copyright": {
         "pa": "Copyright",
         "pb": "Site by"
@@ -142,6 +145,11 @@
 		        "p3b": "answer",
 		        "p3c": "quote from",
 		        "p3d": "Pranala is the Indonesian terminology for link or URL."
+		    },
+		    "500": {
+		        "p1a": "If you keep getting this error page, please",
+		        "p1b": "let us know",
+		        "p1c": "."
 		    }
 	  }
 }

@@ -344,11 +344,11 @@ app.get('/:code', function (req, res) {
 
 // error handling
 process.on('uncaughtException', function (error) {
-    throw new Error('Ngantuk, jadi error deh. ' + sys.inspect(error));
+    throw new Error('An unexpected error has occured. ' + sys.inspect(error));
 });
 sys.inherits(NotFound, Error);
 app.get('/500', function (req, res) {
-    throw new Error('Ngantuk, jadi error deh.');
+    throw new Error('An unexpected error has occured.');
 });
 app.get('/*', function (req, res) {
     throw new NotFound();

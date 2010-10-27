@@ -3,7 +3,10 @@
         "code": "id",
         "name": "Bahasa Indonesia"
     },
+    "name": "Prnla [beta] Situs Penyingkat Pranala",
     "label": "Pendekkan pranalanya",
+		"description": "Prnla - Situs Penyingkat Pranala - Pendekkan pranalanya",
+		"keywords": "pranala, pautan, link, URL, pendek, pemendek, singkat, penyingkat, Indonesia, Prnla",
     "copyright": {
         "pa": "Hak Cipta",
         "pb": "Prakarya"
@@ -142,6 +145,11 @@
 		        "p3b": "menjawab",
 		        "p3c": "mengutip dari",
 		        "p3d": "Pranala adalah istilah bahasa Indonesia nya link atau URL."
+		    },
+		    "500": {
+		        "p1a": "Kalau layarnya masih terus-terusan buram, harap ",
+		        "p1b": "hubungi",
+		        "p1c": "kami."
 		    }
 	  }
 }

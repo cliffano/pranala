@@ -26,6 +26,8 @@ vows.describe('URL').addBatch({
 	            assert.isTrue(url.isValid('http://en.wikipedia.org/wiki/Burlesque_%28film%29'));
 	            assert.isTrue(url.isValid('http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=Dresden,+Germany&sll=37.0625,-95.677068&sspn=29.992289,79.013672&ie=UTF8&split=0&ei=EjGLTJO5FYSGkAXIyMVx&hq=&hnear=Dresden,+Saxony,+Germany&ll=51.069458,13.884691&spn=0.001449,0.004823&t=h&z=18'));
 	            assert.isTrue(url.isValid('http://www.temanmacet.com/2010/09/ep-56-sparxup/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+TemanMacet+%28Teman+Macet%29&utm_content=Google+Reader'));
+	            assert.isTrue(url.isValid('http://maps.google.com/maps?f=q&source=s_q&hl=en&geocode=&q=ghibli+museum+japan&sll=35.245619,138.251953&sspn=41.344008,57.744141&g=japan&ie=UTF8&hq=%E4%B8%89%E9%B7%B9%E5%B8%82%E7%AB%8B%E3%82%A2%E3%83%8B%E3%83%A1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E7%BE%8E%E8%A1%93%E9%A4%A8&hnear=Ghibli+Museum&ll=35.695225,139.575205&spn=0.038896,0.056391&z=14&iwloc=A&layer=c&cbll=35.69631,139.569999&panoid=U40MBkDhRtpQ2jnl0o6eGQ&cbp=12,70.21,,0,6.12'));
+	            assert.isTrue(url.isValid('http://www.google.com.au/url?sa=t&source=web&cd=12&ved=0CEQQFjAL&url=http%3A%2F%2Fwww.artgallery.nsw.gov.au%2Fcollection%2Fsearch%2F%3Fartist_id%3Dostade-after-adriaen-van%26filter_by%3Dorigin_id&rct=j&q=van%20ostade&ei=1-bETICrEJHevQP-kenVCA&usg=AFQjCNH4KZCUVBGey_27zG7kTRfGoJInCQ&sig2=IPrMY-AGc8ecstvVhfNGgQ&cad=rja'));
             },
 			'return false for invalid URLs': function() {
 	            assert.isFalse(url.isValid('()'));
