@@ -305,6 +305,18 @@ app.get('/u/pvt', function (req, res) {
     });
 });
 
+// robots.txt
+app.get('/robots.txt', function (req, res) {
+    res.render('robots.html', {
+        layout: false,
+        locals: {
+        },
+        headers: {
+            'content-type': 'text/plain'
+        }
+    });
+});
+
 // sitemap.xml
 app.get('/sitemap.xml', function (req, res) {
     res.render('sitemap.html', {
