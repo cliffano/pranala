@@ -23,7 +23,7 @@
 			  "api": "API",
 			  "contribute": "Kontribusi",
 			  "m": "Mobile",
-			  "takada": "Pranala tidak ditemukan"
+			  "notfound": "Pranala tidak ditemukan"
 	  },
     "nav": {
         "pendekkan": "Pendekkan",
@@ -167,6 +167,9 @@
 		        "p1a": "Kalau layarnya masih terus-terusan buram, harap ",
 		        "p1b": "hubungi",
 		        "p1c": "kami."
+				},
+				"notfound": {
+				    "p": "Pranala pendek yang anda cari tidak dapat ditemukan"
 		    }
 	  }
 }

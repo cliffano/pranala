@@ -23,7 +23,7 @@
 			  "api": "API",
 			  "contribute": "Contribute",
 			  "m": "Mobile",
-			  "takada": "Link not found"
+			  "notfound": "Link not found"
 	  },
     "nav": {
         "pendekkan": "Shorten",
@@ -167,6 +167,9 @@
 		        "p1a": "If you keep getting this error page, please",
 		        "p1b": "let us know",
 		        "p1c": "."
+		    },
+		    "notfound": {
+		        "p": "The short URL you're looking for can not be found"
 		    }
 	  }
 }

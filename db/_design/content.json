@@ -14,7 +14,14 @@
             "map": "function(doc) { if(doc.type === 'url') { emit(doc.url, doc._id); } }"
         },
 		"stat_url": {
-            "map": "function(doc) { if(doc.type === 'stat' && doc.userAgent && !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu)/)) { emit(doc.url, 1); } }",
+            "map": "function(doc) {
+                if(doc.type === 'stat' &&
+                    doc.date &&
+                    doc.userAgent &&
+                    !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu)/)) {
+                    emit(doc.url, 1);
+                }
+            }",
             "reduce": "function(url, count) { return sum(count); }"
         }
     }

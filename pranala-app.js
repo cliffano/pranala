@@ -324,9 +324,11 @@ app.get('/:code', function (req, res) {
     var url,
         callback = function (doc) {
         if (doc === null) {
-		    res.render('takada.html', {
+		    res.render('notfound.html', {
 		        locals: {
-		            page: 'takada'
+                    g: global,
+                    lang: getLang(req),
+		            page: 'notfound'
 		        }
 		    });
         } else {
