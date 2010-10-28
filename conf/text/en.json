@@ -73,6 +73,7 @@
 	          },
 						"firefox": {
 						    "title": "Firefox Add-on",
+						    "url": "https://addons.mozilla.org/en-US/firefox/addon/222509/",
 	              "pa": "You can",
 	              "pb": "download Pranafox",
 	              "pc": "from Mozilla.org .",
