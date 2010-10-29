@@ -20,11 +20,6 @@ div#nav ul, div#nav li {
     font-size: 105%;
     margin-left: 7px;
 }
-div#social {
-    float: right;
-    padding: 0 20px 0 20px;
-    text-align: right;
-}
 div#lang {
     float: left;
     margin-left: 15px;
