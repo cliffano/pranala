@@ -49,7 +49,7 @@ var assetManagerGroups = {
         'route': /\/b\/scripts\/pranala\.js/,
         'path': './public/scripts/',
         'dataType': 'javascript',
-        'files': ['jquery-min-1.4.2.js', 'json2.js', 'clipboard.js', 'global.js']
+        'files': ['jquery-min-1.4.2.js', 'json2.js', 'global.js']
     },
     'css': {
         'route': /\/b\/styles\/pranala\.css/,
