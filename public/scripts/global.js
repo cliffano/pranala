@@ -23,7 +23,8 @@ var encode = function(url, lang) {
                 "ALREADY_SHORTENED": "The link is already shortened",
                 "EMPTY": "Please provide the link to be shortened",
                 "INVALID": "Invalid link",
-                "NOT_FOUND": "The provided short link does not exist in our system"
+                "NOT_FOUND": "The provided short link does not exist in our system",
+                "UNEXPECTED": "Unexpected error occured while trying to shorten the link."
             }
         },
         'id': {
@@ -36,7 +37,8 @@ var encode = function(url, lang) {
                 "ALREADY_SHORTENED": "Lho gan, sepertinya pranalanya sudah dipendekkan ya?",
                 "EMPTY": "Maaf gan, tolong sediakan pranalanya dahulu",
                 "INVALID": "Maaf gan, pranalanya tidak valid",
-                "NOT_FOUND": "Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami"
+                "NOT_FOUND": "Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami",
+                "UNEXPECTED": "Maaf gan, bautnya ada yang lepas."
             }
         }
     };
@@ -64,7 +66,7 @@ var encode = function(url, lang) {
             $('#result').html(text);
         },
         error: function(request, status, message) {
-            $('#result').append('<div class="signal error">!</div> Maaf gan, bautnya ada yang lepas. ' + status + ': ' + message);
+            $('#result').append('<div class="signal error">!</div> ' + texts.error['UNEXPECTED'] + ' ' + status + ': ' + message);
         }
     });
 }
