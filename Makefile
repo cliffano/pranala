@@ -56,6 +56,7 @@ dep:
 	npm install express connect-assetmanager connect-assetmanager-handlers ejs log4js vows nodelint node-inspector
 
 start-dev: clean db-app
+	echo "0" > $(DATA_DIR)/pranala-seq
 	./ghibli.sh start dev
 
 stop:
