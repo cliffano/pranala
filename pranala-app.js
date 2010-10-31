@@ -156,7 +156,7 @@ app.get('/b/:lang/:page', function (req, res) {
 
 // shorten API
 var v0Shorten = function (req, res) {
-    var _url = url.sanitise(decodeURIComponent(req.query.long || req.query.prn || '')),
+    var _url = url.sanitise(req.query.long || req.query.prn || ''),
         error = url.validate(_url),
         callback, result;
     if (req.query.format === 'json') {
