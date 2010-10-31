@@ -41,7 +41,11 @@
 	          "loading": "The elves are hard at work..."
 	      },
 	      "statistic": {
-	          "p": "Most clicked links this week:"
+	          "p": "Most clicked links.",
+	          "day": "Last 24 hours",
+	          "week": "Last 7 days",
+	          "month": "Last 30 days",
+	          "all": "All time"
 	      },
 	      "howitworks": {
 	          "p1a": "The way",

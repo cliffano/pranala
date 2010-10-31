@@ -125,18 +125,21 @@ app.get('/', function (req, res) {
 
 // statistic page
 app.get('/b/:lang/statistic', function (req, res) {
+    var type = req.query.type || 'week';
+    console.log('type:' + type);
 	var callback = function (docs) {
-		var sys = require('sys');
 	    res.render('statistic.html', {
 	        locals: {
 		        g: global,
 		        lang: req.params.lang,
 	            page: 'statistic',
-	            docs: docs
+	            docs: docs,
+	            type: type,
+	            types: [ 'week', 'month', 'all', 'day' ]
 	        }
 	    });
 	};
-    pranala.popular(callback);
+    pranala.popular(type, callback);
 });
 
 // brochure pages
@@ -358,7 +361,7 @@ app.get('/:code', function (req, res) {
 
 // error handling
 process.on('uncaughtException', function (error) {
-    throw new Error('An unexpected error has occured. ' + sys.inspect(error));
+    logger.error('An unexpected error has occured. ' + sys.inspect(error));
 });
 sys.inherits(NotFound, Error);
 app.get('/500', function (req, res) {

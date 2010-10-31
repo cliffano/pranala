@@ -158,11 +158,11 @@ div#ft {
 div.pane {
     background-color: #f5f5f1;
 }
-ul#result_action, ul#result_action li {
+ul#result_action, ul#result_action li, ul#statistic, ul#statistic li {
     display: inline;
     padding: 0;
 }
-ul#result_action li {
+ul#result_action li, ul#statistic li {
     margin-left: 10px;
 }
 span.brand {

@@ -5,10 +5,19 @@
     </div>
     <p>
 	    <%= g.p.getText(lang, 'page.statistic.p') %>
+	    <ul id="statistic">
+      <% for (var i = 0, ln = types.length; i < ln; i++) { %>
+	      <% if (types[i] !== type) { %>
+          <li><a href="/b/<%= lang %>/statistic?type=<%= types[i] %>"><%= g.p.getText(lang, 'page.statistic.' + types[i]) %></a></li>
+        <% } else { %>
+          <li><%= g.p.getText(lang, 'page.statistic.' + types[i]) %></li>
+        <% } %>
+      <% } %>
+      </ul>
     </p>
     <p>
       <table>
-	    <% for (var i = 0, max = 10, ln = docs.length; i < max && i < ln; ++i) { %>
+	    <% for (var i = 0, max = 20, ln = docs.length; i < max && i < ln; ++i) { %>
 		  <tr>
 	        <td class="count"><%= docs[i].value %></td>
 	        <td class="url"><a href="<%= docs[i].key %>" rel="nofollow" onclick="openExternal('<%= docs[i].key %>');"><%= docs[i].key %></a></td>

@@ -41,7 +41,11 @@
 	          "loading": "Kurcacinya sedang sibuk bekerja..."
 	      },
 	      "statistic": {
-	          "p": "Pranala yang paling banyak di klik dalam satu minggu terakhir ini:"
+	          "p": "Pranala terpopuler.",
+	          "day": "24 jam terakhir",
+	          "week": "7 hari terakhir",
+	          "month": "30 hari terakhir",
+	          "all": "Selamanya"
 	      },
 	      "howitworks": {
 	          "p1a": "Cara kerja",
