@@ -133,6 +133,13 @@
 	              "empty": "Empty text response.",
 	              "success": "Success",
 	              "failure": "Failure"
+	          },
+	          "message": {
+	              "p": "json response includes a message property when there's an error.",
+	              "alreadyshortened": "The link is identified as shortened URLs from a URL shortener service",
+	              "empty": "Empty link is not allowed",
+	              "invalid": "The link is invalid",
+	              "notfound": "The provided short URL can not be found in Prnla"
 	          }
 	      },
 	      "contribute": {

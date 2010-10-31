@@ -133,6 +133,13 @@
 	              "empty": "Respons teks kosong.",
 	              "success": "Sukses",
 	              "failure": "Gagal"
+	          },
+	          "message": {
+	              "p": "respons json memuat properti message di saat ada error.",
+	              "alreadyshortened": "Pranala yang disediakan sudah dipendekkan oleh situs penyingkat pranala",
+	              "empty": "Pranala kosong tidak diperbolehkan",
+	              "invalid": "Pranala yang disediakan invalid",
+	              "notfound": "Pranala yang disediakan tidak ditemukan di Prnla"
 	          }
 	      },
 	      "contribute": {
