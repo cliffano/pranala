@@ -10,14 +10,14 @@
 	    "stat": {
 	        "map": "function(doc) { if(doc.type === 'stat') { emit(doc.url, doc); } }"
 	    },
-        "url_code": {
-            "map": "function(doc) { if(doc.type === 'url') { emit(doc.url, doc._id); } }"
-        },
+      "url_code": {
+          "map": "function(doc) { if(doc.type === 'url') { emit(doc.url, doc._id); } }"
+      },
 		"stat_url": {
             "map": "function(doc) {
                 if(doc.type === 'stat' &&
-                    doc.date &&
                     doc.userAgent &&
+                    (new Date().getTime() - new Date(doc.date.replace(/T.*Z/g, '').replace(/-/g, '/')).getTime() < 604800000) &&
                     !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu)/)) {
                     emit(doc.url, 1);
                 }
