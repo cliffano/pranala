@@ -333,6 +333,10 @@ app.get('/sitemap.xml', function (req, res) {
     });
 });
 
+app.get('/:code/qr', function (req, res) {
+    res.redirect('http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=' + encodeURIComponent(appUrl + '/' + req.params.code), 301);
+});
+
 // decode a short URL, then redirect to long URL
 app.get('/:code', function (req, res) {
     var url,

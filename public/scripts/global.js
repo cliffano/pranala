@@ -17,7 +17,8 @@ var encode = function(url, lang) {
             "label": "Short link",
             "action": {
                 "visit": "Visit",
-                "tweet": "Tweet"  
+                "tweet": "Tweet",
+                "qr": "QR Code"  
             },
             "error": {
                 "ALREADY_SHORTENED": "The link is already shortened",
@@ -31,7 +32,8 @@ var encode = function(url, lang) {
             "label": "Pranala pendeknya",
             "action": {
                 "visit": "Kunjungi",
-                "tweet": "Twit"  
+                "tweet": "Twit",
+                "qr": "Kode QR"
             },
             "error": {
                 "ALREADY_SHORTENED": "Lho gan, sepertinya pranalanya sudah dipendekkan ya?",
@@ -59,6 +61,7 @@ var encode = function(url, lang) {
                     + '<ul id="result_action">'
                     + '<li><a href="' + result.short + '">' + texts.action.visit + '</a></li>'
                     + '<li><a href="http://twitter.com/home?status=' + result.short + '">' + texts.action.tweet + '</a></li>'
+                    + '<li><a href="' + result.short + '/qr">' + texts.action.qr + '</a></li>'
                     + '</ul>';
             } else {
                 text = '<div class="signal error">!</div> ' + texts.error[result.message];
