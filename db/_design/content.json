@@ -1,5 +1,6 @@
 {
     "_id": "_design/content",
+   "_rev": "9-3c6f573473fc8e94644e1ab59eea68c5",
     "views": {
 	    "url": {
 	        "map": "function(doc) { if(doc.type === 'url') { emit(doc.url, doc); } }"
@@ -14,46 +15,19 @@
           "map": "function(doc) { if(doc.type === 'url') { emit(doc.url, doc._id); } }"
       },
 			"stat_url_day": {
-	            "map": "function(doc) {
-	                if(doc.type === 'stat' &&
-	                    doc.userAgent &&
-	                    (new Date().getTime() - new Date(doc.date.replace(/T.*Z/g, '').replace(/-/g, '/')).getTime() < 86400000) &&
-	                    !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu)/)) {
-	                    emit(doc.url, 1);
-	                }
-	            }",
+	            "map": "function(doc) { if(doc.type === 'stat' && doc.userAgent && (new Date().getTime() - new Date(doc.date.replace(/T.*Z/g, '').replace(/-/g, '/')).getTime() < 86400000) && !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu|NjuiceBot)/)) { emit(doc.url, 1); } }",
 	            "reduce": "function(url, count) { return sum(count); }"
 	    },
 			"stat_url_week": {
-            "map": "function(doc) {
-                if(doc.type === 'stat' &&
-                    doc.userAgent &&
-                    (new Date().getTime() - new Date(doc.date.replace(/T.*Z/g, '').replace(/-/g, '/')).getTime() < 604800000) &&
-                    !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu)/)) {
-                    emit(doc.url, 1);
-                }
-            }",
+            "map": "function(doc) { if(doc.type === 'stat' && doc.userAgent && (new Date().getTime() - new Date(doc.date.replace(/T.*Z/g, '').replace(/-/g, '/')).getTime() < 604800000) && !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu|NjuiceBot)/)) { emit(doc.url, 1); } }",
             "reduce": "function(url, count) { return sum(count); }"
         },
 				"stat_url_month": {
-	            "map": "function(doc) {
-	                if(doc.type === 'stat' &&
-	                    doc.userAgent &&
-	                    (new Date().getTime() - new Date(doc.date.replace(/T.*Z/g, '').replace(/-/g, '/')).getTime() < 2592000000) &&
-	                    !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu)/)) {
-	                    emit(doc.url, 1);
-	                }
-	            }",
+	            "map": "function(doc) { if(doc.type === 'stat' && doc.userAgent && (new Date().getTime() - new Date(doc.date.replace(/T.*Z/g, '').replace(/-/g, '/')).getTime() < 2592000000) && !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu|NjuiceBot)/)) { emit(doc.url, 1); } }",
 	            "reduce": "function(url, count) { return sum(count); }"
 	        },
 				"stat_url_all": {
-		            "map": "function(doc) {
-		                if(doc.type === 'stat' &&
-		                    doc.userAgent &&
-		                    !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu)/)) {
-		                    emit(doc.url, 1);
-		                }
-		            }",
+	            "map": "function(doc) { if(doc.type === 'stat' && doc.userAgent && !doc.userAgent.match(/(Googlebot|Yahoo! Slurp|OneRiot|mxbot|Python-urllib|MetaURI API|TweetmemeBot|ellerdale.com|topsy.com|Baidu|NjuiceBot)/)) { emit(doc.url, 1); } }",
 		            "reduce": "function(url, count) { return sum(count); }"
 		    }
     }
