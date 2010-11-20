@@ -1,6 +1,5 @@
 {
     "_id": "_design/content",
-   "_rev": "9-3c6f573473fc8e94644e1ab59eea68c5",
     "views": {
 	    "url": {
 	        "map": "function(doc) { if(doc.type === 'url') { emit(doc.url, doc); } }"
