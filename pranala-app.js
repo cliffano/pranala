@@ -126,7 +126,6 @@ app.get('/', function (req, res) {
 // hotlinks page
 app.get('/b/:lang/hotlinks', function (req, res) {
     var type = req.query.type || 'week';
-    console.log('type:' + type);
 	var callback = function (docs) {
 	    res.render('hotlinks.html', {
 	        locals: {
