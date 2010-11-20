@@ -23,7 +23,8 @@
 			  "api": "API",
 			  "contribute": "Contribute",
 			  "m": "Mobile",
-			  "notfound": "Link not found"
+			  "notfound": "Link not found",
+			  "qr": "QR Code"
 	  },
     "nav": {
         "pendekkan": "Shorten",

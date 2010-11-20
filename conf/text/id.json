@@ -23,7 +23,8 @@
 			  "api": "API",
 			  "contribute": "Kontribusi",
 			  "m": "Mobile",
-			  "notfound": "Pranala tidak ditemukan"
+			  "notfound": "Pranala tidak ditemukan",
+			  "qr": "Kode QR"
 	  },
     "nav": {
         "pendekkan": "Pendekkan",

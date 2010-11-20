@@ -334,7 +334,15 @@ app.get('/sitemap.xml', function (req, res) {
 });
 
 app.get('/:code/qr', function (req, res) {
-    res.redirect('http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=' + encodeURIComponent(appUrl + '/' + req.params.code), 301);
+    res.render('qr.html', {
+        layout: false,
+        locals: {
+            g: global,
+            lang: getLang(req),
+            page: 'qr',
+            url: 'http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=' + encodeURIComponent(appUrl + '/' + req.params.code)
+        }
+    });
 });
 
 // decode a short URL, then redirect to long URL
