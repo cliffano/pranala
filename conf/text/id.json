@@ -16,7 +16,7 @@
 			  "500": "Kesalahan bukan pada pesawat televisi anda. Harap dicoba sesaat lagi.",
 			  "contact": "Hubungi kami",
 			  "home": "Pendekkan pranalanya",
-			  "statistic": "Statistik",
+			  "hotlinks": "Populer",
 			  "howitworks": "Cara kerja",
 			  "usage": "Kegunaan",
 			  "tools": "Alat",
@@ -27,7 +27,7 @@
 	  },
     "nav": {
         "pendekkan": "Pendekkan",
-			  "statistic": "Statistik",
+			  "hotlinks": "Populer",
 			  "howitworks": "Cara kerja",
 			  "usage": "Kegunaan",
 			  "tools": "Alat",
@@ -40,7 +40,7 @@
 	          "button": "Pendekkan",
 	          "loading": "Kurcacinya sedang sibuk bekerja..."
 	      },
-	      "statistic": {
+	      "hotlinks": {
 	          "p": "Pranala terpopuler.",
 	          "day": "24 jam terakhir",
 	          "week": "7 hari terakhir",

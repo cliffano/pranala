@@ -23,7 +23,7 @@ var logger = log4js.getLogger('app'),
         env: env,
         uniqueId: (new Date()).getTime(),
         p: pranala,
-        nav: [ 'statistic', 'howitworks', 'usage', 'tools', 'api', 'contribute', 'contact' ]
+        nav: [ 'hotlinks', 'tools', 'api', 'contact' ]
     };
     
 log4js.addAppender(log4js.fileAppender(logFile), 'app');
@@ -123,23 +123,23 @@ app.get('/', function (req, res) {
     });
 });
 
-// statistic page
-app.get('/b/:lang/statistic', function (req, res) {
+// hotlinks page
+app.get('/b/:lang/hotlinks', function (req, res) {
     var type = req.query.type || 'week';
     console.log('type:' + type);
 	var callback = function (docs) {
-	    res.render('statistic.html', {
+	    res.render('hotlinks.html', {
 	        locals: {
 		        g: global,
 		        lang: req.params.lang,
-	            page: 'statistic',
+	            page: 'hotlinks',
 	            docs: docs,
 	            type: type,
 	            types: [ 'week', 'month', 'all', 'day' ]
 	        }
 	    });
 	};
-    pranala.popular(type, callback);
+    pranala.hotlinks(type, callback);
 });
 
 // brochure pages

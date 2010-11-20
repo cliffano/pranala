@@ -1,16 +1,16 @@
 <div class="content pane">
   <div class="text">
     <div class="title">
-      <h3><%= g.p.getText(lang, 'nav.statistic') %></h3>
+      <h3><%= g.p.getText(lang, 'nav.hotlinks') %></h3>
     </div>
     <p>
-	    <%= g.p.getText(lang, 'page.statistic.p') %>
-	    <ul id="statistic">
+	    <%= g.p.getText(lang, 'page.hotlinks.p') %>
+	    <ul id="hotlinks">
       <% for (var i = 0, ln = types.length; i < ln; i++) { %>
 	      <% if (types[i] !== type) { %>
-          <li><a href="/b/<%= lang %>/statistic?type=<%= types[i] %>"><%= g.p.getText(lang, 'page.statistic.' + types[i]) %></a></li>
+          <li><a href="/b/<%= lang %>/hotlinks?type=<%= types[i] %>"><%= g.p.getText(lang, 'page.hotlinks.' + types[i]) %></a></li>
         <% } else { %>
-          <li><%= g.p.getText(lang, 'page.statistic.' + types[i]) %></li>
+          <li><%= g.p.getText(lang, 'page.hotlinks.' + types[i]) %></li>
         <% } %>
       <% } %>
       </ul>

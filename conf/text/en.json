@@ -16,7 +16,7 @@
 			  "500": "Server error",
 			  "contact": "Contact",
 			  "home": "Shorten the link",
-			  "statistic": "Statistic",
+			  "hotlinks": "Popular",
 			  "howitworks": "How it works",
 			  "usage": "Usage",
 			  "tools": "Tools",
@@ -27,7 +27,7 @@
 	  },
     "nav": {
         "pendekkan": "Shorten",
-			  "statistic": "Statistic",
+			  "hotlinks": "Hotlinks",
 			  "howitworks": "How it works",
 			  "usage": "Usage",
 			  "tools": "Tools",
@@ -40,7 +40,7 @@
 	          "button": "Shorten",
 	          "loading": "The elves are hard at work..."
 	      },
-	      "statistic": {
+	      "hotlinks": {
 	          "p": "Most clicked links.",
 	          "day": "Last 24 hours",
 	          "week": "Last 7 days",
