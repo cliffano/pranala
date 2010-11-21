@@ -6,7 +6,7 @@
     <p>
 	    <%= g.p.getText(lang, 'page.hotlinks.p') %>
 	    <ul id="hotlinks">
-      <% for (var i = 0, ln = types.length; i < ln; i++) { %>
+      <% for (var i = 0, ln = types.length; i < ln; i += 1) { %>
 	      <% if (types[i] !== type) { %>
           <li><a href="/b/<%= lang %>/hotlinks?type=<%= types[i] %>"><%= g.p.getText(lang, 'page.hotlinks.' + types[i]) %></a></li>
         <% } else { %>
@@ -17,7 +17,7 @@
     </p>
     <p>
       <table>
-	    <% for (var i = 0, max = 20, ln = docs.length; i < max && i < ln; ++i) { %>
+	    <% for (var i = 0, ln = docs.length; i < ln; i += 1) { %>
 		  <tr>
 	        <td class="count"><%= docs[i].value %></td>
 	        <td class="url"><a href="<%= docs[i].key %>" rel="nofollow" onclick="openExternal('<%= docs[i].key %>');"><%= docs[i].key %></a></td>
