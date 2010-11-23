@@ -1,27 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title><%= g.p.getText(lang, 'title.' + page) %> - <%= g.p.getText(lang, 'name') %></title>
-  <meta name="description" content="<%= g.p.getText(lang, 'description') %>"/>
-  <meta name="keywords" content="<%= g.p.getText(lang, 'keywords') %>"/>
-  <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-  <link rel="shortcut icon" href="/b/images/favicon.ico"/>
-  <script src="/b/scripts/pranala.js?<%= g.uniqueId %>"></script>
-</head>
-<body style="text-align: center;">
-	<img src="<%= url %>"/>
-  <% if (g.env === 'prd') { %>
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-247374-10']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
-  <% } %>
-</body>
-</html>
+<div class="content pane">
+  <div class="text">
+    <div class="title">
+      <h3><%= g.p.getText(lang, 'title.qr') %></h3>
+    </div>
+    <p>
+      <img src="<%= qrUrl %>"/><br/>
+	    <a href="<%= shortUrl %>"><%= shortUrl %></a>
+	  </p>
+  </div>
+</div>

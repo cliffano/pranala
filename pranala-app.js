@@ -125,8 +125,8 @@ app.get('/', function (req, res) {
 
 // hotlinks page
 app.get('/b/:lang/hotlinks', function (req, res) {
-    var type = req.query.type || 'week';
-	var callback = function (docs) {
+    var type = req.query.type || 'week',
+	    callback = function (docs) {
 	    res.render('hotlinks.html', {
 	        locals: {
 		        g: global,
@@ -334,13 +334,14 @@ app.get('/sitemap.xml', function (req, res) {
 });
 
 app.get('/:code/qr', function (req, res) {
+    var shortUrl = appUrl + '/' + req.params.code;
     res.render('qr.html', {
-        layout: false,
         locals: {
             g: global,
             lang: getLang(req),
             page: 'qr',
-            url: 'http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=' + encodeURIComponent(appUrl + '/' + req.params.code)
+            shortUrl: shortUrl,
+            qrUrl: 'http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=' + encodeURIComponent(shortUrl)
         }
     });
 });
