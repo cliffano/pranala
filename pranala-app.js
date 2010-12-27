@@ -1,16 +1,17 @@
 var assetManager = require('connect-assetmanager'),
     assetHandler = require('connect-assetmanager-handlers'),
-    conf = require('./conf/conf').conf,
     connect = require('connect'),
     express = require('express'),
+    fs = require('fs'),
     log4js = require('log4js'),
+    conf = JSON.parse(fs.readFileSync('./conf.json', 'utf-8'))
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
     url = require('./lib/pranala/url');
 
 var logger = log4js.getLogger('app'),
     env = process.env.ENV,
-    appConf = conf.env[env],
+    appConf = conf,
     appUrl = appConf.appUrl,
     appPort = appConf.appPort,
     dbUrl = appConf.dbUrl,
