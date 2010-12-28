@@ -1,16 +1,13 @@
-var assert = require('assert');
-var fs = require('fs');
-var path = require('path');
-var Sequence = require('../../lib/pranala/sequence').Sequence;
-var vows = require('vows');
-
-var dir = 'build/test';
+var assert = require('assert'),
+    fs = require('fs'),
+    Sequence = require('../../lib/pranala/sequence').Sequence,
+    vows = require('vows');
 
 vows.describe('Sequence').addBatch({
     'Sequence': {
         'with existing file': {
             topic: function() {
-	            this.file = path.join(dir, 'sequence-exist.txt');
+	            this.file = 'build/test/sequence-exist.txt';
 	            fs.writeFileSync(this.file, '888');
 	            return new Sequence(this.file);
 	        },

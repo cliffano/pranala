@@ -1,0 +1,10 @@
+{
+    "appName": "pranala",
+    "appPort": "28100",
+    "appUrl": "http://prn.la",
+    "dbUrl": "http://localhost:5984",
+    "dbName": "pranala",
+    "sequenceFile": "/var/www/data/pranala-seq",
+    "logFile": "/var/www/logs/pranala.log",
+    "logLevel": "INFO"
+}
