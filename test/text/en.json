@@ -4,7 +4,7 @@
         "name": "English"
     },
     "title": {
-			  "without_param": "Fried rice",
-			  "with_param": "{0} wants to eat {1} plates of fried rice"
-	  }
+        "without_param": "Fried rice",
+        "with_param": "{0} wants to eat {1} plates of fried rice"
+    }
 }

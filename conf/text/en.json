@@ -1,188 +1,188 @@
 {
-		"meta": {
-		    "code": "en",
-		    "name": "English"
-		},
+    "meta": {
+        "code": "en",
+        "name": "English"
+    },
     "name": "Prnla [beta] URL Shortening Service",
     "label": "Shorten the link",
-		"description": "Prnla - URL Shortening Service - Shorten the link",
-		"keywords": "link, URL, short, shortening, expand, URL shortening service, Prnla",
+    "description": "Prnla - URL Shortening Service - Shorten the link",
+    "keywords": "link, URL, short, shortening, expand, URL shortening service, Prnla",
     "copyright": {
         "pa": "Copyright",
         "pb": "Site by"
     },
     "title": {
-			  "404": "Page not found",
-			  "500": "Server error",
-			  "contact": "Contact",
-			  "home": "Shorten the link",
-			  "hotlinks": "Popular",
-			  "howitworks": "How it works",
-			  "usage": "Usage",
-			  "tools": "Tools",
-			  "api": "API",
-			  "contribute": "Contribute",
-			  "m": "Mobile",
-			  "notfound": "Link not found",
-			  "qr": "QR Code"
-	  },
+        "404": "Page not found",
+        "500": "Server error",
+        "contact": "Contact",
+        "home": "Shorten the link",
+        "hotlinks": "Popular",
+        "howitworks": "How it works",
+        "usage": "Usage",
+        "tools": "Tools",
+        "api": "API",
+        "contribute": "Contribute",
+        "m": "Mobile",
+        "notfound": "Link not found",
+        "qr": "QR Code"
+    },
     "nav": {
         "pendekkan": "Shorten",
-			  "hotlinks": "Hotlinks",
-			  "howitworks": "How it works",
-			  "usage": "Usage",
-			  "tools": "Tools",
-			  "api": "API",
-			  "contribute": "Contribute",
-			  "contact": "Contact"
-	  },
-	  "page": {
-	      "home": {
-	          "button": "Shorten",
-	          "loading": "The elves are hard at work..."
-	      },
-	      "hotlinks": {
-	          "p": "Most clicked links.",
-	          "day": "Last 24 hours",
-	          "week": "Last 7 days",
-	          "month": "Last 30 days",
-	          "all": "All time"
-	      },
-	      "howitworks": {
-	          "p1a": "The way",
-	          "p1b": "works is very simple.",
-	          "p2": "Type in the long link,",
-	          "p3a": "click the button",
-	          "p3b": ", then the short link will be displayed.",
-	          "p4": "Easy, right?",
-	          "longlink": "Long link",
-	          "shortlink": "Short link"
-	      },
-	      "usage": {
-	          "p1a": "Here's an example usage scenario of",
-	          "p1b": "(100% made up)...",
-	          "p2": "Imagine Indonesia as the winner of World Cup 2058.",
-	          "p3": "Now, this lengthy link with 72 characters,",
-	          "p4": "can be shortened into,",
-	          "p5": "only 17 characters. You're saving 72 - 17 = 55 characters, which you can use for the rest of the message itself.",
-	          "example": {
-	              "partial": "@friend http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058 Finally, stayed up all night watching the final game, accompan",
-	              "complete": "@friend http://prn.la/g0L Finally, stayed up all night watching the final game, accompanied by peanuts and beer."
-	          }
-	      },
-	      "tools": {
-	          "bookmarklet": {
-	              "title": "Bookmarklet",
-	              "pa": "Bookmark or drag this link",
-	              "pb": "to your browser toolbar."
-	          },
-						"firefox": {
-						    "title": "Firefox Add-on",
-						    "url": "https://addons.mozilla.org/en-US/firefox/addon/222509/",
-	              "pa": "You can",
-	              "pb": "download Pranafox",
-	              "pc": "from Mozilla.org .",
-	              "pd": "Pranafox is a Firefox Add-on which adds a right click menu option to shorten the selected URL using"
-	          },
-						"twitteriphone": {
-						    "title": "Twitter iPhone",
-	              "pa": "You can use",
-	              "pb": "as a custom URL shortener on",
-	              "pc": "Open",
-	              "pd": ", select",
-	              "pe": ", then",
-	              "pf": ", then",
-	              "pg": ", and type in"
-	          },
-						"chrome": {
-						    "title": "Chrome Extension",
-	              "pa": "Google Chrome users can use",
-	              "pb": "Similar to Pranafox, Pranachrome which also adds a right click menu option to shorten the selected URL using"
-	          },
-						"wordpress": {
-						    "title": "WordPress Plugin",
-	              "pa": "If you have a WordPress blog,",
-	              "pb": "can be used to shorten the URL of each blog post using feature"
-	          },
-						"tweetdeck": {
-						    "title": "TweetDeck",
-	              "pa": "You can also use",
-	              "pb": "as a custom URL shortener on",
-	              "pc": "Open",
-	              "pd": ", then select",
-	              "pe": "from the left menu, then select",
-	              "pf": "on",
-	              "pg": "then type in"
-	          },
-						"mobile": {
-						    "title": "Mobile Pranala",
-	              "p": "A very simple version of this site can be accessed on"
-	          }
-	      },
-	      "api": {
-	          "p1a": "If you'd like to use our API, please let us know via e-mail",
-	          "p1b": "We'll let you know if there's any modification to the API",
-	          "section": {
-	              "example": "Example",
-	              "param": "Parameters",
-	              "response": "Response"
-	          },
-	          "term": {
-	              "long": "long URL to be shortened",
-	              "short": "short URL to be expanded",
-	              "format": "response format, e.g.:",
-	              "empty": "Empty text response.",
-	              "success": "Success",
-	              "failure": "Failure"
-	          },
-	          "message": {
-	              "p": "json response includes a message property when there's an error.",
-	              "alreadyshortened": "The link is identified as shortened URLs from a URL shortener service",
-	              "empty": "Empty link is not allowed",
-	              "invalid": "The link is invalid",
-	              "notfound": "The provided short URL can not be found in Prnla"
-	          }
-	      },
-	      "contribute": {
-	          "promosi": {
-	              "title": "Spread the word",
-	              "p": "Tell your friends, family, neighbours, all about this web site. Do you have a blog or a Twitter account? please mention our site. Thanks."
-	          },
-	          "bug": {
-	              "title": "Bug",
-	              "p1": "If you find any bug or error, you can let us know by",
-	              "p2": "opening an issue",
-	              "p3": "at Google Code."
-	          },
-	          "perangkatlunak": {
-	              "title": "Development",
-	              "p1": "If you're a developer, you can help us by writing a client library for our",
-	              "p2": "API",
-	              "p3": "in various programming languages (PHP, Ruby, Perl, Python, Java, etc)."
-	          },
-	          "kampanye": {
-	              "title": "Poster",
-	              "p1": "And for those who dare, you can print this poster in large size and stick it in public places. This is a picture of Susilo Bambang Yudhoyono, Indonesia's president and arguably the most powerful person on the archipelago.",
-	              "p2": "Susilo Bambang Yudhoyono supports link shortening.",
-	              "p3": "Any creative ideas and suggestions? Send them to"
-	          }
-	      },
-		    "contact": {
-		        "p1a": "If you'd like to comment, ask a question, criticise, or just say hi, we can be contacted via e-mail",
-		        "p1b": "or Twitter",
-		        "p2": "And before you ask &quot;WTH is pranala?&quot;",
-		        "p3a": "We",
-		        "p3b": "answer",
-		        "p3c": "quote from",
-		        "p3d": "Pranala is the Indonesian terminology for link or URL."
-		    },
-		    "500": {
-		        "p1a": "If you keep getting this error page, please",
-		        "p1b": "let us know",
-		        "p1c": "."
-		    },
-		    "notfound": {
-		        "p": "The short URL you're looking for can not be found"
-		    }
-	  }
+            "hotlinks": "Hotlinks",
+            "howitworks": "How it works",
+            "usage": "Usage",
+            "tools": "Tools",
+            "api": "API",
+            "contribute": "Contribute",
+            "contact": "Contact"
+        },
+        "page": {
+            "home": {
+            "button": "Shorten",
+            "loading": "The elves are hard at work..."
+        },
+        "hotlinks": {
+            "p": "Most clicked links.",
+            "day": "Last 24 hours",
+            "week": "Last 7 days",
+            "month": "Last 30 days",
+            "all": "All time"
+        },
+        "howitworks": {
+            "p1a": "The way",
+            "p1b": "works is very simple.",
+            "p2": "Type in the long link,",
+            "p3a": "click the button",
+            "p3b": ", then the short link will be displayed.",
+            "p4": "Easy, right?",
+            "longlink": "Long link",
+            "shortlink": "Short link"
+        },
+        "usage": {
+            "p1a": "Here's an example usage scenario of",
+            "p1b": "(100% made up)...",
+            "p2": "Imagine Indonesia as the winner of World Cup 2058.",
+            "p3": "Now, this lengthy link with 72 characters,",
+            "p4": "can be shortened into,",
+            "p5": "only 17 characters. You're saving 72 - 17 = 55 characters, which you can use for the rest of the message itself.",
+            "example": {
+                "partial": "@friend http://beritakita.co.id/terkini/indonesia-akhirnya-juara-piala-dunia-2058 Finally, stayed up all night watching the final game, accompan",
+                "complete": "@friend http://prn.la/g0L Finally, stayed up all night watching the final game, accompanied by peanuts and beer."
+            }
+        },
+        "tools": {
+            "bookmarklet": {
+                "title": "Bookmarklet",
+                "pa": "Bookmark or drag this link",
+                "pb": "to your browser toolbar."
+            },
+            "firefox": {
+                "title": "Firefox Add-on",
+                "url": "https://addons.mozilla.org/en-US/firefox/addon/222509/",
+                "pa": "You can",
+                "pb": "download Pranafox",
+                "pc": "from Mozilla.org .",
+                "pd": "Pranafox is a Firefox Add-on which adds a right click menu option to shorten the selected URL using"
+            },
+            "twitteriphone": {
+                "title": "Twitter iPhone",
+                "pa": "You can use",
+                "pb": "as a custom URL shortener on",
+                "pc": "Open",
+                "pd": ", select",
+                "pe": ", then",
+                "pf": ", then",
+                "pg": ", and type in"
+            },
+            "chrome": {
+                "title": "Chrome Extension",
+                "pa": "Google Chrome users can use",
+                "pb": "Similar to Pranafox, Pranachrome which also adds a right click menu option to shorten the selected URL using"
+            },
+            "wordpress": {
+                "title": "WordPress Plugin",
+                "pa": "If you have a WordPress blog,",
+                "pb": "can be used to shorten the URL of each blog post using feature"
+            },
+            "tweetdeck": {
+                "title": "TweetDeck",
+                "pa": "You can also use",
+                "pb": "as a custom URL shortener on",
+                "pc": "Open",
+                "pd": ", then select",
+                "pe": "from the left menu, then select",
+                "pf": "on",
+                "pg": "then type in"
+            },
+            "mobile": {
+                "title": "Mobile Pranala",
+                "p": "A very simple version of this site can be accessed on"
+            }
+        },
+        "api": {
+            "p1a": "If you'd like to use our API, please let us know via e-mail",
+            "p1b": "We'll let you know if there's any modification to the API",
+            "section": {
+                "example": "Example",
+                "param": "Parameters",
+                "response": "Response"
+            },
+            "term": {
+                "long": "long URL to be shortened",
+                "short": "short URL to be expanded",
+                "format": "response format, e.g.:",
+                "empty": "Empty text response.",
+                "success": "Success",
+                "failure": "Failure"
+            },
+            "message": {
+                "p": "json response includes a message property when there's an error.",
+                "alreadyshortened": "The link is identified as shortened URLs from a URL shortener service",
+                "empty": "Empty link is not allowed",
+                "invalid": "The link is invalid",
+                "notfound": "The provided short URL can not be found in Prnla"
+            }
+        },
+        "contribute": {
+            "promosi": {
+                "title": "Spread the word",
+                "p": "Tell your friends, family, neighbours, all about this web site. Do you have a blog or a Twitter account? please mention our site. Thanks."
+            },
+            "bug": {
+                "title": "Bug",
+                "p1": "If you find any bug or error, you can let us know by",
+                "p2": "opening an issue",
+                "p3": "at Google Code."
+            },
+            "perangkatlunak": {
+                "title": "Development",
+                "p1": "If you're a developer, you can help us by writing a client library for our",
+                "p2": "API",
+                "p3": "in various programming languages (PHP, Ruby, Perl, Python, Java, etc)."
+            },
+            "kampanye": {
+                "title": "Poster",
+                "p1": "And for those who dare, you can print this poster in large size and stick it in public places. This is a picture of Susilo Bambang Yudhoyono, Indonesia's president and arguably the most powerful person on the archipelago.",
+                "p2": "Susilo Bambang Yudhoyono supports link shortening.",
+                "p3": "Any creative ideas and suggestions? Send them to"
+            }
+        },
+        "contact": {
+            "p1a": "If you'd like to comment, ask a question, criticise, or just say hi, we can be contacted via e-mail",
+            "p1b": "or Twitter",
+            "p2": "And before you ask &quot;WTH is pranala?&quot;",
+            "p3a": "We",
+            "p3b": "answer",
+            "p3c": "quote from",
+            "p3d": "Pranala is the Indonesian terminology for link or URL."
+        },
+        "500": {
+            "p1a": "If you keep getting this error page, please",
+            "p1b": "let us know",
+            "p1c": "."
+        },
+        "notfound": {
+            "p": "The short URL you're looking for can not be found"
+        }
+    }
 }
