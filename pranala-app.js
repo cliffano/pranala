@@ -4,7 +4,7 @@ var assetManager = require('connect-assetmanager'),
     express = require('express'),
     fs = require('fs'),
     log4js = require('log4js'),
-    conf = JSON.parse(fs.readFileSync('./conf.json', 'utf-8'))
+    conf = JSON.parse(fs.readFileSync('./conf.json', 'utf-8')),
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
     url = require('./lib/pranala/url');
@@ -13,7 +13,6 @@ var logger = log4js.getLogger('app'),
     env = process.env.ENV,
     appConf = conf,
     appUrl = appConf.appUrl,
-    appPort = appConf.appPort,
     dbUrl = appConf.dbUrl,
     dbName = appConf.dbName,
     sequenceFile = appConf.sequenceFile,
@@ -27,8 +26,8 @@ var logger = log4js.getLogger('app'),
         nav: [ 'hotlinks', 'tools', 'api', 'contact' ]
     };
     
-log4js.addAppender(log4js.fileAppender(logFile), 'app');
-logger.setLevel(logLevel);
+log4js.addAppender(log4js.fileAppender(conf.logFile), 'app');
+logger.setLevel(conf.logLevel);
 
 var app = express.createServer();
 var getLang = function (req) {
@@ -384,7 +383,7 @@ app.get('/*', function (req, res) {
     throw new NotFound();
 });
 
-logger.info('Starting application in ' + env + ' environment on port ' + appPort);
-app.listen(appPort);
+logger.info('Starting ' + conf.appName + ' on port ' + conf.appPort + ' in env ' + process.env.ENV);
+app.listen(conf.appPort);
 
 exports.logger = logger;
