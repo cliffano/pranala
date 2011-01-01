@@ -1,6 +1,6 @@
-var assert = require('assert');
-var base62 = require('../../lib/pranala/base62');
-var vows = require('vows');
+var assert = require('assert'),
+    base62 = require('../../lib/pranala/base62'),
+    vows = require('vows');
 
 vows.describe('Base62').addBatch({
     'Base62': {
