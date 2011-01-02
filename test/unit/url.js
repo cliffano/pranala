@@ -46,14 +46,14 @@ vows.describe('URL').addBatch({
             }
         },
 		'blacklist': {
-            'returns true for URLs with blacklisted domain': function() {
-	            assert.isTrue(url.isBlacklisted('http://prn.la'));
-	            assert.isTrue(url.isBlacklisted('http://prn.la/11A9'));
-	            assert.isTrue(url.isBlacklisted('http://ow.ly:8080/index.php'));
+            'returns true for URLs with URL shortener domain': function() {
+	            assert.isTrue(url.isShortened('http://prn.la'));
+	            assert.isTrue(url.isShortened('http://prn.la/11A9'));
+	            assert.isTrue(url.isShortened('http://ow.ly:8080/index.php'));
             },
-			'return false for URLs with non-blacklisted domain': function() {
-	            assert.isFalse(url.isBlacklisted('http://nba.com'));
-	            assert.isFalse(url.isBlacklisted('http://nba.com/lakers/threepeat'));
+			'return false for URLs with URL shortener domain': function() {
+	            assert.isFalse(url.isShortened('http://nba.com'));
+	            assert.isFalse(url.isShortened('http://nba.com/lakers/threepeat'));
             }
         },
 		'validate': {
