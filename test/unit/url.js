@@ -63,19 +63,6 @@ vows.describe('URL').addBatch({
 	            assert.equal(url.validate('       '), 'EMPTY');
 	            assert.equal(url.validate('http://prn.la'), 'ALREADY_SHORTENED');
 	            assert.equal(url.validate('http://()'), 'INVALID');
-            },
-            'returns correct error codes for shortened URL': function() {
-	            var appUrl = 'http://prwn.la:1';
-	            assert.isNull(url.validateShort('http://prwn.la:1/09', appUrl));
-	            assert.isNull(url.validateShort('http://prwn.la:1/az', appUrl));
-	            assert.isNull(url.validateShort('http://prwn.la:1/AZ', appUrl));
-	            assert.equal(url.validateShort('http://prwn.la:1', appUrl), 'NOT_FOUND');
-	            assert.equal(url.validateShort('http://prwn.la:1/', appUrl), 'NOT_FOUND');
-	            assert.equal(url.validateShort('http://prwn.la:1/-', appUrl), 'NOT_FOUND');
-	            assert.equal(url.validateShort('prwn.la:1', appUrl), 'NOT_FOUND');
-	            assert.equal(url.validateShort(null, appUrl), 'NOT_FOUND');
-	            assert.equal(url.validateShort('', appUrl), 'NOT_FOUND');
-	            assert.equal(url.validateShort('http://nba.com', appUrl), 'NOT_FOUND');
             }
         }
     }
