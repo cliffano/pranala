@@ -1,14 +1,12 @@
-var assert = require('assert');
-var Text = require('../../lib/pranala/text').Text;
-var vows = require('vows');
-
-var dir = 'test/text';
+var assert = require('assert'),
+    Text = require('../../lib/pranala/text').Text,
+    vows = require('vows');
 
 vows.describe('Text').addBatch({
     'Text': {
         'when dir exists': {
             topic: function() {
-                return new Text(dir);
+                return new Text('test/text');
 	        },
             'return value of key without param': function(topic) {
                 assert.equal(topic.get('id', 'title.without_param'), 'Nasi goreng');
