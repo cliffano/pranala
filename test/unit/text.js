@@ -6,7 +6,7 @@ vows.describe('Text').addBatch({
     'Text': {
         'when dir exists': {
             topic: function() {
-                return new Text('test/text');
+                return new Text('test/resources/text');
 	        },
             'return value of key without param': function(topic) {
                 assert.equal(topic.get('id', 'title.without_param'), 'Nasi goreng');
