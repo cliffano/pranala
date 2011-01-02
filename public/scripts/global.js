@@ -22,6 +22,7 @@ var encode = function(url, lang) {
             },
             "error": {
                 "ALREADY_SHORTENED": "The link is already shortened",
+                "BLACKLISTED": "This link is blacklisted due to spamming activities.",
                 "EMPTY": "Please provide the link to be shortened",
                 "INVALID": "Invalid link",
                 "NOT_FOUND": "The provided short link does not exist in our system",
@@ -37,6 +38,7 @@ var encode = function(url, lang) {
             },
             "error": {
                 "ALREADY_SHORTENED": "Lho gan, sepertinya pranalanya sudah dipendekkan ya?",
+                "BLACKLISTED": "Pranala ini sudah didaftarhitamkan karena aktifitas spamming.",
                 "EMPTY": "Maaf gan, tolong sediakan pranalanya dahulu",
                 "INVALID": "Maaf gan, pranalanya tidak valid",
                 "NOT_FOUND": "Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami",

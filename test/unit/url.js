@@ -45,18 +45,32 @@ vows.describe('URL').addBatch({
 	            assert.isFalse(url.isValid("ini apaan ya"));
             }
         },
-		'already shortened': {
+		'URL shorteners': {
             'returns true for URLs with URL shortener domain': function() {
 	            assert.isTrue(url.isShortened('https://bit.ly/sadadsa'));
 	            assert.isTrue(url.isShortened('http://prn.la'));
 	            assert.isTrue(url.isShortened('http://prn.la:1234/11A9'));
+	            assert.isTrue(url.isShortened('http://prn.la:1234'));	            
 	            assert.isTrue(url.isShortened('https://prn.la/AABB'));
 	            assert.isTrue(url.isShortened('http://ow.ly:8080/index.php'));
 	            assert.isTrue(url.isShortened('http://bu.tt/asdad8'));
             },
-			'return false for URLs with URL shortener domain': function() {
+			'return false for URLs without URL shortener domain': function() {
 	            assert.isFalse(url.isShortened('http://nba.com'));
 	            assert.isFalse(url.isShortened('http://nba.com/lakers/threepeat'));
+            }
+        },
+		'blacklist': {
+            'returns true for URLs with blacklisted domain': function() {
+	            assert.isTrue(url.isBlacklisted('https://chinamama518.com'));
+	            assert.isTrue(url.isBlacklisted('http://chinamama518.com'));
+	            assert.isTrue(url.isBlacklisted('http://chinamama518.com/a/b/c'));
+	            assert.isTrue(url.isBlacklisted('http://chinamama518.com:8989'));
+	            assert.isTrue(url.isBlacklisted('http://www.chinamama518.com'));
+            },
+			'return false for URLs without blacklisted domain': function() {
+	            assert.isFalse(url.isBlacklisted('http://nba.com'));
+	            assert.isFalse(url.isBlacklisted('nba.com'));
             }
         },
 		'validate': {
@@ -66,6 +80,7 @@ vows.describe('URL').addBatch({
 	            assert.equal(url.validate('       '), 'EMPTY');
 	            assert.equal(url.validate('http://prn.la'), 'ALREADY_SHORTENED');
 	            assert.equal(url.validate('http://()'), 'INVALID');
+	            assert.equal(url.validate('http://chinamama518.com'), 'BLACKLISTED');
             }
         }
     }
