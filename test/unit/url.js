@@ -45,11 +45,14 @@ vows.describe('URL').addBatch({
 	            assert.isFalse(url.isValid("ini apaan ya"));
             }
         },
-		'blacklist': {
+		'already shortened': {
             'returns true for URLs with URL shortener domain': function() {
+	            assert.isTrue(url.isShortened('https://bit.ly/sadadsa'));
 	            assert.isTrue(url.isShortened('http://prn.la'));
-	            assert.isTrue(url.isShortened('http://prn.la/11A9'));
+	            assert.isTrue(url.isShortened('http://prn.la:1234/11A9'));
+	            assert.isTrue(url.isShortened('https://prn.la/AABB'));
 	            assert.isTrue(url.isShortened('http://ow.ly:8080/index.php'));
+	            assert.isTrue(url.isShortened('http://bu.tt/asdad8'));
             },
 			'return false for URLs with URL shortener domain': function() {
 	            assert.isFalse(url.isShortened('http://nba.com'));
