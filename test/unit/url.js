@@ -1,6 +1,6 @@
-var assert = require('assert');
-var url = require('../../lib/pranala/url');
-var vows = require('vows');
+var assert = require('assert'),
+    url = require('../../lib/pranala/url'),
+    vows = require('vows');
 
 vows.describe('URL').addBatch({
     'URL': {
