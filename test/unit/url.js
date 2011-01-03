@@ -76,14 +76,27 @@ vows.describe('URL').addBatch({
 	            assert.isFalse(url.isBlacklisted('nba.com'));
             }
         },
-		'validate': {
+		'validate long URL': {
             'returns correct error codes': function() {
-	            assert.isNull(url.validate('http://nba.coma'));
-	            assert.equal(url.validate(null), 'EMPTY');
-	            assert.equal(url.validate('       '), 'EMPTY');
-	            assert.equal(url.validate('http://prn.la'), 'ALREADY_SHORTENED');
-	            assert.equal(url.validate('http://()'), 'INVALID');
-	            assert.equal(url.validate('http://chinamama518.com'), 'BLACKLISTED');
+	            assert.isNull(url.validateLong('http://nba.coma'));
+	            assert.equal(url.validateLong(null), 'EMPTY');
+	            assert.equal(url.validateLong('       '), 'EMPTY');
+	            assert.equal(url.validateLong('http://prn.la'), 'ALREADY_SHORTENED');
+	            assert.equal(url.validateLong('http://()'), 'INVALID');
+	            assert.equal(url.validateLong('http://chinamama518.com'), 'BLACKLISTED');
+            }
+        },
+		'validate short code': {
+            'returns correct error codes': function() {
+	            assert.isNull(url.validateShort('0'));
+	            assert.isNull(url.validateShort('a'));
+	            assert.isNull(url.validateShort('Z'));
+	            assert.isNull(url.validateShort('abasdadaqqwe8098qe09w8qe1231Z'));
+	            assert.equal(url.validateShort(null), 'NOT_FOUND');
+	            assert.equal(url.validateShort(''), 'NOT_FOUND');
+	            assert.equal(url.validateShort('       '), 'NOT_FOUND');
+	            assert.equal(url.validateShort('/a'), 'NOT_FOUND');
+	            assert.equal(url.validateShort('http://prn.la/abc'), 'NOT_FOUND');
             }
         }
     }

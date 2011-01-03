@@ -156,7 +156,7 @@ app.get('/b/:lang/:page', function (req, res) {
 // shorten API
 var v0Shorten = function (req, res) {
     var _url = url.sanitise(req.query.long || req.query.prn || ''),
-        error = url.validate(_url),
+        error = url.validateLong(_url),
         callback, result;
     if (req.query.format === 'json') {
         if (error === null) {
@@ -194,12 +194,11 @@ app.get('/v0/shorten', function (req, res) {
 // expand API
 app.get('/v0/expand', function (req, res) {
     var _url = url.sanitise(decodeURIComponent(req.query.short)),
-        error = url.validateShort(_url, appUrl),
-        regex = new RegExp(appUrl + '/', 'g'),
-        code, callback, result;
+        code = _url.replace(/^https?:\/\/.*\//, ''),
+        error = url.validateShort(code),
+        callback, result;
     if (req.query.format === 'json') {
         if (error === null) {
-            code = _url.replace(regex, '');
             callback = function (doc) {
 	            if (doc === null) {
 		            result = {};
@@ -223,7 +222,6 @@ app.get('/v0/expand', function (req, res) {
         }
     } else {
 	    if (error === null) {
-	        code = _url.replace(regex, '');
 	        callback = function (doc, error) {
 	            if (doc === null) {
 		            res.send('', 200);
