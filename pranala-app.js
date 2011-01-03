@@ -363,7 +363,7 @@ app.get('/:code', function (req, res) {
 	            res.redirect(url, 301);
             };
             // x-real-ip is configured in nginx.conf
-            pranala.stat(req.params.code, url, 'gatotkaca', req.headers['x-real-ip'], req.headers.referer, req.headers['user-agent'], callback);
+            pranala.stat(req.params.code, url, 'arjuna', req.headers['x-real-ip'], req.headers.referer, req.headers['user-agent'], callback);
         }
     };
     pranala.decode(req.params.code, callback);
