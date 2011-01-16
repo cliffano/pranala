@@ -3,7 +3,7 @@ var assetManager = require('connect-assetmanager'),
     connect = require('connect'),
     express = require('express'),
     fs = require('fs'),
-    log4js = require('log4js'),
+    log4js = require('log4js')(),
     conf = JSON.parse(fs.readFileSync('./conf.json', 'utf-8')),
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
@@ -73,7 +73,7 @@ app.configure(function () {
     app.use(express.methodOverride());
     app.use('/b/images', express.staticProvider(__dirname + '/public/images'));
     app.use(express.cookieDecoder());
-    app.use(express.session());
+	app.use(express.session({ secret: 'pancanaka' }));
     app.use(express.gzip());
     app.use(assetManager(assetManagerGroups));
     app.register('.html', require('ejs'));
@@ -231,6 +231,41 @@ app.get('/v0/expand', function (req, res) {
                 }
 	        };
 	        pranala.decode(code, callback);
+	    } else {
+	        res.send('', 200);
+	    }
+    }
+});
+
+// custom API
+app.get('/v0/custom', function (req, res) {
+    var _url = url.sanitise(req.query.long || ''),
+        code = req.query.code || '',
+        error = url.validateLong(_url) || url.validateCustom(code),
+        callback, result;
+    if (req.query.format === 'json') {
+        if (error === null) {
+            callback = function (doc) {
+                result = {};
+                result.status = 'success';
+                result.short = appUrl + '/' + doc._id;
+                logger.debug('Custom url ' + _url + ' with code ' + doc._id);
+                res.send(JSON.stringify(result), 200);
+            };
+            pranala.custom(_url, code, callback);
+        } else {
+            result = {};
+            result.status = 'failure';
+            result.message = error;
+            res.send(JSON.stringify(result), 200);
+        }
+    } else {
+	    if (error === null) {
+	        callback = function (doc) {
+	            logger.debug('Custom url ' + _url + ' with code ' + doc._id);
+	            res.send(appUrl + '/' + doc._id, 200);
+	        };
+	        pranala.custom(_url, code, callback);
 	    } else {
 	        res.send('', 200);
 	    }

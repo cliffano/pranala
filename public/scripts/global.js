@@ -10,44 +10,46 @@ var init = function() {
 	    }
 	}
 };
-
-var encode = function(url, lang) {
+    
+var encode = function(lang, url, code) {
     var texts = {
-        'en': {
-            "label": "Short link",
-            "action": {
-                "visit": "Visit",
-                "tweet": "Tweet",
-                "qr": "QR Code"  
+            'en': {
+                "label": "Short link",
+                "action": {
+                    "visit": "Visit",
+                    "tweet": "Tweet",
+                    "qr": "QR Code"  
+                },
+                "error": {
+                    "ALREADY_SHORTENED": "The link is already shortened",
+                    "BLACKLISTED": "This link is blacklisted due to spamming activities.",
+                    "EMPTY": "Please provide the link to be shortened",
+                    "INVALID": "Invalid link",
+                    "NOT_FOUND": "The provided short link does not exist in our system",
+                    "UNEXPECTED": "Unexpected error occured while trying to shorten the link."
+                }
             },
-            "error": {
-                "ALREADY_SHORTENED": "The link is already shortened",
-                "BLACKLISTED": "This link is blacklisted due to spamming activities.",
-                "EMPTY": "Please provide the link to be shortened",
-                "INVALID": "Invalid link",
-                "NOT_FOUND": "The provided short link does not exist in our system",
-                "UNEXPECTED": "Unexpected error occured while trying to shorten the link."
+            'id': {
+                "label": "Pranala pendek",
+                "action": {
+                    "visit": "Kunjungi",
+                    "tweet": "Twit",
+                    "qr": "Kode QR"
+                },
+                "error": {
+                    "ALREADY_SHORTENED": "Lho gan, sepertinya pranalanya sudah dipendekkan ya?",
+                    "BLACKLISTED": "Pranala ini sudah didaftarhitamkan karena aktifitas spamming.",
+                    "EMPTY": "Maaf gan, tolong sediakan pranalanya dahulu",
+                    "INVALID": "Maaf gan, pranalanya tidak valid",
+                    "NOT_FOUND": "Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami",
+                    "UNEXPECTED": "Maaf gan, bautnya ada yang lepas."
+                }
             }
-        },
-        'id': {
-            "label": "Pranala pendeknya",
-            "action": {
-                "visit": "Kunjungi",
-                "tweet": "Twit",
-                "qr": "Kode QR"
-            },
-            "error": {
-                "ALREADY_SHORTENED": "Lho gan, sepertinya pranalanya sudah dipendekkan ya?",
-                "BLACKLISTED": "Pranala ini sudah didaftarhitamkan karena aktifitas spamming.",
-                "EMPTY": "Maaf gan, tolong sediakan pranalanya dahulu",
-                "INVALID": "Maaf gan, pranalanya tidak valid",
-                "NOT_FOUND": "Pranala pendek yang anda sediakan tidak dapat ditemukan di sistem kami",
-                "UNEXPECTED": "Maaf gan, bautnya ada yang lepas."
-            }
-        }
-    };
+        };
     texts = texts[lang];
-    var targetUrl = '/x?long=' + encodeURIComponent(url) + '&format=json';
+    var targetUrl = (code) ?
+        '/v0/custom?long=' + encodeURIComponent(url) + '&code=' + encodeURIComponent(code) + '&format=json' :
+        '/x?long=' + encodeURIComponent(url) + '&format=json';
     $('#indicator').show();
     $.ajax({
         type: 'GET',

@@ -98,7 +98,7 @@ div.title {
     padding: 0 8px 0 8px;
     text-align: right;
 }
-input#url {
+input#url, input#code {
     border: 1px solid #b3b3b3;
     color: #1e1e1f;
     font-size: 15px;
@@ -114,12 +114,14 @@ input.button {
     font-weight: bold;
     height: 30px;
 }
-div.text {
-    background-color: #ededea;
+div.form, div.text {
     color: #7a7a7b;
     display: block;
     font-size: 13px;
     padding: 15px;
+}
+div.text {
+    background-color: #ededea;
 }
 input#answer {
     background-color: #cafe9c;

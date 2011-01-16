@@ -16,6 +16,7 @@
         "500": "Server error",
         "contact": "Contact",
         "home": "Shorten the link",
+        "custom": "Custom link",
         "hotlinks": "Popular",
         "howitworks": "How it works",
         "usage": "Usage",
@@ -28,6 +29,7 @@
     },
     "nav": {
         "pendekkan": "Shorten",
+            "custom": "Custom",
             "hotlinks": "Hotlinks",
             "howitworks": "How it works",
             "usage": "Usage",
@@ -38,9 +40,14 @@
         },
         "page": {
             "home": {
-            "button": "Shorten",
-            "loading": "The elves are hard at work..."
-        },
+                "button": "Shorten",
+                "loading": "The elves are hard at work..."
+            },
+            "custom": {
+                "label": "Short link",
+                "button": "Shorten",
+                "loading": "Lucky the gnomes are not on strike, phew..."
+            },
         "hotlinks": {
             "p": "Most clicked links.",
             "day": "Last 24 hours",
@@ -168,8 +175,8 @@
             }
         },
         "contact": {
-            "p1a": "If you'd like to comment, ask a question, criticise, or just say hi, we can be contacted via e-mail",
-            "p1b": "or Twitter",
+            "p1a": "Say hi to us at",
+            "p1b": " or on Twitter",
             "p2": "And before you ask &quot;WTH is pranala?&quot;",
             "p3a": "We",
             "p3b": "answer",

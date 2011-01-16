@@ -1,0 +1,17 @@
+<div class="content pane">
+  <form action="#" method="get" onsubmit="encode('<%= lang %>', $('#url').val(), $('#code').val()); return false;">
+    <div class="form">
+    <%= g.p.getText(lang, 'page.custom.label') %> &raquo;
+    &nbsp;
+    http://prn.la/
+    <input id="code" type="text" size="12" maxlength="50" value="aa-bb" onclick="if (this.value === 'aa-bb') { this.value = ''; }"//>
+    </div>
+    <input id="url" type="text" size="48" maxlength="2000" value="http://" onclick="if (this.value === 'http://') { this.value = ''; }"/>
+    <input id="shorten" class="button" type="submit" value="<%= g.p.getText(lang, 'page.custom.button') %>"/>
+  </form>
+  <br style="clear: both;"/>
+  <div id="indicator" class="hidden">
+    <img src="/b/images/loading.gif" height="19" width="220" alt="<%= g.p.getText(lang, 'page.custom.loading') %>"/>
+  </div>
+  <div id="result" class="text hidden"></div>
+</div>

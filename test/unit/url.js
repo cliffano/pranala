@@ -76,7 +76,7 @@ vows.describe('URL').addBatch({
 	            assert.isFalse(url.isBlacklisted('nba.com'));
             }
         },
-		'validate long URL': {
+	'validate long URL': {
             'returns correct error codes': function() {
 	            assert.isNull(url.validateLong('http://nba.coma'));
 	            assert.equal(url.validateLong(null), 'EMPTY');
@@ -86,7 +86,7 @@ vows.describe('URL').addBatch({
 	            assert.equal(url.validateLong('http://chinamama518.com'), 'BLACKLISTED');
             }
         },
-		'validate short code': {
+	'validate short code': {
             'returns correct error codes': function() {
 	            assert.isNull(url.validateShort('0'));
 	            assert.isNull(url.validateShort('a'));
@@ -97,6 +97,13 @@ vows.describe('URL').addBatch({
 	            assert.equal(url.validateShort('       '), 'NOT_FOUND');
 	            assert.equal(url.validateShort('/a'), 'NOT_FOUND');
 	            assert.equal(url.validateShort('http://prn.la/abc'), 'NOT_FOUND');
+            }
+        },
+	'validate custom': {
+            'returns correct error codes': function() {
+	            assert.isNull(url.validateCustom('aa-bb'));
+	            assert.isNull(url.validateCustom('-'));
+	            assert.equal(url.validateCustom(null), 'NOT_FOUND');
             }
         }
     }
