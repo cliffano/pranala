@@ -4,21 +4,14 @@ var assetManager = require('connect-assetmanager'),
     express = require('express'),
     fs = require('fs'),
     log4js = require('log4js')(),
-    conf = JSON.parse(fs.readFileSync('./conf.json', 'utf-8')),
+    conf = JSON.parse(fs.readFileSync('./app.conf', 'utf-8')),
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
     url = require('./lib/pranala/url');
 
 var logger = log4js.getLogger('app'),
     env = process.env.ENV,
-    appConf = conf,
-    appUrl = appConf.appUrl,
-    dbUrl = appConf.dbUrl,
-    dbName = appConf.dbName,
-    sequenceFile = appConf.sequenceFile,
-    logFile = appConf.logFile,
-    logLevel = appConf.logLevel,
-    pranala = new Pranala(dbUrl, dbName, sequenceFile, 'conf/text'),
+    pranala = new Pranala(conf.db.url, conf.db.name, conf.app.sequence, 'conf/text'),
     global = {
         env: env,
         uniqueId: (new Date()).getTime(),
@@ -26,8 +19,8 @@ var logger = log4js.getLogger('app'),
         nav: [ 'hotlinks', 'tools', 'api', 'contact' ]
     };
     
-log4js.addAppender(log4js.fileAppender(conf.logFile), 'app');
-logger.setLevel(conf.logLevel);
+log4js.addAppender(log4js.fileAppender(conf.log.file), 'app');
+logger.setLevel(conf.log.level);
 
 var app = express.createServer();
 var getLang = function (req) {
@@ -148,7 +141,7 @@ app.get('/b/:lang/:page', function (req, res) {
 	        g: global,
 	        lang: req.params.lang,
             page: req.params.page,
-            appUrl: appUrl
+            appUrl: conf.app.url
         }
     });
 });
@@ -163,7 +156,7 @@ var v0Shorten = function (req, res) {
             callback = function (doc) {
                 result = {};
                 result.status = 'success';
-                result.short = appUrl + '/' + doc._id;
+                result.short = conf.app.url + '/' + doc._id;
                 logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
                 res.send(JSON.stringify(result), 200);
             };
@@ -179,7 +172,7 @@ var v0Shorten = function (req, res) {
 	    if (error === null) {
 	        callback = function (doc) {
 	            logger.debug('Encoded url ' + _url + ' to code ' + doc._id);
-	            res.send(appUrl + '/' + doc._id, 200);
+	            res.send(conf.app.url + '/' + doc._id, 200);
 	        };
 	        pranala.encode(_url, callback);
 	    } else {
@@ -248,7 +241,7 @@ app.get('/v0/custom', function (req, res) {
             callback = function (doc) {
                 result = {};
                 result.status = 'success';
-                result.short = appUrl + '/' + doc._id;
+                result.short = conf.app.url + '/' + doc._id;
                 logger.debug('Custom url ' + _url + ' with code ' + doc._id);
                 res.send(JSON.stringify(result), 200);
             };
@@ -263,7 +256,7 @@ app.get('/v0/custom', function (req, res) {
 	    if (error === null) {
 	        callback = function (doc) {
 	            logger.debug('Custom url ' + _url + ' with code ' + doc._id);
-	            res.send(appUrl + '/' + doc._id, 200);
+	            res.send(conf.app.url + '/' + doc._id, 200);
 	        };
 	        pranala.custom(_url, code, callback);
 	    } else {
@@ -311,7 +304,7 @@ app.post('/m', function (req, res) {
                     lang: getLang(req),
 		            page: 'm',
 		            url: url,
-		            shortenedUrl: appUrl + '/' + doc._id
+		            shortenedUrl: conf.app.url + '/' + doc._id
 		        }
 		    });
 	    };
@@ -335,7 +328,7 @@ app.get('/u/pvt', function (req, res) {
     res.render('pvt.html', {
 	    layout: false,
         locals: {
-            appUrl: appUrl
+            appUrl: conf.app.url
         }
     });
 });
@@ -357,7 +350,7 @@ app.get('/sitemap.xml', function (req, res) {
     res.render('sitemap.html', {
         layout: false,
         locals: {
-            appUrl: appUrl,
+            appUrl: conf.app.url,
             g: global
         },
         headers: {
@@ -367,7 +360,7 @@ app.get('/sitemap.xml', function (req, res) {
 });
 
 app.get('/:code/qr', function (req, res) {
-    var shortUrl = appUrl + '/' + req.params.code;
+    var shortUrl = conf.app.url + '/' + req.params.code;
     res.render('qr.html', {
         locals: {
             g: global,
@@ -416,7 +409,7 @@ app.get('/*', function (req, res) {
     throw new NotFound();
 });
 
-logger.info('Starting ' + conf.appName + ' on port ' + conf.appPort + ' in env ' + process.env.ENV);
-app.listen(conf.appPort);
+logger.info('Starting ' + conf.app.name + ' on port ' + conf.app.port + ' in env ' + process.env.ENV);
+app.listen(conf.app.port);
 
 exports.logger = logger;
