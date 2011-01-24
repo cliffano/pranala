@@ -1,14 +1,11 @@
-var assert = require('assert');
-var path = require('path');
-var Data = require('../../lib/pranala/data').Data;
-var vows = require('vows');
-
-var dbUrl = 'http://localhost:5984';
-var dbName = 'pranala_test';
+var assert = require('assert'),
+	Data = require('../../lib/pranala/data').Data,
+    path = require('path'),
+	vows = require('vows');
 
 vows.describe('Data').addBatch({
 	'data': {
-		topic: new Data(dbUrl, dbName, true),
+		topic: new Data({db: { name: 'http://localhost:5984', url: 'pranala' }}, true),
 		'create new document': {
 			topic: function(data) {
 				data.saveUrlDoc('1A', 'http://somelongdomain.org/path1/path2?q=what', '10', new Date(), this.callback, null);

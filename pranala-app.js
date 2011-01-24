@@ -11,7 +11,7 @@ var assetManager = require('connect-assetmanager'),
 
 var logger = log4js.getLogger('app'),
     env = process.env.ENV,
-    pranala = new Pranala(conf.db.url, conf.db.name, conf.app.sequence, 'text'),
+    pranala = new Pranala(conf.db, conf.app.sequence, 'text'),
     global = {
         env: env,
         uniqueId: (new Date()).getTime(),
