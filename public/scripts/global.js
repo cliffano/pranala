@@ -18,6 +18,7 @@ var encode = function(lang, url, code) {
                 "action": {
                     "visit": "Visit",
                     "tweet": "Tweet",
+					"facebook": "Facebook",
                     "qr": "QR Code"  
                 },
                 "error": {
@@ -34,6 +35,7 @@ var encode = function(lang, url, code) {
                 "action": {
                     "visit": "Kunjungi",
                     "tweet": "Twit",
+					"facebook": "Fesbuk",
                     "qr": "Kode QR"
                 },
                 "error": {
@@ -64,7 +66,8 @@ var encode = function(lang, url, code) {
                     + '<input id="answer" class="success" onclick="this.select(); copy(this);" type="text" readonly="true" value="' + result.short + '"/>'
                     + '<ul id="result_action">'
                     + '<li><a href="' + result.short + '">' + texts.action.visit + '</a></li>'
-                    + '<li><a href="http://twitter.com/home?status=' + result.short + '">' + texts.action.tweet + '</a></li>'
+                    + '<li><a href="http://twitter.com/home?status=' + encodeURIComponent(result.short) + '">' + texts.action.tweet + '</a></li>'
+					+ '<li><a href="http://www.facebook.com/sharer.php?u=' + encodeURIComponent(result.short) + '">' + texts.action.facebook + '</a></li>'
                     + '<li><a href="' + result.short + '/qr">' + texts.action.qr + '</a></li>'
                     + '</ul>';
             } else {
