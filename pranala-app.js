@@ -33,7 +33,7 @@ var getLang = function (req) {
 function NotFound(message) {
     this.name = 'NotFound';
     Error.call(this, message);
-    Error.captureStackTrace(this, arguments.callee);
+    //Error.captureStackTrace(this, arguments.callee);
 }
 
 logger.info('Configuring application');
