@@ -7,11 +7,12 @@ var assetManager = require('connect-assetmanager'),
     conf = JSON.parse(fs.readFileSync('./app.conf', 'utf-8')),
     Pranala = require('./lib/pranala').Pranala,
     sys = require('sys'),
-    url = require('./lib/pranala/url');
+    Url = require('./lib/pranala/url').Url;
 
 var logger = log4js.getLogger('app'),
     env = process.env.ENV,
     pranala = new Pranala(conf.db, conf.app.sequence, 'text'),
+	url = new Url(conf.app.shorteners, conf.app.blacklist),
     global = {
         env: env,
         uniqueId: (new Date()).getTime(),

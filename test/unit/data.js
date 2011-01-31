@@ -1,7 +1,7 @@
 var assert = require('assert'),
-	Data = require('../../lib/pranala/data').Data,
-    path = require('path'),
-	vows = require('vows');
+	path = require('path'),
+	vows = require('vows'),
+	Data = require('../../lib/pranala/data').Data;
 
 vows.describe('Data').addBatch({
 	'data': {
