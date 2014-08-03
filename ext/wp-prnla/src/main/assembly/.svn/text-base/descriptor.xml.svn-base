@@ -1,0 +1,30 @@
+<assembly>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>src/main/php</directory>
+      <includes>
+        <include>*.*</include>
+      </includes>
+      <useDefaultExcludes>true</useDefaultExcludes>
+      <outputDirectory></outputDirectory>
+    </fileSet>   
+    <fileSet>
+      <directory>src/main/resources/images</directory>
+      <includes>
+        <include>*.*</include>
+      </includes>
+      <useDefaultExcludes>true</useDefaultExcludes>
+      <outputDirectory></outputDirectory>
+    </fileSet>
+  </fileSets>
+  <files>
+    <file>
+      <source>readme.txt</source>
+      <outputDirectory></outputDirectory>
+      <filtered>true</filtered>
+    </file>
+  </files>
+</assembly>

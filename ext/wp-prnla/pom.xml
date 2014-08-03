@@ -1,0 +1,75 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>wordpress</groupId>
+  <artifactId>wp-prnla</artifactId>
+  <version>0.1</version>
+  <description>
+    A WordPress plugin which allows the use of Prnla http://prn.la as a shortlink / URL shortener.
+  </description>
+  <inceptionYear>2010</inceptionYear>
+  <name>WP-Prnla Plugin</name>
+  <parent>
+    <groupId>wordpress</groupId>
+    <artifactId>bitpress</artifactId>
+    <version>0.1</version>
+  </parent>
+  <licenses>
+    <license>
+      <name>GPL License</name>
+      <url>../LICENSE.txt</url>
+    </license>
+  </licenses>
+  <dependencies>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/descriptor.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.2</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <configuration>
+              <tasks>
+                <unzip src="${project.build.directory}/${project.artifactId}-${project.version}.zip" dest="${project.build.directory}"/>
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.atlassian.maven.plugins</groupId>
+        <artifactId>maven-upload-plugin</artifactId>
+        <version>1.1</version>
+          <configuration>
+            <resourceSrc>${project.build.directory}/${project.artifactId}-${project.version}/*</resourceSrc>
+            <resourceDest>${project.artifactId}</resourceDest>
+            <serverId>studio</serverId>
+            <url>scp://teuchi:2218/var/www/cliffano.com/blog/wp-content/plugins/</url>
+          </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
