@@ -1,0 +1,5 @@
+content pranafox    jar:chrome/pranafox.jar!/content/
+locale  pranafox    en-US   jar:chrome/pranafox.jar!/locale/en-US/
+locale  pranafox    id-ID   jar:chrome/pranafox.jar!/locale/id-ID/
+skin    pranafox    classic jar:chrome/pranafox.jar!/skin/
+overlay chrome://browser/content/browser.xul    chrome://pranafox/content/main.xul

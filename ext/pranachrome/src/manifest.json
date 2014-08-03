@@ -1,0 +1,12 @@
+{
+  "name": "Pranachrome",
+  "version": "0.2",
+  "description": "__MSG_description__",
+  "permissions": ["contextMenus", "tabs"],
+  "background_page": "background.html",
+  "icons": {
+    "16": "images/icon_16.png",
+    "48": "images/icon_48.png"
+  },
+  "default_locale": "en"
+}

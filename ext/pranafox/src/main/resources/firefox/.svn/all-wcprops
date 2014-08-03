@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/23/trunk/pranafox/src/main/resources/firefox
+END
+install.rdf
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/14/trunk/pranafox/src/main/resources/firefox/install.rdf
+END
+chrome.manifest
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/23/trunk/pranafox/src/main/resources/firefox/chrome.manifest
+END

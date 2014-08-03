@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay SYSTEM "chrome://pranafox/locale/pranafox.dtd">
+<overlay id="pranafox-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script type="application/x-javascript" src="chrome://pranafox/content/lib/namespace.js"/>
+    <script type="application/x-javascript" src="chrome://pranafox/content/lib/Base.js"/>
+    <script type="application/x-javascript" src="chrome://pranafox/content/core/util.js"/>
+    <script type="application/x-javascript" src="chrome://pranafox/content/core/pranafox.js"/>
+    <script type="application/x-javascript" src="chrome://pranafox/content/firefox/maincontroller.js"/>
+    
+    <popup id="contentAreaContextMenu">
+        <menuitem id="pranafox-context-menu-addlink" label="&menu.shorten;" oncommand="la_prn_pranafox_Pranala.shorten(gContextMenu.linkURL);" class="menuitem-iconic" image="chrome://pranafox/skin/icon_16.png" insertafter="context-sendlink"/>
+    </popup>
+        
+</overlay>

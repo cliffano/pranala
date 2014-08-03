@@ -1,0 +1,8 @@
+{
+    "description": {
+        "message": "Adds a right click menu option to shorten the selected URL using Prnla http://prn.la ."
+    },
+    "label": {
+        "message": "Shorten the link"
+    }
+}
